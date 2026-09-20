@@ -1,7 +1,3 @@
-// TUTORIAL pt3  Put this on an empty GameObject in the Loading Screen scene.
-// EDITOR: set minDisplaySeconds (video used about 1.5).
-// CHECK: after the delay, Game scene loads if Destination was set by TitleScreen.
-
 using Prowl.Runtime;
 using Prowl.Runtime.Resources;
 
