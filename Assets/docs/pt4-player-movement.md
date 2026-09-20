@@ -10,7 +10,7 @@ End: a **Player** prefab in the Game scene moves with WASD or arrow keys.
 
 ### Project folders
 
-- [ ] Project browser: confirm `Scenes/`, `Prefabs/`, `Scripts/` exist (from pt2). If `Prefabs/` is missing, create it.
+- [ ] Project browser: confirm `Scenes/`, `Assets/Prefabs/`, `Assets/Scripts/` exist (from pt2). If `Assets/Prefabs/` is missing, create it.
 - [ ] Open the **Game** scene (double-click `Scenes/Game` — or whatever you named it in pt2)
 
 ### Build the Player object
@@ -23,7 +23,7 @@ End: a **Player** prefab in the Game scene moves with WASD or arrow keys.
 
 ### Script on the Player
 
-- [ ] Copy `Scripts/PlayerMovement.cs` into the project's `Scripts/` folder (or Create → C# Script named **PlayerMovement** and paste the full file)
+- [ ] Copy `Assets/Scripts/PlayerMovement.cs` into the project's `Assets/Scripts/` folder (or Create → C# Script named **PlayerMovement** and paste the full file)
 - [ ] Wait for compile (Console clear of script errors)
 - [ ] Select **Player** in the Hierarchy
 - [ ] Inspector → Add Component → **PlayerMovement**
@@ -33,10 +33,10 @@ End: a **Player** prefab in the Game scene moves with WASD or arrow keys.
 ### Make it a prefab (same habit as Title Screen in pt1)
 
 - [ ] Project browser: open the **Prefabs** folder
-- [ ] Drag **Player** from the Hierarchy into `Prefabs/`
+- [ ] Drag **Player** from the Hierarchy into `Assets/Prefabs/`
 - [ ] Confirm a **Player** prefab asset appears under Prefabs (blue / prefab icon)
 - [ ] Confirm the Hierarchy **Player** is now a prefab instance (linked to that asset — not a one-off scene object)
-- [ ] SAY: "Same workflow as the Title Screen prefab — scene instance points at Prefabs/Player."
+- [ ] SAY: "Same workflow as the Title Screen prefab — scene instance points at Assets/Prefabs/Player."
 - [ ] If you tweak `moveSpeed` or the mesh later: change it on the prefab asset (or Apply overrides) so every instance stays consistent
 
 ### Save and CHECK
@@ -51,31 +51,33 @@ End: a **Player** prefab in the Game scene moves with WASD or arrow keys.
 
 | Object / asset | Component | Field | Assign |
 |----------------|-----------|-------|--------|
-| Prefabs/Player (and the Game scene instance) | PlayerMovement | moveSpeed | `5` (default) |
+| Assets/Prefabs/Player (and the Game scene instance) | PlayerMovement | moveSpeed | `5` (default) |
 
 No button on-click targets. Title / Loading wiring from pt3 stays as-is.
 
 ## Prefab layout after this episode
 
 ```
-Prefabs/
+Assets/Prefabs/
   Title Screen     (from pt1)
   Player           (this episode — Cube + PlayerMovement)
-Scenes/
+Assets/Scenes/
   Title Screen
   Loading Screen
   Game             (contains a Player prefab instance)
-Scripts/
+Assets/Scripts/
   TitleScreen.cs
   LoadingScreen.cs
   SceneLoadRequest.cs
   PlayerMovement.cs
+Assets/docs/
+  pt4-player-movement.md
 ```
 
 ## Gotchas
 
 - If nothing moves, you are still in Title or Loading — finish Play into **Game**.
-- If the Hierarchy Player is **not** a prefab instance, you skipped the drag into `Prefabs/`. Do that before you call the take done.
+- If the Hierarchy Player is **not** a prefab instance, you skipped the drag into `Assets/Prefabs/`. Do that before you call the take done.
 - Do **not** add Rigidbody3D here. Transform-only movement keeps the CHECK to one feature.
 - Movement uses local Forward/Right. Keep Player rotation at identity unless you mean to change facing.
 - Edits made only on the scene instance while Play is running are discarded when you stop — tweak the prefab or Apply after Stop.

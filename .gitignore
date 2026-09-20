@@ -1,7 +1,19 @@
-Temp/
+# Prowl local / generated (companion tracks Assets/Scripts + Assets/docs only)
 Library/
-obj/
-bin/
-*.user
+Temp/
+Logs/
+Packages/
+ProjectSettings/
+Assets/Scenes/
+Assets/Prefabs/
+Assets/temp/
+Assets/**/*.meta
+*.csproj
+*.sln
+*.slnx
+*.prowl
+Directory.Build.props
 .vs/
-.idea/
+bin/
+obj/
+.DS_Store

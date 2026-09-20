@@ -8,10 +8,15 @@ Work branch for **Part 4** (not tagged / not on `main` until the video is final)
 **Engine source:** https://github.com/ProwlEngine/Prowl  
 **Start from:** tag / branch `pt3-loading-screen`
 
+Everything you follow for an episode lives under **`Assets/`** (same tree as the Prowl project):
+
+- `Assets/Scripts/` — C# you type or paste
+- `Assets/docs/` — editor shot lists
+
 ## How to use this with two monitors
 
 - **Left (record):** Prowl editor only.
-- **Right:** this branch. Search `TUTORIAL pt4` and tick `docs/pt4-player-movement.md`.
+- **Right:** this branch / the episode PR checklist. Search `TUTORIAL pt4` and tick `Assets/docs/pt4-player-movement.md` (or the PR task list).
 - Do not skip a waypoint. Play when a comment says `CHECK`.
 
 ## Episodes
@@ -31,17 +36,17 @@ cd prowl-tutorial-series
 git checkout pt4-player-movement
 ```
 
-Copy `Scripts/` into your Prowl project's `Scripts` folder.
+Open this folder as your Prowl project root (or keep `My Prowl Game` checked out on this branch). Edit scripts only under `Assets/Scripts/`.
 
 ## What this episode adds
 
 ```
-Scripts/   PlayerMovement.cs   (plus unchanged TitleScreen, LoadingScreen, SceneLoadRequest)
-Prefabs/   Player              (Cube + PlayerMovement — created in the editor; not stored in this repo)
-docs/      pt4-player-movement.md
+Assets/Scripts/   PlayerMovement.cs   (plus unchanged TitleScreen, LoadingScreen, SceneLoadRequest)
+Assets/Prefabs/   Player              (Cube + PlayerMovement — editor only; gitignored)
+Assets/docs/      pt4-player-movement.md
 ```
 
-Editor click-paths for the Player prefab live in `docs/pt4-player-movement.md` (create Cube → attach script → drag into `Prefabs/`).
+Editor click-paths for the Player prefab live in `Assets/docs/pt4-player-movement.md` (create Cube → attach script → drag into `Assets/Prefabs/`).
 
 ## Next after this
 

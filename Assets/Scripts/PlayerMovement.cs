@@ -1,6 +1,6 @@
-// TUTORIAL pt4-01  New file: Scripts/PlayerMovement.cs (copy into your Prowl project's Scripts folder).
+// TUTORIAL pt4-01  New file: Assets/Scripts/PlayerMovement.cs (copy into your Prowl project's Scripts folder).
 // NEXT FILE: stay here — type the class, then do the EDITOR prefab steps before Play.
-// EDITOR: docs/pt4-player-movement.md — create Cube named Player, Add PlayerMovement, drag Hierarchy Player into Prefabs/.
+// EDITOR: Assets/docs/pt4-player-movement.md — create Cube named Player, Add PlayerMovement, drag Hierarchy Player into Assets/Prefabs/.
 // CHECK: Title → Loading → Game, then WASD or arrow keys move the Player prefab instance.
 
 using Prowl.Runtime;
@@ -37,5 +37,5 @@ public class PlayerMovement : MonoBehaviour
 }
 
 // TUTORIAL pt4-DONE  End of Part 4.
-// NEXT FILE: docs/pt4-player-movement.md — tick Save Game scene + Play CHECK if you have not already.
+// NEXT FILE: Assets/docs/pt4-player-movement.md — tick Save Game scene + Play CHECK if you have not already.
 // NEXT branch name: pt5-real-load-wait
