@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
 
     // TUTORIAL pt4-03  Update runs every rendered frame while Play mode is on.
-    public void Update()
+    public override void Update()
     {
         // TUTORIAL pt4-04  Real Prowl helpers from Input.cs (preview-4): normalised stick from keys.
         // SAY: "GetWASD and GetArrowKeys already normalise diagonals. We add both so either scheme works."

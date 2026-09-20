@@ -8,7 +8,7 @@ public class LoadingScreen : MonoBehaviour
     private float elapsed;
     private bool done;
 
-    public void Update()
+    public override void Update()
     {
         if (done)
             return;
