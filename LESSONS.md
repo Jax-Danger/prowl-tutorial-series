@@ -19,3 +19,9 @@ Doc: `docs/pt2-change-scenes.md`
 Video: https://youtu.be/2zhuH4vjZ6M  
 Doc: `docs/pt3-loading-screen.md`  
 Adds `SceneLoadRequest` + `LoadingScreen`. Play sets destination to Game, then loads Loading.
+
+## pt4-player-movement
+
+Video: *(not recorded yet)*  
+Doc: `docs/pt4-player-movement.md`  
+Adds `PlayerMovement`. WASD + arrows move a Player GameObject in the Game scene.

@@ -1,6 +1,6 @@
-// TUTORIAL pt3-DONE  End of Part 3.
+// Part 1–3 TitleScreen (unchanged in Part 4).
 // Videos: https://youtu.be/8oDvGU0EzT0  https://youtu.be/0omgv-6yawI  https://youtu.be/2zhuH4vjZ6M
-// NEXT episode not recorded yet (player movement is the natural pt4).
+// Part 4 work lives in Scripts/PlayerMovement.cs — search TUTORIAL pt4.
 
 using Prowl.Runtime;
 using Prowl.Runtime.Resources;
