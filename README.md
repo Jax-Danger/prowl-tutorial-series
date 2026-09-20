@@ -37,8 +37,11 @@ Copy `Scripts/` into your Prowl project's `Scripts` folder.
 
 ```
 Scripts/   PlayerMovement.cs   (plus unchanged TitleScreen, LoadingScreen, SceneLoadRequest)
+Prefabs/   Player              (Cube + PlayerMovement — created in the editor; not stored in this repo)
 docs/      pt4-player-movement.md
 ```
+
+Editor click-paths for the Player prefab live in `docs/pt4-player-movement.md` (create Cube → attach script → drag into `Prefabs/`).
 
 ## Next after this
 

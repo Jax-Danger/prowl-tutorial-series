@@ -1,14 +1,15 @@
 // TUTORIAL pt4-01  New file: Scripts/PlayerMovement.cs (copy into your Prowl project's Scripts folder).
-// NEXT FILE: stay here — fill in the class, then jump to the editor shot list.
-// EDITOR: docs/pt4-player-movement.md (create Player, attach this script, assign nothing else).
-// CHECK: Title → Loading → Game, then WASD or arrow keys move the Player in the Game scene.
+// NEXT FILE: stay here — type the class, then do the EDITOR prefab steps before Play.
+// EDITOR: docs/pt4-player-movement.md — create Cube named Player, Add PlayerMovement, drag Hierarchy Player into Prefabs/.
+// CHECK: Title → Loading → Game, then WASD or arrow keys move the Player prefab instance.
 
 using Prowl.Runtime;
 using Prowl.Vector;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // TUTORIAL pt4-02  Inspector: moveSpeed. Leave at 5 for the video; raise it if the cube feels sluggish.
+    // TUTORIAL pt4-02  Inspector on the Player prefab: moveSpeed. Leave at 5 for the video.
+    // EDITOR: after Add Component, leave the default; save the prefab so instances inherit it.
     public float moveSpeed = 5f;
 
     // TUTORIAL pt4-03  Update runs every rendered frame while Play mode is on.
@@ -29,10 +30,12 @@ public class PlayerMovement : MonoBehaviour
 
         // TUTORIAL pt4-05  Move on XZ using this object's Right (+X) and Forward (+Z). No physics yet.
         // SAY: "Transform.Position is world space. Multiply by moveSpeed and Time.DeltaTime."
+        // EDITOR: keep the Player prefab rotation at 0,0,0 so Forward matches the camera's idea of "forward".
         Float3 wish = Transform.Right * input.X + Transform.Forward * input.Y;
         Transform.Position += wish * moveSpeed * Time.DeltaTime;
     }
 }
 
 // TUTORIAL pt4-DONE  End of Part 4.
+// NEXT FILE: docs/pt4-player-movement.md — tick Save Game scene + Play CHECK if you have not already.
 // NEXT branch name: pt5-real-load-wait
