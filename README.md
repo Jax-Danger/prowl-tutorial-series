@@ -1,16 +1,22 @@
-# Prowl Tutorial Series
+# Prowl Tutorial Series — pt4-player-movement
 
-Companion repo for **[Jax's Development Den](https://www.youtube.com/@Jax)** Prowl Game Engine videos.
+Work branch for **Part 4** (not tagged / not on `main` until the video is final).
 
-This is **not** a full Prowl project export. Prowl scenes and prefabs live in your editor project. This repo holds the C# that those videos build, editor checklists, and `// TUTORIAL` waypoints so the next episode can be recorded against a known end state.
+**Play CHECK:** a GameObject moves with WASD/arrows in the Game scene.
 
-**Engine pin:** Prowl **1.0-preview-4** (or the tag named in Part 1).  
-**Engine source:** https://github.com/ProwlEngine/Prowl
+**Engine pin:** Prowl **1.0-preview-4**  
+**Engine source:** https://github.com/ProwlEngine/Prowl  
+**Start from:** tag / branch `pt3-loading-screen`
+
+Everything you follow for an episode lives under **`Assets/`** (same tree as the Prowl project):
+
+- `Assets/Scripts/` — C# you type or paste
+- `Assets/docs/` — editor shot lists
 
 ## How to use this with two monitors
 
 - **Left (record):** Prowl editor only.
-- **Right:** this repo. Search `TUTORIAL ptN` and tick the shot list in `docs/`.
+- **Right:** this branch / the episode PR checklist. Search `TUTORIAL pt4` and tick `Assets/docs/pt4-player-movement.md` (or the PR task list).
 - Do not skip a waypoint. Play when a comment says `CHECK`.
 
 ## Episodes
@@ -20,35 +26,28 @@ This is **not** a full Prowl project export. Prowl scenes and prefabs live in yo
 | 1 Title screen | `pt1-title-screen` | `pt1-title-screen` | https://youtu.be/8oDvGU0EzT0 | Menu UI, Play hides menu, Quit does not kill the editor |
 | 2 Change scenes | `pt2-change-scenes` | `pt2-change-scenes` | https://youtu.be/0omgv-6yawI | Play loads the Game scene |
 | 3 Loading screen | `pt3-loading-screen` | `pt3-loading-screen` | https://youtu.be/2zhuH4vjZ6M | Title → Loading (~1.5s) → Game |
+| 4 Player movement | `pt4-player-movement` | `pt4-player-movement` | *(TBD)* | WASD/arrows move Player in Game |
 
-`main` tracks the **latest finished episode** (currently end of Part 3).
+`main` still tracks **Part 3** until Part 4 is recorded and tagged.
 
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt3-loading-screen
+git checkout pt4-player-movement
 ```
 
-Copy `Scripts/` into your Prowl project's `Scripts` folder (or keep this repo beside the project and copy after each episode).
+Clone this repo and open the folder as your Prowl project root. Tracked under `Assets/`: `Scripts/`, `docs/`, `Scenes/`, and `Prefabs/` (plus their `.meta` files). `Library/`, `Temp/`, and generated project files stay local.
 
-## Recording workflow
-
-1. Start from the **previous** episode tag in Prowl (your editor project).
-2. Open the matching branch here on the right monitor.
-3. Follow `docs/ptN-*.md` and `// TUTORIAL ptN-##` in order.
-4. When the take is the one you will upload: commit the branch, then tag the same name. **Do not move the tag.**
-5. Merge or fast-forward `main` to that commit.
-
-## What this repo cannot store
-
-Prowl scene/prefab binaries from your machine. Recreate those with the editor steps in `docs/`. After Part 3 your project folders should look like:
+## What this episode adds
 
 ```
-Scenes/    Title Screen, Game, Loading Screen
-Prefabs/   Title Screen
-Scripts/   TitleScreen.cs, LoadingScreen.cs, SceneLoadRequest.cs
+Assets/Scripts/   PlayerMovement.cs   (plus unchanged TitleScreen, LoadingScreen, SceneLoadRequest)
+Assets/Prefabs/   Player              (Cube + PlayerMovement — editor only; gitignored)
+Assets/docs/      pt4-player-movement.md
 ```
 
-## Next episode
+Editor click-paths for the Player prefab live in `Assets/docs/pt4-player-movement.md` (create Cube → attach script → drag into `Assets/Prefabs/`).
 
-Not recorded yet. Natural follow-ups you already mentioned on camera: player movement in the Game scene, then a loading screen that waits on real load instead of only a timer.
+## Next after this
+
+Natural follow-up named in the DONE comment: `pt5-real-load-wait` (loading that waits on a real load, not only a timer).
