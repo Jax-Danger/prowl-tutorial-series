@@ -2,15 +2,13 @@
 
 **Watch the video:** https://youtu.be/2zhuH4vjZ6M
 
-Part 3. You put a basic text loading screen between the title and the game. Play goes Title, then Loading for about 1.5 seconds, then Game. At the end of Part 2, Play loaded Game directly.
+**Play CHECK:** Click **Play Game**, see `Loading...` for about 1.5 seconds, then the Game scene.
 
-Engine download: https://github.com/ProwlEngine/Prowl (this series uses **1.0-preview-4**).
+This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch and follow the episode in the project you already have from Part 2.
 
-Finished scripts on the `pt3-loading-screen` branch:
+Engine: **Prowl 1.0-preview-4** — https://github.com/ProwlEngine/Prowl
 
-- `Scripts/SceneLoadRequest.cs`
-- `Scripts/LoadingScreen.cs`
-- `Scripts/TitleScreen.cs`
+## Clone this branch
 
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
@@ -18,116 +16,41 @@ cd prowl-tutorial-series
 git checkout pt3-loading-screen
 ```
 
-## Loading scene
+## What you open
 
-1. Create a new scene named **Loading Screen**.
-2. Add UI text that says `Loading...`. That is the whole screen.
+This episode’s companion is the scripts in `Scripts/`, for the Prowl project you already created. This branch is not a full project folder: there is no `Assets/` tree and no `.prowl` file. You save the loading scene inside your project. The steps are in this README. There is no docs folder.
 
-## Remember which scene comes next
+- `Scripts/SceneLoadRequest.cs` — where Play stores the destination scene
+- `Scripts/LoadingScreen.cs` — waits `minDisplaySeconds` (1.5), then loads that scene
+- `Scripts/TitleScreen.cs` — Play loads the loading scene instead of Game
 
-3. Add `Scripts/SceneLoadRequest.cs`. It holds the scene Play is trying to reach:
+## Add the loading screen
+
+1. Create a scene named **Loading Screen** with UI text `Loading...`.
+2. Add `SceneLoadRequest` and `LoadingScreen` to the project’s Scripts folder.
+3. Add **LoadingScreen** to an object in that scene. Leave `minDisplaySeconds` at **1.5**. Save the scene.
+4. Change **TitleScreen** so Play sets `SceneLoadRequest.Destination` to `gameScene`, then loads `loadingScene`.
+5. On **Menu Controller**, assign the **Loading Screen** scene to `loadingScene` and keep `gameScene` on **Game**.
 
 ```csharp
-using Prowl.Runtime;
-using Prowl.Runtime.Resources;
-
-public static class SceneLoadRequest
+public void OnPlayClicked()
 {
-    public static AssetRef<Scene> Destination;
+    Debug.Log("Play button clicked");
+
+    SceneLoadRequest.Destination = gameScene;
+
+    loadingScene.EnsureLoaded();
+    Scene? loading = loadingScene.Res;
+    if (loading == null)
+    {
+        Debug.LogError("Loading scene not found");
+        return;
+    }
+
+    Scene.Load(loading);
 }
 ```
 
-4. Add `Scripts/LoadingScreen.cs`. `minDisplaySeconds` stays at **1.5**:
+`LoadingScreen.Update` waits until `elapsed` passes 1.5 seconds, then `Scene.Load`s `SceneLoadRequest.Destination`. The full files are in `Scripts/`.
 
-```csharp
-using Prowl.Runtime;
-using Prowl.Runtime.Resources;
-
-public class LoadingScreen : MonoBehaviour
-{
-    public float minDisplaySeconds = 1.5f;
-
-    private float elapsed;
-    private bool done;
-
-    public void Update()
-    {
-        if (done)
-            return;
-
-        elapsed += Time.DeltaTime;
-
-        if (elapsed < minDisplaySeconds)
-            return;
-
-        SceneLoadRequest.Destination.EnsureLoaded();
-        Scene? next = SceneLoadRequest.Destination.Res;
-        if (next == null)
-        {
-            Debug.LogError("Loading screen has no destination set.");
-            done = true;
-            return;
-        }
-
-        done = true;
-        Scene.Load(next);
-    }
-}
-```
-
-5. Put an object in the **Loading Screen** scene and add the **LoadingScreen** component. Leave `minDisplaySeconds` at 1.5.
-6. Save the scene.
-
-## Send Play through that scene
-
-7. Change `TitleScreen.OnPlayClicked` so it stores the Game scene on `SceneLoadRequest.Destination`, then loads the loading scene:
-
-```csharp
-using Prowl.Runtime;
-using Prowl.Runtime.Resources;
-
-public class TitleScreen : MonoBehaviour
-{
-    public GameObject menuRoot;
-    public AssetRef<Scene> gameScene;
-    public AssetRef<Scene> loadingScene;
-
-    public void OnPlayClicked()
-    {
-        Debug.Log("Play button clicked");
-
-        SceneLoadRequest.Destination = gameScene;
-
-        loadingScene.EnsureLoaded();
-        Scene? loading = loadingScene.Res;
-        if (loading == null)
-        {
-            Debug.LogError("Loading scene not found");
-            return;
-        }
-
-        Scene.Load(loading);
-    }
-
-    public void OnQuitClicked()
-    {
-        Debug.Log("Quit button clicked");
-
-        if (Application.IsEditor)
-        {
-            Debug.Log("Quit ignored in the editor");
-            return;
-        }
-
-        Game.Quit();
-    }
-}
-```
-
-8. On **Menu Controller**, assign the **Loading Screen** scene to `loadingScene`. Keep `gameScene` assigned to **Game**, and keep `menuRoot` on the title canvas.
-
-## Check
-
-Open **Title Screen**, enter Play mode, and click **Play Game**.
-
-You see the loading text for about 1.5 seconds, then the **Game** scene. If the console says `Loading scene not found`, assign `loadingScene`. If it says `Loading screen has no destination set.`, assign `gameScene` before you click Play.
+Open **Title Screen**, enter Play mode, and use the Play CHECK at the top. `Loading scene not found` means `loadingScene` is empty. `Loading screen has no destination set.` means `gameScene` is empty.
