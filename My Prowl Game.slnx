@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="My Prowl Game.Editor.csproj" />
+  <Project Path="My Prowl Game.Game.csproj" />
+</Solution>

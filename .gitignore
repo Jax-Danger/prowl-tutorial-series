@@ -1,4 +1,10 @@
-# Prowl generated / machine-local (Assets/Scripts, Assets/docs, Assets/Scenes, Assets/Prefabs are tracked)
+# Prowl project root.
+# Tracked: Assets/ (scripts, scenes, prefabs, .meta), Boot/,
+# Directory.Build.props, Directory.Build.targets, *.prowl, *.slnx.
+# ProjectSettings/ is created when the editor opens the project.
+# Assets/ plus the .prowl marker is enough to open. *.csproj stays
+# ignored because HintPaths point at the local engine install.
+
 Library/
 Temp/
 Logs/
@@ -7,10 +13,8 @@ ProjectSettings/
 Assets/temp/
 *.csproj
 *.sln
-*.slnx
-*.prowl
-Directory.Build.props
 .vs/
 bin/
 obj/
+Builds/
 .DS_Store
