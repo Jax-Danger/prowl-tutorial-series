@@ -7,7 +7,7 @@ using Prowl.Vector;
 
 namespace Scenes;
 
-public class RotatingCubeScene 
+public class RotatingCubeScene
 {
     public Scene Initialize()
     {
