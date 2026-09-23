@@ -1,0 +1,43 @@
+<Project>
+  <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Game'))">
+    <OutputType>Exe</OutputType>
+    <StartupObject Condition="'$(OutputType)' == 'Exe'">MyProwlGame</StartupObject>
+    <OutDir>$(MSBuildThisFileDirectory)bin/play/</OutDir>
+    <OutputPath>$(OutDir)</OutputPath>
+    <TargetDir>$([System.IO.Path]::GetFullPath('$(OutDir)'))</TargetDir>
+    <TargetPath>$(TargetDir)$(AssemblyName).dll</TargetPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">$(NETCoreSdkPortableRuntimeIdentifier)</RuntimeIdentifier>
+    <UseAppHost>true</UseAppHost>
+  </PropertyGroup>
+
+    <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.Game'))">
+      <Compile Remove="@(Compile)" />
+      <Compile Include="$(MSBuildThisFileDirectory)Assets/Scripts/**/*.cs" />
+      <Compile Include="$(MSBuildThisFileDirectory)Boot/MyProwlGame.cs" />
+    </ItemGroup>
+
+  <Target Name="CopyProwlNativeLibsBesideGame" AfterTargets="Build"
+          Condition="$(MSBuildProjectName.EndsWith('.Game'))">
+    <PropertyGroup>
+      <_PlayRid Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</_PlayRid>
+      <_PlayRid Condition="'$(_PlayRid)' == ''">$(NETCoreSdkRuntimeIdentifier)</_PlayRid>
+    </PropertyGroup>
+    <ItemGroup>
+      <_ProwlRuntimeRef Include="@(Reference)" Condition="'%(Identity)' == 'Prowl.Runtime'" />
+    </ItemGroup>
+    <PropertyGroup>
+      <_EngineDir>%(_ProwlRuntimeRef.HintPath)</_EngineDir>
+      <_EngineDir Condition="'$(_EngineDir)' != ''">$([System.IO.Path]::GetDirectoryName('$(_EngineDir)'))</_EngineDir>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(_EngineDir)' != ''">
+      <_NativeLib Include="$(_EngineDir)/runtimes/$(_PlayRid)/native/*.*" />
+      <_NativeLib Include="$(_EngineDir)/libglfw.so*" />
+      <_NativeLib Include="$(_EngineDir)/libglfw*.dylib" />
+      <_NativeLib Include="$(_EngineDir)/glfw*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_NativeLib)" DestinationFolder="$(TargetDir)"
+          SkipUnchangedFiles="true" Condition="'@(_NativeLib)' != ''" />
+  </Target>
+</Project>
