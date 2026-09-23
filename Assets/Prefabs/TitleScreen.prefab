@@ -1,0 +1,1015 @@
+{
+  "$id": 1,
+  "$type": "Prowl.Runtime.GameObject, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+  "Name": "TitleScreen",
+  "AssetPath": "",
+  "Identifier": "c7728c81-c4a5-49d9-884b-469a5f956cdc",
+  "Static": 0B,
+  "Enabled": 1B,
+  "EnabledInHierarchy": 1B,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "HideFlags": 0,
+  "Transform": {
+    "$id": 2,
+    "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "_localPosition": {
+      "X": 0F,
+      "Y": 0F,
+      "Z": 0F
+    },
+    "_localScale": {
+      "X": 1F,
+      "Y": 1F,
+      "Z": 1F
+    },
+    "_localRotation": {
+      "X": 0F,
+      "Y": 0F,
+      "Z": 0F,
+      "W": 1F
+    }
+  },
+  "Components": [
+    {
+      "$id": 3,
+      "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "_anchorMin": {
+        "X": 0.5F,
+        "Y": 0.5F
+      },
+      "_anchorMax": {
+        "X": 0.5F,
+        "Y": 0.5F
+      },
+      "_pivot": {
+        "X": 0.5F,
+        "Y": 0.5F
+      },
+      "_sizeDelta": {
+        "X": 100F,
+        "Y": 100F
+      },
+      "_anchoredPosition": {
+        "X": 0F,
+        "Y": 0F
+      },
+      "_identifier": "7967505c-e69e-4ad4-bb83-af826a23a646",
+      "_enabled": true,
+      "_enabledInHierarchy": true,
+      "HideFlags": 0L,
+      "AssetPath": "",
+      "AssetID": "00000000-0000-0000-0000-000000000000",
+      "Name": "NewRectTransform"
+    },
+    {
+      "$id": 4,
+      "$type": "Prowl.Runtime.GameCanvas, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "_renderMode": 0L,
+      "_scaleFactor": 1F,
+      "_sortOrder": 0,
+      "_uiScaleMode": 0L,
+      "_referenceResolution": {
+        "X": 1280F,
+        "Y": 720F
+      },
+      "_matchWidthOrHeight": 0.5F,
+      "_screenMatchMode": 0L,
+      "_identifier": "4b0a50a5-6843-4f93-bfda-6ee65e3e6c6a",
+      "_enabled": true,
+      "_enabledInHierarchy": true,
+      "HideFlags": 0L,
+      "AssetPath": "",
+      "AssetID": "00000000-0000-0000-0000-000000000000",
+      "Name": "NewGameCanvas"
+    }
+  ],
+  "Children": [
+    {
+      "$id": 5,
+      "Name": "MenuController",
+      "AssetPath": "",
+      "Identifier": "94070105-aab2-4ed9-bb2e-089679021133",
+      "Static": 0B,
+      "Enabled": 1B,
+      "EnabledInHierarchy": 1B,
+      "TagIndex": 0,
+      "LayerIndex": 0,
+      "HideFlags": 0,
+      "Transform": {
+        "$id": 6,
+        "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "_localPosition": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F
+        },
+        "_localScale": {
+          "X": 1F,
+          "Y": 1F,
+          "Z": 1F
+        },
+        "_localRotation": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F,
+          "W": 1F
+        }
+      },
+      "Components": [
+        {
+          "$id": 7,
+          "$type": "TitleScreen, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "menuRoot": {
+            "$extern": {
+              "$t": "g",
+              "$v": "c7728c81-c4a5-49d9-884b-469a5f956cdc"
+            }
+          },
+          "gameScene": {
+            "AssetID": "5c53e737-11a2-43c6-8602-3637f5e4a141"
+          },
+          "loadingScene": {
+            "AssetID": "bd71b18a-c5c4-4f1a-9111-d80f2fb238b8"
+          },
+          "_identifier": "abc95da3-8851-4bb9-b137-c13299ae6f40",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewTitleScreen"
+        },
+        {
+          "$id": 8,
+          "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_anchorMin": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_anchorMax": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_pivot": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_sizeDelta": {
+            "X": 100F,
+            "Y": 100F
+          },
+          "_anchoredPosition": {
+            "X": 0F,
+            "Y": 0F
+          },
+          "_identifier": "f7d6f2bf-e8ee-48c9-88a7-7d90c10e8317",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewRectTransform"
+        }
+      ],
+      "Children": [
+
+      ],
+      "Prefab": {
+        "$id": 9,
+        "AssetId": "00000000-0000-0000-0000-000000000000",
+        "SourceIdentifier": "94070105-aab2-4ed9-bb2e-089679021133",
+        "Overrides": {
+          "$id": 10,
+          "$values": [
+
+          ]
+        }
+      }
+    },
+    {
+      "$id": 11,
+      "Name": "Event System",
+      "AssetPath": "",
+      "Identifier": "16c1d96e-9fd9-47b1-abbd-002bb929b311",
+      "Static": 0B,
+      "Enabled": 1B,
+      "EnabledInHierarchy": 1B,
+      "TagIndex": 0,
+      "LayerIndex": 0,
+      "HideFlags": 0,
+      "Transform": {
+        "$id": 12,
+        "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "_localPosition": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F
+        },
+        "_localScale": {
+          "X": 1F,
+          "Y": 1F,
+          "Z": 1F
+        },
+        "_localRotation": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F,
+          "W": 1F
+        }
+      },
+      "Components": [
+        {
+          "$id": 13,
+          "$type": "Prowl.Runtime.UI.EventSystem, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_dragThreshold": 4F,
+          "_multiClickWindow": 0.4F,
+          "_submitKey": 257L,
+          "_cancelKey": 256L,
+          "_identifier": "7528ac5b-6343-4e0e-9ac2-441a13113308",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewEventSystem"
+        },
+        {
+          "$id": 14,
+          "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_anchorMin": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_anchorMax": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_pivot": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_sizeDelta": {
+            "X": 100F,
+            "Y": 100F
+          },
+          "_anchoredPosition": {
+            "X": 0F,
+            "Y": 0F
+          },
+          "_identifier": "4ca1a7a3-12fe-44ff-aa75-489356b783ed",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewRectTransform"
+        }
+      ],
+      "Children": [
+
+      ],
+      "Prefab": {
+        "$id": 15,
+        "AssetId": "00000000-0000-0000-0000-000000000000",
+        "SourceIdentifier": "16c1d96e-9fd9-47b1-abbd-002bb929b311",
+        "Overrides": {
+          "$id": 16,
+          "$values": [
+
+          ]
+        }
+      }
+    },
+    {
+      "$id": 17,
+      "Name": "Title",
+      "AssetPath": "",
+      "Identifier": "2200ccb7-1a1e-43a6-a20f-eb75d44e7410",
+      "Static": 0B,
+      "Enabled": 1B,
+      "EnabledInHierarchy": 1B,
+      "TagIndex": 0,
+      "LayerIndex": 0,
+      "HideFlags": 0,
+      "Transform": {
+        "$id": 18,
+        "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "_localPosition": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F
+        },
+        "_localScale": {
+          "X": 1F,
+          "Y": 1F,
+          "Z": 1F
+        },
+        "_localRotation": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F,
+          "W": 1F
+        }
+      },
+      "Components": [
+        {
+          "$id": 19,
+          "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_anchorMin": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_anchorMax": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_pivot": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_sizeDelta": {
+            "X": 333.4478F,
+            "Y": 50F
+          },
+          "_anchoredPosition": {
+            "X": 0F,
+            "Y": 100.979095F
+          },
+          "_identifier": "9a765f12-88aa-44ed-8657-f127b9bed918",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewRectTransform"
+        },
+        {
+          "$id": 20,
+          "$type": "Prowl.Runtime.TextComponent, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_font": {
+            "AssetID": "00000000-0000-0000-0000-000000000000"
+          },
+          "_text": "My Cool Game",
+          "_alignment": 48L,
+          "_size": 60,
+          "_quality": 32L,
+          "_raycastTarget": true,
+          "_material": {
+            "AssetID": "00000000-0000-0000-0000-000000000000"
+          },
+          "_color": {
+            "R": 1F,
+            "G": 1F,
+            "B": 1F,
+            "A": 1F
+          },
+          "_identifier": "357455c3-8f90-4fc7-87f4-4f0860792e26",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewTextComponent"
+        }
+      ],
+      "Children": [
+
+      ],
+      "Prefab": {
+        "$id": 21,
+        "AssetId": "00000000-0000-0000-0000-000000000000",
+        "SourceIdentifier": "2200ccb7-1a1e-43a6-a20f-eb75d44e7410",
+        "Overrides": {
+          "$id": 22,
+          "$values": [
+
+          ]
+        }
+      }
+    },
+    {
+      "$id": 23,
+      "Name": "Play Button",
+      "AssetPath": "",
+      "Identifier": "c2438f0a-76bf-4174-a337-d3c42fa34d95",
+      "Static": 0B,
+      "Enabled": 1B,
+      "EnabledInHierarchy": 1B,
+      "TagIndex": 0,
+      "LayerIndex": 0,
+      "HideFlags": 0,
+      "Transform": {
+        "$id": 24,
+        "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "_localPosition": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F
+        },
+        "_localScale": {
+          "X": 1F,
+          "Y": 1F,
+          "Z": 1F
+        },
+        "_localRotation": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F,
+          "W": 1F
+        }
+      },
+      "Components": [
+        {
+          "$id": 25,
+          "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_anchorMin": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_anchorMax": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_pivot": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_sizeDelta": {
+            "X": 163.35022F,
+            "Y": 36.5F
+          },
+          "_anchoredPosition": {
+            "X": 0F,
+            "Y": 0F
+          },
+          "_identifier": "60314b0c-1cf3-4e32-84fd-31e8391dd298",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewRectTransform"
+        },
+        {
+          "$id": 26,
+          "$type": "Prowl.Runtime.UI.UIImage, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_sprite": {
+            "AssetID": "bff73be2-cd62-785e-928f-0efd1487829c"
+          },
+          "_preserveAspect": false,
+          "_type": 1L,
+          "_pixelsPerUnitMultiplier": 1F,
+          "_fillMethod": 4L,
+          "_fillOrigin": 0,
+          "_fillAmount": 1F,
+          "_fillClockwise": false,
+          "_raycastTarget": true,
+          "_material": {
+            "AssetID": "00000000-0000-0000-0000-000000000000"
+          },
+          "_color": {
+            "R": 1F,
+            "G": 1F,
+            "B": 1F,
+            "A": 1F
+          },
+          "_identifier": "b4afe82e-0e11-4bdd-9bc0-72a4aa7f02b1",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewUIImage"
+        },
+        {
+          "$id": 27,
+          "$type": "Prowl.Runtime.UI.UIButton, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_onClick": {
+            "$id": 28,
+            "_calls": {
+              "$id": 29,
+              "$values": [
+                {
+                  "$id": 30,
+                  "_target": NULL,
+                  "_member": "OnPlayClicked",
+                  "_argType": 0L,
+                  "_boolArg": false,
+                  "_intArg": 0,
+                  "_floatArg": 0F,
+                  "_stringArg": "",
+                  "_objectArg": NULL
+                }
+              ]
+            }
+          },
+          "_interactable": true,
+          "_targetGraphic": {
+            "$id": 26,
+            "$type": "Prowl.Runtime.UI.UIImage, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "_normalColor": {
+            "R": 1F,
+            "G": 1F,
+            "B": 1F,
+            "A": 1F
+          },
+          "_highlightedColor": {
+            "R": 0.96F,
+            "G": 0.96F,
+            "B": 0.96F,
+            "A": 1F
+          },
+          "_pressedColor": {
+            "R": 0.78F,
+            "G": 0.78F,
+            "B": 0.78F,
+            "A": 1F
+          },
+          "_selectedColor": {
+            "R": 0.96F,
+            "G": 0.96F,
+            "B": 0.96F,
+            "A": 1F
+          },
+          "_disabledColor": {
+            "R": 0.78F,
+            "G": 0.78F,
+            "B": 0.78F,
+            "A": 0.5F
+          },
+          "_transitionDuration": 0.08F,
+          "_colorMultiplier": 1F,
+          "_transition": 1L,
+          "_spriteState": {
+            "HighlightedSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            },
+            "PressedSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            },
+            "SelectedSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            },
+            "DisabledSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            }
+          },
+          "_navigation": {
+            "Mode": 3L,
+            "WrapAround": false,
+            "SelectOnUp": NULL,
+            "SelectOnDown": NULL,
+            "SelectOnLeft": NULL,
+            "SelectOnRight": NULL
+          },
+          "_identifier": "e8cfbad4-e3c8-4061-aa45-e379dcdf83fe",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewUIButton"
+        }
+      ],
+      "Children": [
+        {
+          "$id": 31,
+          "Name": "Play",
+          "AssetPath": "",
+          "Identifier": "2432b78e-adea-46ef-a201-cc042b17bc1f",
+          "Static": 0B,
+          "Enabled": 1B,
+          "EnabledInHierarchy": 1B,
+          "TagIndex": 0,
+          "LayerIndex": 0,
+          "HideFlags": 0,
+          "Transform": {
+            "$id": 32,
+            "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "_localPosition": {
+              "X": 0F,
+              "Y": 0F,
+              "Z": 0F
+            },
+            "_localScale": {
+              "X": 1F,
+              "Y": 1F,
+              "Z": 1F
+            },
+            "_localRotation": {
+              "X": 0F,
+              "Y": 0F,
+              "Z": 0F,
+              "W": 1F
+            }
+          },
+          "Components": [
+            {
+              "$id": 33,
+              "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_anchorMin": {
+                "X": 0.5F,
+                "Y": 0.5F
+              },
+              "_anchorMax": {
+                "X": 0.5F,
+                "Y": 0.5F
+              },
+              "_pivot": {
+                "X": 0.5F,
+                "Y": 0.5F
+              },
+              "_sizeDelta": {
+                "X": 200F,
+                "Y": 50F
+              },
+              "_anchoredPosition": {
+                "X": 0F,
+                "Y": 0F
+              },
+              "_identifier": "d1941f41-ebae-43c3-9fd2-46867bde1e90",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "AssetPath": "",
+              "AssetID": "00000000-0000-0000-0000-000000000000",
+              "Name": "NewRectTransform"
+            },
+            {
+              "$id": 34,
+              "$type": "Prowl.Runtime.TextComponent, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_font": {
+                "AssetID": "00000000-0000-0000-0000-000000000000"
+              },
+              "_text": "Play Game",
+              "_alignment": 48L,
+              "_size": 35,
+              "_quality": 32L,
+              "_raycastTarget": true,
+              "_material": {
+                "AssetID": "00000000-0000-0000-0000-000000000000"
+              },
+              "_color": {
+                "R": 0F,
+                "G": 0F,
+                "B": 0F,
+                "A": 1F
+              },
+              "_identifier": "1b3ce927-cb23-49a9-bc63-0c5760592418",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "AssetPath": "",
+              "AssetID": "00000000-0000-0000-0000-000000000000",
+              "Name": "NewTextComponent"
+            }
+          ],
+          "Children": [
+
+          ],
+          "Prefab": {
+            "$id": 35,
+            "AssetId": "00000000-0000-0000-0000-000000000000",
+            "SourceIdentifier": "2432b78e-adea-46ef-a201-cc042b17bc1f",
+            "Overrides": {
+              "$id": 36,
+              "$values": [
+
+              ]
+            }
+          }
+        }
+      ],
+      "Prefab": {
+        "$id": 37,
+        "AssetId": "00000000-0000-0000-0000-000000000000",
+        "SourceIdentifier": "c2438f0a-76bf-4174-a337-d3c42fa34d95",
+        "Overrides": {
+          "$id": 38,
+          "$values": [
+
+          ]
+        }
+      }
+    },
+    {
+      "$id": 39,
+      "Name": "Quit Button",
+      "AssetPath": "",
+      "Identifier": "c2ccbe1b-bbe9-4f42-9f76-66d0ce442292",
+      "Static": 0B,
+      "Enabled": 1B,
+      "EnabledInHierarchy": 1B,
+      "TagIndex": 0,
+      "LayerIndex": 0,
+      "HideFlags": 0,
+      "Transform": {
+        "$id": 40,
+        "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "_localPosition": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F
+        },
+        "_localScale": {
+          "X": 1F,
+          "Y": 1F,
+          "Z": 1F
+        },
+        "_localRotation": {
+          "X": 0F,
+          "Y": 0F,
+          "Z": 0F,
+          "W": 1F
+        }
+      },
+      "Components": [
+        {
+          "$id": 41,
+          "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_anchorMin": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_anchorMax": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_pivot": {
+            "X": 0.5F,
+            "Y": 0.5F
+          },
+          "_sizeDelta": {
+            "X": 163.35022F,
+            "Y": 36.5F
+          },
+          "_anchoredPosition": {
+            "X": 0F,
+            "Y": -64F
+          },
+          "_identifier": "38dbcffb-a2b8-4e00-8462-c384d1074b6c",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewRectTransform"
+        },
+        {
+          "$id": 42,
+          "$type": "Prowl.Runtime.UI.UIImage, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_sprite": {
+            "AssetID": "bff73be2-cd62-785e-928f-0efd1487829c"
+          },
+          "_preserveAspect": false,
+          "_type": 1L,
+          "_pixelsPerUnitMultiplier": 1F,
+          "_fillMethod": 4L,
+          "_fillOrigin": 0,
+          "_fillAmount": 1F,
+          "_fillClockwise": false,
+          "_raycastTarget": true,
+          "_material": {
+            "AssetID": "00000000-0000-0000-0000-000000000000"
+          },
+          "_color": {
+            "R": 1F,
+            "G": 1F,
+            "B": 1F,
+            "A": 1F
+          },
+          "_identifier": "28693ba3-17cc-4130-aa62-e792ab441c29",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewUIImage"
+        },
+        {
+          "$id": 43,
+          "$type": "Prowl.Runtime.UI.UIButton, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_onClick": {
+            "$id": 44,
+            "_calls": {
+              "$id": 45,
+              "$values": [
+                {
+                  "$id": 46,
+                  "_target": NULL,
+                  "_member": "OnQuitClicked",
+                  "_argType": 0L,
+                  "_boolArg": false,
+                  "_intArg": 0,
+                  "_floatArg": 0F,
+                  "_stringArg": "",
+                  "_objectArg": NULL
+                }
+              ]
+            }
+          },
+          "_interactable": true,
+          "_targetGraphic": {
+            "$id": 42,
+            "$type": "Prowl.Runtime.UI.UIImage, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+          },
+          "_normalColor": {
+            "R": 1F,
+            "G": 1F,
+            "B": 1F,
+            "A": 1F
+          },
+          "_highlightedColor": {
+            "R": 0.96F,
+            "G": 0.96F,
+            "B": 0.96F,
+            "A": 1F
+          },
+          "_pressedColor": {
+            "R": 0.78F,
+            "G": 0.78F,
+            "B": 0.78F,
+            "A": 1F
+          },
+          "_selectedColor": {
+            "R": 0.96F,
+            "G": 0.96F,
+            "B": 0.96F,
+            "A": 1F
+          },
+          "_disabledColor": {
+            "R": 0.78F,
+            "G": 0.78F,
+            "B": 0.78F,
+            "A": 0.5F
+          },
+          "_transitionDuration": 0.08F,
+          "_colorMultiplier": 1F,
+          "_transition": 1L,
+          "_spriteState": {
+            "HighlightedSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            },
+            "PressedSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            },
+            "SelectedSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            },
+            "DisabledSprite": {
+              "AssetID": "00000000-0000-0000-0000-000000000000"
+            }
+          },
+          "_navigation": {
+            "Mode": 3L,
+            "WrapAround": false,
+            "SelectOnUp": NULL,
+            "SelectOnDown": NULL,
+            "SelectOnLeft": NULL,
+            "SelectOnRight": NULL
+          },
+          "_identifier": "ebe5b639-c749-4244-821a-2b84af43cf45",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "AssetPath": "",
+          "AssetID": "00000000-0000-0000-0000-000000000000",
+          "Name": "NewUIButton"
+        }
+      ],
+      "Children": [
+        {
+          "$id": 47,
+          "Name": "Quit",
+          "AssetPath": "",
+          "Identifier": "06a6d6fe-1955-4dc7-a514-ae65f42ab35e",
+          "Static": 0B,
+          "Enabled": 1B,
+          "EnabledInHierarchy": 1B,
+          "TagIndex": 0,
+          "LayerIndex": 0,
+          "HideFlags": 0,
+          "Transform": {
+            "$id": 48,
+            "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "_localPosition": {
+              "X": 0F,
+              "Y": 0F,
+              "Z": 0F
+            },
+            "_localScale": {
+              "X": 1F,
+              "Y": 1F,
+              "Z": 1F
+            },
+            "_localRotation": {
+              "X": 0F,
+              "Y": 0F,
+              "Z": 0F,
+              "W": 1F
+            }
+          },
+          "Components": [
+            {
+              "$id": 49,
+              "$type": "Prowl.Vector.RectTransform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_anchorMin": {
+                "X": 0.5F,
+                "Y": 0.5F
+              },
+              "_anchorMax": {
+                "X": 0.5F,
+                "Y": 0.5F
+              },
+              "_pivot": {
+                "X": 0.5F,
+                "Y": 0.5F
+              },
+              "_sizeDelta": {
+                "X": 200F,
+                "Y": 50F
+              },
+              "_anchoredPosition": {
+                "X": 0F,
+                "Y": 0F
+              },
+              "_identifier": "1382798f-c289-4cf6-8557-6f15bfbf2a67",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "AssetPath": "",
+              "AssetID": "00000000-0000-0000-0000-000000000000",
+              "Name": "NewRectTransform"
+            },
+            {
+              "$id": 50,
+              "$type": "Prowl.Runtime.TextComponent, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_font": {
+                "AssetID": "00000000-0000-0000-0000-000000000000"
+              },
+              "_text": "Quit Game",
+              "_alignment": 48L,
+              "_size": 35,
+              "_quality": 32L,
+              "_raycastTarget": true,
+              "_material": {
+                "AssetID": "00000000-0000-0000-0000-000000000000"
+              },
+              "_color": {
+                "R": 0F,
+                "G": 0F,
+                "B": 0F,
+                "A": 1F
+              },
+              "_identifier": "2ed43f16-5da0-4988-b23b-ca5be9859380",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "AssetPath": "",
+              "AssetID": "00000000-0000-0000-0000-000000000000",
+              "Name": "NewTextComponent"
+            }
+          ],
+          "Children": [
+
+          ],
+          "Prefab": {
+            "$id": 51,
+            "AssetId": "00000000-0000-0000-0000-000000000000",
+            "SourceIdentifier": "06a6d6fe-1955-4dc7-a514-ae65f42ab35e",
+            "Overrides": {
+              "$id": 52,
+              "$values": [
+
+              ]
+            }
+          }
+        }
+      ],
+      "Prefab": {
+        "$id": 53,
+        "AssetId": "00000000-0000-0000-0000-000000000000",
+        "SourceIdentifier": "c2ccbe1b-bbe9-4f42-9f76-66d0ce442292",
+        "Overrides": {
+          "$id": 54,
+          "$values": [
+
+          ]
+        }
+      }
+    }
+  ],
+  "Prefab": {
+    "$id": 55,
+    "AssetId": "00000000-0000-0000-0000-000000000000",
+    "SourceIdentifier": "c7728c81-c4a5-49d9-884b-469a5f956cdc",
+    "Overrides": {
+      "$id": 56,
+      "$values": [
+
+      ]
+    }
+  }
+}

@@ -1,13 +1,10 @@
-# Prowl local / generated (companion tracks Assets/Scripts + Assets/docs only)
+# Prowl generated / machine-local (Assets/Scripts, Assets/docs, Assets/Scenes, Assets/Prefabs are tracked)
 Library/
 Temp/
 Logs/
 Packages/
 ProjectSettings/
-Assets/Scenes/
-Assets/Prefabs/
 Assets/temp/
-Assets/**/*.meta
 *.csproj
 *.sln
 *.slnx
