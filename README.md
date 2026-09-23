@@ -2,11 +2,13 @@
 
 **Watch the video:** https://youtu.be/0omgv-6yawI
 
-Part 2. You make **Play Game** load the Game scene. In Part 1 that button only hid the menu.
+**Play CHECK:** Click **Play Game** and you are in the Game scene.
 
-Engine download: https://github.com/ProwlEngine/Prowl (this series uses **1.0-preview-4**).
+This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch and follow the episode in the project you already started in Part 1.
 
-The script you end up with is `Scripts/TitleScreen.cs` on the `pt2-change-scenes` branch. Start from the title screen you built in Part 1.
+Engine: **Prowl 1.0-preview-4** — https://github.com/ProwlEngine/Prowl
+
+## Clone this branch
 
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
@@ -14,17 +16,16 @@ cd prowl-tutorial-series
 git checkout pt2-change-scenes
 ```
 
-## Save the title scene and add a game scene
+## What you open
 
-1. Press Ctrl+S and save the current scene as **Title Screen**. Part 1 never saved a scene file.
+This episode’s companion is `Scripts/TitleScreen.cs`, for the Prowl project you already created. This branch is not a full project folder: there is no `Assets/` tree and no `.prowl` file. Scenes live in that project after you save them. The steps are in this README. There is no docs folder.
+
+## Make Play load the Game scene
+
+1. Press Ctrl+S and save the open scene as **Title Screen**.
 2. Create a new scene named **Game**.
-3. In the project panel, make folders named `Scenes`, `Prefabs`, and `Scripts`. Move the title scene, the title prefab, and your scripts into those folders.
-
-## Load the Game scene from Play
-
-4. Open `TitleScreen` and add `using Prowl.Runtime.Resources`.
-5. Add a field `public AssetRef<Scene> gameScene`.
-6. Replace the hide-menu body of `OnPlayClicked` with `EnsureLoaded` and `Scene.Load`. The class looks like this:
+3. Make project folders `Scenes`, `Prefabs`, and `Scripts`, and move the title scene, the title prefab, and your scripts into them.
+4. Replace `OnPlayClicked` so it loads `gameScene` instead of hiding the menu. The finished script is `Scripts/TitleScreen.cs`:
 
 ```csharp
 using Prowl.Runtime;
@@ -66,12 +67,8 @@ public class TitleScreen : MonoBehaviour
 }
 ```
 
-7. Select **Menu Controller**. Assign the **Game** scene to `gameScene`. Leave `menuRoot` pointing at the title canvas. Quit stays wired to `OnQuitClicked`.
+5. On **Menu Controller**, assign the **Game** scene asset to `gameScene`.
 
-If `gameScene` is empty, Play logs `Game scene not found`. Assign the **Game** scene you just saved, which is the scene asset in `Scenes`, and leave any leftover untitled scene unassigned.
+If that field is empty, Play logs `Game scene not found`. Assign the **Game** scene you saved, and leave any untitled scene unassigned.
 
-## Check
-
-Open the **Title Screen** scene, enter Play mode, and click **Play Game**.
-
-The console logs `Play button clicked` and `Game scene loaded`, then you are in the **Game** scene. The log line includes `scene.Name` so you can see which scene loaded.
+Open **Title Screen**, enter Play mode, and use the Play CHECK at the top. The log includes `scene.Name`.
