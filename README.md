@@ -36,7 +36,7 @@ cd prowl-tutorial-series
 git checkout pt4-player-movement
 ```
 
-Open this folder as your Prowl project root (or keep `My Prowl Game` checked out on this branch). Edit scripts only under `Assets/Scripts/`.
+Clone this repo and open the folder as your Prowl project root. Tracked under `Assets/`: `Scripts/`, `docs/`, `Scenes/`, and `Prefabs/` (plus their `.meta` files). `Library/`, `Temp/`, and generated project files stay local.
 
 ## What this episode adds
 
