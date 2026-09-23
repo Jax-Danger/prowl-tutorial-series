@@ -17,8 +17,7 @@ public sealed class MyProwlGame : Game
 
     public override void Initialize()
     {
-        var Scene = RotatingCubeScene.Initialize();
-
+        Scene scene = new RotatingCubeScene().Initialize();
         Scene.Load(scene);
     }
 }

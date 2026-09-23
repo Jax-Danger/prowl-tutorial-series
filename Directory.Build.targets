@@ -15,7 +15,7 @@
     <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.Game'))">
       <Compile Remove="@(Compile)" />
       <Compile Include="$(MSBuildThisFileDirectory)Assets/Scripts/**/*.cs" />
-      <Compile Include="$(MSBuildThisFileDirectory)Boot/MyProwlGame.cs" />
+      <Compile Include="$(MSBuildThisFileDirectory)Boot/**/*.cs" />
     </ItemGroup>
 
   <Target Name="CopyProwlNativeLibsBesideGame" AfterTargets="Build"
