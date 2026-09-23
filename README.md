@@ -1,53 +1,91 @@
-# Prowl Tutorial Series — pt4-player-movement
+# Move the player
 
-Work branch for **Part 4** (not tagged / not on `main` until the video is final).
+**Video:** coming. There is no public Part 4 URL yet.
 
-**Play CHECK:** a GameObject moves with WASD/arrows in the Game scene.
+`main` is the latest finished episode, **Part 4**. You land in the Game scene after the loading screen and move. **WASD** walks. **Space** jumps. The player in this project is `Assets/Scripts/Player.cs` on the **Player** prefab, with a **CharacterController** and a **Floor** under it.
 
-**Engine pin:** Prowl **1.0-preview-4**  
-**Engine source:** https://github.com/ProwlEngine/Prowl  
-**Start from:** tag / branch `pt3-loading-screen`
+Engine download: https://github.com/ProwlEngine/Prowl (this series uses **1.0-preview-4**).
 
-Everything you follow for an episode lives under **`Assets/`** (same tree as the Prowl project):
-
-- `Assets/Scripts/` — C# you type or paste
-- `Assets/docs/` — editor shot lists
-
-## How to use this with two monitors
-
-- **Left (record):** Prowl editor only.
-- **Right:** this branch / the episode PR checklist. Search `TUTORIAL pt4` and tick `Assets/docs/pt4-player-movement.md` (or the PR task list).
-- Do not skip a waypoint. Play when a comment says `CHECK`.
-
-## Episodes
-
-| Part | Branch (work) | Tag when video is final | Video | End state |
-|------|----------------|-------------------------|-------|-----------|
-| 1 Title screen | `pt1-title-screen` | `pt1-title-screen` | https://youtu.be/8oDvGU0EzT0 | Menu UI, Play hides menu, Quit does not kill the editor |
-| 2 Change scenes | `pt2-change-scenes` | `pt2-change-scenes` | https://youtu.be/0omgv-6yawI | Play loads the Game scene |
-| 3 Loading screen | `pt3-loading-screen` | `pt3-loading-screen` | https://youtu.be/2zhuH4vjZ6M | Title → Loading (~1.5s) → Game |
-| 4 Player movement | `pt4-player-movement` | `pt4-player-movement` | *(TBD)* | WASD/arrows move Player in Game |
-
-`main` still tracks **Part 3** until Part 4 is recorded and tagged.
+This clone is the Prowl project root. `Assets/Scenes`, `Assets/Prefabs`, and `Assets/Scripts` are the title, loading, and game work, plus the player.
 
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt4-player-movement
 ```
 
-Clone this repo and open the folder as your Prowl project root. Tracked under `Assets/`: `Scripts/`, `docs/`, `Scenes/`, and `Prefabs/` (plus their `.meta` files). `Library/`, `Temp/`, and generated project files stay local.
+Open this folder in the Prowl editor. The editor creates `ProjectSettings/`, `Library/`, and the `.csproj` files on your machine the first time you open it.
 
-## What this episode adds
+## Open the Game scene
 
+1. In the project browser, confirm `Assets/Scenes`, `Assets/Prefabs`, and `Assets/Scripts` are there.
+2. Double-click `Assets/Scenes/Game.scene`.
+
+The scene contains a **Main Camera**, a **Directional Light**, a **Floor** (mesh plus mesh collider), and a **Player**.
+
+## Player in the scene
+
+3. Select **Player**. It has a **CharacterController** and a **Player** component. A child named **Mesh** is what you see.
+4. The same object is saved as `Assets/Prefabs/Player.prefab`. If you are building it from the end of Part 3:
+   - Add a floor object with a collider at the origin so the controller has something to stand on. This project names that object **Floor**.
+   - Create **Player**. Give it a visible mesh child. Add a **CharacterController**. The script requires that component.
+   - Set Local Rotation to `0, 0, 0` so Forward lines up with the world.
+   - Add the **Player** component. Leave **MoveSpeed** at `6`, **JumpSpeed** at `8`, and **Gravity** at `-20`.
+   - Aim the **Main Camera** so the player is in frame.
+   - Drag **Player** from the Hierarchy into `Assets/Prefabs/` so the scene object is a prefab instance.
+5. Press Ctrl+S and save the **Game** scene.
+
+## Player script
+
+6. `Assets/Scripts/Player.cs`:
+
+```csharp
+using Prowl.Runtime;
+using Prowl.Vector;
+
+[RequireComponent(typeof(CharacterController))]
+public class Player : MonoBehaviour
+{
+    public float MoveSpeed = 6f;
+    public float JumpSpeed = 8f;
+    public float Gravity = -20f;
+
+    private CharacterController _controller = null!;
+    private Float3 _velocity;
+
+    public override void Start()
+    {
+        _controller = GetComponent<CharacterController>()!;
+    }
+
+    public override void Update()
+    {
+        Float2 wasd = Input.GetWASD();
+        Float3 planar = Transform.Right * wasd.X + Transform.Forward * wasd.Y;
+        _velocity.X = planar.X * MoveSpeed;
+        _velocity.Z = planar.Z * MoveSpeed;
+
+        if (_controller.IsGrounded && _velocity.Y <= 0f)
+        {
+            _velocity.Y = 0f;
+            if (Input.GetKeyDown(KeyCode.Space))
+                _velocity.Y = JumpSpeed;
+        }
+        else
+        {
+            _velocity.Y += Gravity * Time.DeltaTime;
+        }
+
+        _controller.Move(_velocity * Time.DeltaTime);
+    }
+}
 ```
-Assets/Scripts/   PlayerMovement.cs   (plus unchanged TitleScreen, LoadingScreen, SceneLoadRequest)
-Assets/Prefabs/   Player              (Cube + PlayerMovement — editor only; gitignored)
-Assets/docs/      pt4-player-movement.md
-```
 
-Editor click-paths for the Player prefab live in `Assets/docs/pt4-player-movement.md` (create Cube → attach script → drag into `Assets/Prefabs/`).
+`Update` is an override, so it runs every frame while Play mode is on. WASD comes from `Input.GetWASD()`. Horizontal speed is applied on X and Z with this object's Right and Forward. On the ground, vertical speed stays 0 until Space sets it to `JumpSpeed`. In the air, `Gravity` pulls Y down. `CharacterController.Move` applies the velocity.
 
-## Next after this
+## Check
 
-Natural follow-up named in the DONE comment: `pt5-real-load-wait` (loading that waits on a real load, not only a timer).
+7. Open `Assets/Scenes/TitleScreen.scene`, enter Play mode, and click **Play Game**.
+8. Wait through the loading screen (about 1.5 seconds) into **Game**.
+9. **WASD** moves the player. **Space** jumps while the controller is grounded.
+
+Stay in the Game scene for that check. On the title screen and on the loading screen there is nothing for WASD to move.
