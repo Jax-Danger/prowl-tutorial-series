@@ -14,7 +14,7 @@ public class PlayerLook : MonoBehaviour
     public float Sensitivity = 0.15f;
 
     // TUTORIAL pt6-03  Drag the Camera child here. Start finds a Camera on a child when this is empty.
-    public Camera ViewCamera;
+    public Camera? ViewCamera;
 
     // Pitch stays in this range so the camera cannot flip over the top or bottom.
     const float MinPitch = -80f;
