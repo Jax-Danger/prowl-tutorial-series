@@ -7,27 +7,17 @@ public class Player : MonoBehaviour
     public float MoveSpeed = 6f;
     public float JumpSpeed = 8f;
     public float Gravity = -20f;
-    public float Sensitivity = 0.15f;
-
+    
     private CharacterController _controller = null!;
     private Float3 _velocity;
-    private float _yaw;
 
     public override void Start()
     {
         _controller = GetComponent<CharacterController>()!;
-        _yaw = Transform.LocalEulerAngles.Y;
     }
 
     public override void Update()
     {
-        // Yaw turns the player. PlayerCam on the child camera only pitches.
-        if (Input.CursorLocked)
-        {
-            _yaw += Input.MouseDelta.X * Sensitivity;
-            Transform.LocalEulerAngles = new Float3(0f, _yaw, 0f);
-        }
-
         Float2 wasd = Input.GetWASD();
         Float3 planar = Transform.Right * wasd.X + Transform.Forward * wasd.Y;
         _velocity.X = planar.X * MoveSpeed;

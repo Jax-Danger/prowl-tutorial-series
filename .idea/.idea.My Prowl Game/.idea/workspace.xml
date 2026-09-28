@@ -11,11 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f10914e-f8f2-4f7c-8c43-2c9070bcf86e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.My Prowl Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.My Prowl Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.scene" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.scene" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/tmp/PlayerCam.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/tmp/PlayerCam.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +22,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="3" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -48,61 +46,61 @@
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.231950533045379" />
-      <entry key="MS500" value="5.797086393949404" />
-      <entry key="S2" value="17.153365183372557" />
-      <entry key="S5" value="33.65734091105634" />
-      <entry key="S10" value="49.52742165825193" />
-      <entry key="S30" value="69.645845565079" />
-      <entry key="S60" value="79.50647637630452" />
-      <entry key="M2" value="96.76204673194142" />
-      <entry key="M5" value="129.26195417289603" />
-      <entry key="M10" value="150.12544803717668" />
-      <entry key="M15" value="159.65585026817598" />
-      <entry key="M30" value="172.11362303313098" />
-      <entry key="H1" value="180.37325108901248" />
-      <entry key="H2" value="185.31973857382417" />
-      <entry key="H4" value="188.05717517787255" />
-      <entry key="D1" value="190.49421632220287" />
-      <entry key="W1" value="190.92735560891998" />
+      <entry key="MS100" value="1.7081168753937397" />
+      <entry key="MS500" value="3.5020991289596948" />
+      <entry key="S2" value="10.560522002095281" />
+      <entry key="S5" value="21.910896134397866" />
+      <entry key="S10" value="30.610354686302625" />
+      <entry key="S30" value="42.08894782199111" />
+      <entry key="S60" value="53.77064825408635" />
+      <entry key="M2" value="73.2605813596266" />
+      <entry key="M5" value="133.59704889222678" />
+      <entry key="M10" value="200.18884348647825" />
+      <entry key="M15" value="236.7589413992982" />
+      <entry key="M30" value="285.94795567561374" />
+      <entry key="H1" value="317.52776783390374" />
+      <entry key="H2" value="335.74816791263237" />
+      <entry key="H4" value="345.59627738909495" />
+      <entry key="D1" value="354.2251674787269" />
+      <entry key="W1" value="355.7454194400402" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="7.041334499938248E-164" />
-      <entry key="S2" value="2.1918952551096203E-41" />
-      <entry key="S5" value="8.009106594046517E-17" />
-      <entry key="S10" value="1.259263953317404E-8" />
-      <entry key="S30" value="0.0038565535356755794" />
-      <entry key="S60" value="0.09884929954316247" />
-      <entry key="M2" value="0.528322920093158" />
-      <entry key="M5" value="1.491682115760968" />
-      <entry key="M10" value="2.2232193896176264" />
-      <entry key="M15" value="2.6691553832726362" />
-      <entry key="M30" value="3.439567691757749" />
-      <entry key="H1" value="4.0718037736547315" />
-      <entry key="H2" value="4.489923137856077" />
-      <entry key="H4" value="4.732097994059502" />
-      <entry key="D1" value="4.953433196906805" />
-      <entry key="W1" value="4.993298871391051" />
+      <entry key="MS500" value="1.7734796912482892E-113" />
+      <entry key="S2" value="9.463693633576813E-29" />
+      <entry key="S5" value="9.207482897430965E-12" />
+      <entry key="S10" value="4.279587547230105E-6" />
+      <entry key="S30" value="0.02575939316660464" />
+      <entry key="S60" value="0.22939243295460734" />
+      <entry key="M2" value="0.7596951510419327" />
+      <entry key="M5" value="2.1955460461351017" />
+      <entry key="M10" value="3.753670368339577" />
+      <entry key="M15" value="4.701666505479315" />
+      <entry key="M30" value="6.199316647377464" />
+      <entry key="H1" value="7.35166284273747" />
+      <entry key="H2" value="8.097345816887456" />
+      <entry key="H4" value="8.52644786644623" />
+      <entry key="D1" value="8.917735476424173" />
+      <entry key="W1" value="8.988162622807875" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.1820034609001646" />
-      <entry key="MS500" value="5.770406370305747" />
-      <entry key="S2" value="17.133076680162453" />
-      <entry key="S5" value="33.64111024168421" />
-      <entry key="S10" value="49.51526335610011" />
-      <entry key="S30" value="69.64351090526712" />
-      <entry key="S60" value="79.5978259492168" />
-      <entry key="M2" value="97.27802099186468" />
-      <entry key="M5" value="130.74138078333397" />
-      <entry key="M10" value="152.33978128007624" />
-      <entry key="M15" value="162.31786792482464" />
-      <entry key="M30" value="175.5484462001618" />
-      <entry key="H1" value="184.44214990296751" />
-      <entry key="H2" value="189.80802341977864" />
-      <entry key="H4" value="192.7883987270415" />
-      <entry key="D1" value="195.44749521140997" />
-      <entry key="W1" value="195.9206322139538" />
+      <entry key="MS100" value="1.651101785585117" />
+      <entry key="MS500" value="3.4783052707160924" />
+      <entry key="S2" value="10.54120146687577" />
+      <entry key="S5" value="21.893971226006613" />
+      <entry key="S10" value="30.598380236207692" />
+      <entry key="S30" value="42.108243433143585" />
+      <entry key="S60" value="53.992045510155336" />
+      <entry key="M2" value="74.01015973364659" />
+      <entry key="M5" value="135.78072324874867" />
+      <entry key="M10" value="203.9317751984255" />
+      <entry key="M15" value="241.45133085274682" />
+      <entry key="M30" value="292.14077001215884" />
+      <entry key="H1" value="324.87537668566654" />
+      <entry key="H2" value="343.84320867259675" />
+      <entry key="H4" value="354.1214897706844" />
+      <entry key="D1" value="363.1426841423816" />
+      <entry key="W1" value="364.7335504681896" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -114,21 +112,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/jax/Documents/Prowl Projects",
-    "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jax/Documents/Prowl Projects&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AcpAgentsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7f10914e-f8f2-4f7c-8c43-2c9070bcf86e" name="Changes" comment="" />

@@ -6,83 +6,6 @@
     "array": [
       {
         "$id": 3,
-        "Name": "Main Camera",
-        "AssetPath": "",
-        "Identifier": "e0ab655d-ffc3-4ad0-a0a4-d78e49691493",
-        "Static": 0B,
-        "Enabled": 1B,
-        "EnabledInHierarchy": 1B,
-        "TagIndex": 0,
-        "LayerIndex": 0,
-        "HideFlags": 0,
-        "Transform": {
-          "$id": 4,
-          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "_localPosition": {
-            "X": 0F,
-            "Y": 4.5834165F,
-            "Z": -11.501088F
-          },
-          "_localScale": {
-            "X": 1F,
-            "Y": 1F,
-            "Z": 1F
-          },
-          "_localRotation": {
-            "X": 0F,
-            "Y": 0F,
-            "Z": 0F,
-            "W": 1F
-          }
-        },
-        "Components": [
-          {
-            "$id": 5,
-            "$type": "Prowl.Runtime.Camera, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-            "Effects": {
-              "$id": 6,
-              "$values": [
-
-              ]
-            },
-            "ClearFlags": 3L,
-            "ClearColor": {
-              "R": 0F,
-              "G": 0F,
-              "B": 0F,
-              "A": 1F
-            },
-            "CullingMask": {
-              "mask": 4294967295U
-            },
-            "ProjectionMode": 0L,
-            "FieldOfView": 60F,
-            "OrthographicSize": 5F,
-            "NearClipPlane": 0.1F,
-            "FarClipPlane": 100F,
-            "Depth": -1,
-            "Pipeline": NULL,
-            "Target": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
-            "HDR": false,
-            "RenderScale": 1F,
-            "ShadowFocus": NULL,
-            "_identifier": "98bab451-0dc8-4de7-9ae1-9d409a9e9782",
-            "_enabled": true,
-            "_enabledInHierarchy": true,
-            "HideFlags": 0L,
-            "AssetPath": "",
-            "AssetID": "00000000-0000-0000-0000-000000000000",
-            "Name": "NewCamera"
-          }
-        ],
-        "Children": [
-
-        ]
-      },
-      {
-        "$id": 7,
         "Name": "Directional Light",
         "AssetPath": "",
         "Identifier": "094ed1d5-b27c-4d8a-89bb-d46e6efea656",
@@ -93,7 +16,7 @@
         "LayerIndex": 0,
         "HideFlags": 0,
         "Transform": {
-          "$id": 8,
+          "$id": 4,
           "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
           "_localPosition": {
             "X": 0F,
@@ -114,7 +37,7 @@
         },
         "Components": [
           {
-            "$id": 9,
+            "$id": 5,
             "$type": "Prowl.Runtime.DirectionalLight, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
             "ShadowResolution": 2048L,
             "Cascades": 2L,
@@ -146,7 +69,7 @@
         ]
       },
       {
-        "$id": 10,
+        "$id": 6,
         "Name": "Floor",
         "AssetPath": "",
         "Identifier": "b2ee94fc-70d3-4bc6-b047-0a19cb623d47",
@@ -157,7 +80,7 @@
         "LayerIndex": 0,
         "HideFlags": 0,
         "Transform": {
-          "$id": 11,
+          "$id": 7,
           "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
           "_localPosition": {
             "X": 0F,
@@ -178,13 +101,13 @@
         },
         "Components": [
           {
-            "$id": 12,
+            "$id": 8,
             "$type": "Prowl.Runtime.MeshRenderer, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
             "Mesh": {
               "AssetID": "38151a92-9ae6-525d-b9cd-13fbcd700c8a"
             },
             "Materials": {
-              "$id": 13,
+              "$id": 9,
               "$values": [
                 {
                   "AssetID": "d7009b28-9353-6559-8847-62e877cec576"
@@ -200,7 +123,7 @@
             "Name": "NewMeshRenderer"
           },
           {
-            "$id": 14,
+            "$id": 10,
             "$type": "Prowl.Runtime.MeshCollider, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
             "mesh": {
               "AssetID": "38151a92-9ae6-525d-b9cd-13fbcd700c8a"
@@ -230,7 +153,7 @@
         ]
       },
       {
-        "$id": 15,
+        "$id": 11,
         "Name": "Player",
         "AssetPath": "",
         "Identifier": "69d6adc9-7a86-4832-8076-7f9542cfac0f",
@@ -241,7 +164,7 @@
         "LayerIndex": 0,
         "HideFlags": 0,
         "Transform": {
-          "$id": 16,
+          "$id": 12,
           "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
           "_localPosition": {
             "X": 0F,
@@ -262,7 +185,7 @@
         },
         "Components": [
           {
-            "$id": 17,
+            "$id": 13,
             "$type": "Prowl.Runtime.CharacterController, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
             "Shape": 1L,
             "Radius": 0.5F,
@@ -276,186 +199,89 @@
             "StepSize": 0.3F,
             "MaxDepenetrationIterations": 4,
             "DepenetrationBias": 0.001F,
-            "_identifier": "02b0a725-c92c-4413-8712-645f8868f5b9",
-            "_prefabTemplateIdentity": "6964a407-56c5-4098-bae9-06b6354944d6",
-            "_enabled": false,
-            "_enabledInHierarchy": false,
+            "_identifier": "d5e0e376-681f-4c21-9111-59a6b113e752",
+            "_prefabTemplateIdentity": "b83cd1f1-6bdb-467b-9e49-785a2d821f59",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
             "HideFlags": 0L,
             "AssetPath": "",
             "AssetID": "00000000-0000-0000-0000-000000000000",
             "Name": "NewCharacterController"
           },
           {
-            "$id": 18,
+            "$id": 14,
             "$type": "Player, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
             "MoveSpeed": 6F,
             "JumpSpeed": 8F,
             "Gravity": -20F,
-            "_identifier": "a774620b-cf5d-4250-a045-6ebc667ab81a",
-            "_prefabTemplateIdentity": "b1df6d07-96b9-4056-b2f0-0fe846d9a88f",
-            "_enabled": false,
-            "_enabledInHierarchy": false,
+            "_identifier": "080fb0a4-572d-430e-b99d-8efb3bf7e3f4",
+            "_prefabTemplateIdentity": "2fb98edf-b80c-4ac7-97a7-dadf58bafac0",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
             "HideFlags": 0L,
             "AssetPath": "",
             "AssetID": "00000000-0000-0000-0000-000000000000",
             "Name": "NewPlayer"
+          },
+          {
+            "$id": 15,
+            "$type": "PlayerCam, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Sensitivity": 0.15F,
+            "ViewCamera": {
+              "$id": 16,
+              "Effects": {
+                "$id": 17,
+                "$values": [
+
+                ]
+              },
+              "ClearFlags": 3L,
+              "ClearColor": {
+                "R": 0F,
+                "G": 0F,
+                "B": 0F,
+                "A": 1F
+              },
+              "CullingMask": {
+                "mask": 4294967295U
+              },
+              "ProjectionMode": 0L,
+              "FieldOfView": 60F,
+              "OrthographicSize": 5F,
+              "NearClipPlane": 0.1F,
+              "FarClipPlane": 100F,
+              "Depth": -1,
+              "Pipeline": NULL,
+              "Target": {
+                "AssetID": "00000000-0000-0000-0000-000000000000"
+              },
+              "HDR": false,
+              "RenderScale": 1F,
+              "ShadowFocus": NULL,
+              "_identifier": "db9b049a-3ff7-4004-85cc-929543d00b9e",
+              "_prefabTemplateIdentity": "ea9c1b3c-787b-489e-b7d9-50330bc16496",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "AssetPath": "",
+              "AssetID": "00000000-0000-0000-0000-000000000000",
+              "Name": "NewCamera"
+            },
+            "MinPitch": -89F,
+            "MaxPitch": 89F,
+            "_identifier": "46b9e64f-c96b-48c7-8d6b-56cf290e1baf",
+            "_prefabTemplateIdentity": "bcdc716a-b023-4566-969d-47405cae12ab",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "AssetPath": "",
+            "AssetID": "00000000-0000-0000-0000-000000000000",
+            "Name": "NewPlayerCam"
           }
         ],
         "Children": [
           {
-            "$id": 19,
-            "Name": "head",
-            "AssetPath": "",
-            "Identifier": "16777b8f-a585-4bae-a226-19eb6ad72070",
-            "Static": 0B,
-            "Enabled": 1B,
-            "EnabledInHierarchy": 1B,
-            "TagIndex": 0,
-            "LayerIndex": 0,
-            "HideFlags": 0,
-            "Transform": {
-              "$id": 20,
-              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-              "_localPosition": {
-                "X": 0F,
-                "Y": 1.5785327F,
-                "Z": 0F
-              },
-              "_localScale": {
-                "X": 1F,
-                "Y": 1F,
-                "Z": 1F
-              },
-              "_localRotation": {
-                "X": 0F,
-                "Y": 0F,
-                "Z": 0F,
-                "W": 1F
-              }
-            },
-            "Components": [
-
-            ],
-            "Children": [
-              {
-                "$id": 21,
-                "Name": "Camera",
-                "AssetPath": "",
-                "Identifier": "b63e3b88-3685-4c96-8b40-ae5001334825",
-                "Static": 0B,
-                "Enabled": 1B,
-                "EnabledInHierarchy": 1B,
-                "TagIndex": 0,
-                "LayerIndex": 0,
-                "HideFlags": 0,
-                "Transform": {
-                  "$id": 22,
-                  "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                  "_localPosition": {
-                    "X": 0F,
-                    "Y": 0F,
-                    "Z": 0F
-                  },
-                  "_localScale": {
-                    "X": 1F,
-                    "Y": 1F,
-                    "Z": 1F
-                  },
-                  "_localRotation": {
-                    "X": 0F,
-                    "Y": 0F,
-                    "Z": 0F,
-                    "W": 1F
-                  }
-                },
-                "Components": [
-                  {
-                    "$id": 23,
-                    "$type": "Prowl.Runtime.Camera, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                    "Effects": {
-                      "$id": 24,
-                      "$values": [
-
-                      ]
-                    },
-                    "ClearFlags": 3L,
-                    "ClearColor": {
-                      "R": 0F,
-                      "G": 0F,
-                      "B": 0F,
-                      "A": 1F
-                    },
-                    "CullingMask": {
-                      "mask": 4294967295U
-                    },
-                    "ProjectionMode": 0L,
-                    "FieldOfView": 60F,
-                    "OrthographicSize": 5F,
-                    "NearClipPlane": 0.1F,
-                    "FarClipPlane": 100F,
-                    "Depth": -1,
-                    "Pipeline": NULL,
-                    "Target": {
-                      "AssetID": "00000000-0000-0000-0000-000000000000"
-                    },
-                    "HDR": false,
-                    "RenderScale": 1F,
-                    "ShadowFocus": NULL,
-                    "_identifier": "7cfcbd7f-a36f-418e-b9ff-60ee258824a3",
-                    "_prefabTemplateIdentity": "f09b9210-c287-4958-8a08-cab6247464c9",
-                    "_enabled": true,
-                    "_enabledInHierarchy": true,
-                    "HideFlags": 0L,
-                    "AssetPath": "",
-                    "AssetID": "00000000-0000-0000-0000-000000000000",
-                    "Name": "NewCamera"
-                  },
-                  {
-                    "$id": 25,
-                    "$type": "PlayerCam, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                    "Sensitivity": 0.15F,
-                    "MinPitch": -89F,
-                    "MaxPitch": 89F,
-                    "_identifier": "8a1f13cb-d929-4878-8500-056729179e8f",
-                    "_prefabTemplateIdentity": "3cbd954d-ff08-48e4-8ad3-37d287702172",
-                    "_enabled": true,
-                    "_enabledInHierarchy": true,
-                    "HideFlags": 0L,
-                    "AssetPath": "",
-                    "AssetID": "00000000-0000-0000-0000-000000000000",
-                    "Name": "NewPlayerCam"
-                  }
-                ],
-                "Children": [
-
-                ],
-                "Prefab": {
-                  "$id": 26,
-                  "AssetId": "803a369f-24ee-4ec7-81eb-baee02e5afd6",
-                  "SourceIdentifier": "b389a337-510e-4fc1-9b83-d478bad876f3",
-                  "Overrides": {
-                    "$id": 27,
-                    "$values": [
-
-                    ]
-                  }
-                }
-              }
-            ],
-            "Prefab": {
-              "$id": 28,
-              "AssetId": "803a369f-24ee-4ec7-81eb-baee02e5afd6",
-              "SourceIdentifier": "74b24940-ae2d-414e-96e5-31e885f4c2a3",
-              "Overrides": {
-                "$id": 29,
-                "$values": [
-
-                ]
-              }
-            }
-          },
-          {
-            "$id": 30,
+            "$id": 18,
             "Name": "Mesh",
             "AssetPath": "",
             "Identifier": "96f08021-c176-4891-8e6f-794d31aaf392",
@@ -466,7 +292,7 @@
             "LayerIndex": 0,
             "HideFlags": 0,
             "Transform": {
-              "$id": 31,
+              "$id": 19,
               "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
               "_localPosition": {
                 "X": 0F,
@@ -487,13 +313,13 @@
             },
             "Components": [
               {
-                "$id": 32,
+                "$id": 20,
                 "$type": "Prowl.Runtime.MeshRenderer, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "Mesh": {
                   "AssetID": "97e8b0a9-e054-0d51-9663-eb372d776c90"
                 },
                 "Materials": {
-                  "$id": 33,
+                  "$id": 21,
                   "$values": [
                     {
                       "AssetID": "d7009b28-9353-6559-8847-62e877cec576"
@@ -514,11 +340,11 @@
 
             ],
             "Prefab": {
-              "$id": 34,
+              "$id": 22,
               "AssetId": "803a369f-24ee-4ec7-81eb-baee02e5afd6",
               "SourceIdentifier": "96f08021-c176-4891-8e6f-794d31aaf392",
               "Overrides": {
-                "$id": 35,
+                "$id": 23,
                 "$values": [
 
                 ]
@@ -526,10 +352,10 @@
             }
           },
           {
-            "$id": 36,
-            "Name": "New GameObject",
+            "$id": 24,
+            "Name": "Camera",
             "AssetPath": "",
-            "Identifier": "62388a70-34b3-44ad-9623-2550477552c4",
+            "Identifier": "29786195-4008-4081-b416-3ccbac6ee06e",
             "Static": 0B,
             "Enabled": 1B,
             "EnabledInHierarchy": 1B,
@@ -537,12 +363,12 @@
             "LayerIndex": 0,
             "HideFlags": 0,
             "Transform": {
-              "$id": 37,
+              "$id": 25,
               "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
               "_localPosition": {
                 "X": 0F,
-                "Y": 0F,
-                "Z": 0F
+                "Y": 1.6622522F,
+                "Z": -0.017365962F
               },
               "_localScale": {
                 "X": 1F,
@@ -557,45 +383,53 @@
               }
             },
             "Components": [
-
+              {
+                "$id": 16,
+                "$type": "Prowl.Runtime.Camera, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+              }
             ],
             "Children": [
 
-            ]
+            ],
+            "Prefab": {
+              "$id": 26,
+              "AssetId": "803a369f-24ee-4ec7-81eb-baee02e5afd6",
+              "SourceIdentifier": "367e71cc-6b9c-4a5c-a896-714f3a698b12",
+              "Overrides": {
+                "$id": 27,
+                "$values": [
+
+                ]
+              }
+            }
           }
         ],
         "Prefab": {
-          "$id": 38,
+          "$id": 28,
           "AssetId": "803a369f-24ee-4ec7-81eb-baee02e5afd6",
           "SourceIdentifier": "69d6adc9-7a86-4832-8076-7f9542cfac0f",
           "Overrides": {
-            "$id": 39,
+            "$id": 29,
             "$values": [
               {
-                "$id": 40,
-                "Path": "69d6adc9-7a86-4832-8076-7f9542cfac0f/6964a407-56c5-4098-bae9-06b6354944d6/_enabled",
-                "Value": false
-              },
-              {
-                "$id": 41,
-                "Path": "69d6adc9-7a86-4832-8076-7f9542cfac0f/b1df6d07-96b9-4056-b2f0-0fe846d9a88f/_enabled",
-                "Value": false
+                "$id": 30,
+                "Path": "69d6adc9-7a86-4832-8076-7f9542cfac0f/bcdc716a-b023-4566-969d-47405cae12ab/ViewCamera",
+                "Value": {
+                  "$extern": {
+                    "$t": "g",
+                    "$v": "db9b049a-3ff7-4004-85cc-929543d00b9e"
+                  }
+                }
               }
             ]
           }
         }
       },
       {
-        "$id": 19
+        "$id": 18
       },
       {
-        "$id": 21
-      },
-      {
-        "$id": 30
-      },
-      {
-        "$id": 36
+        "$id": 24
       }
     ]
   },
@@ -659,43 +493,43 @@
     }
   },
   "BakedLighting": {
-    "$id": 42,
+    "$id": 31,
     "Lightmaps": {
-      "$id": 43,
+      "$id": 32,
       "$values": [
 
       ]
     },
     "Placements": {
-      "$id": 44,
+      "$id": 33,
       "entries": [
 
       ]
     },
     "ProbePositions": {
-      "$id": 45,
+      "$id": 34,
       "array": [
 
       ]
     },
     "ProbeSH": {
-      "$id": 46,
+      "$id": 35,
       "array": [
 
       ]
     },
     "ProbeTetrahedra": {
-      "$id": 47,
+      "$id": 36,
       "array": [
 
       ]
     },
     "ProbeTetNeighbours": {
-      "$id": 47
+      "$id": 36
     }
   },
   "LightmapBake": {
-    "$id": 48,
+    "$id": 37,
     "AtlasSize": 1024,
     "TexelsPerUnit": 20F,
     "DilatePixels": 2,
