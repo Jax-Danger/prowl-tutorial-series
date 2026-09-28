@@ -11,6 +11,7 @@ Assets/temp/
 *.prowl
 Directory.Build.props
 .vs/
+.idea/
 bin/
 obj/
 .DS_Store
