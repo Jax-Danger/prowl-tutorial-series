@@ -52,11 +52,12 @@ public class PlayerLook : MonoBehaviour
             return;
 
         // TUTORIAL pt6-08  Input.MouseDelta is the pixel delta this frame (Prowl.Runtime.Input, preview-4).
-        // X yaws the parent. Y pitches the camera. Subtract Y so moving the mouse up looks up,
-        // the same sign as Prowl's NewFirstPersonCamera template.
+        // X yaws the parent. Y pitches the camera.
+        // Pitch uses the same sign as the editor camera (EditorCamera: pitch += MouseDelta.Y,
+        // then LocalEulerAngles.X = pitch). Moving the mouse up looks up.
         Float2 delta = Input.MouseDelta;
         _yaw += delta.X * Sensitivity;
-        _pitch = Math.Clamp(_pitch - delta.Y * Sensitivity, MinPitch, MaxPitch);
+        _pitch = Math.Clamp(_pitch + delta.Y * Sensitivity, MinPitch, MaxPitch);
 
         // TUTORIAL pt6-09  Yaw the whole player. Local pitch and roll stay 0 so the body stays upright.
         // SAY: "The mesh is a child, so it turns with us. Player movement reads this transform's Forward and Right."
