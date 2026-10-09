@@ -1385,6 +1385,46 @@
         }
       },
       {
+        "$id": 980,
+        "Name": "Gate",
+        "Identifier": "e15a0001-1111-4e15-8f15-000000000001",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 981,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 6F, "Y": 0F, "Z": 8F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+        },
+        "Components": [
+          {
+            "$id": 982,
+            "$type": "PhysicsGate, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "OpenSpeed": 2.2F,
+            "UseDistance": 3F,
+            "MinAngle": -4F,
+            "MaxAngle": 95F,
+            "_identifier": "e15a0002-1111-4e15-8f15-000000000002",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewPhysicsGate"
+          }
+        ],
+        "Children": [],
+        "Prefab": {
+          "$id": 983,
+          "AssetId": "00000000-0000-0000-0000-000000000000",
+          "SourceIdentifier": "e15a0001-1111-4e15-8f15-000000000001",
+          "Overrides": { "$id": 984, "$values": [] }
+        }
+      },
+      {
         "$id": 19
       },
       {

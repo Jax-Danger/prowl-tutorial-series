@@ -1,8 +1,8 @@
-# Third-person orbit
+# Hinge gate
 
-**Video:** coming. Part 14 does not have a public URL yet.
+**Video:** coming. Part 15 does not have a public URL yet.
 
-**Play CHECK:** Play from **Title Screen** and **Play Game**. The camera starts behind the body. Mouse orbits. The wheel zooms. **V** snaps back to the Part 6 eye point and **V** again returns to the orbit. Walk up to a wall and the camera stops in front of it. **F** still enters the car, and the car keeps its chase camera.
+**Play CHECK:** Play from **Title Screen** and **Play Game**. A wooden door stands at `(6, 0, 8)` on a vertical hinge. Walk within 3 metres and press **E**. It swings open and stops. **E** again swings it shut. The post does not move.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
@@ -25,7 +25,8 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 11 | `pt11-lighting` | Sun, point, spot, sky, post, day/night |
 | 12 | `pt12-terrain` | Heightmap terrain |
 | 13 | `pt13-navmesh-wander` | Baked navmesh, wander, and chase |
-| 14 | `pt14-third-person` | This episode. Orbit camera on the player |
+| 14 | `pt14-third-person` | Orbit camera on the player |
+| 15 | `pt15-physics-joints` | This episode. A hinged door |
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -34,37 +35,37 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt14-third-person
+git checkout pt15-physics-joints
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-`Update` is `public override`. The orbit lives in `PlayerLook`, the same component as Part 6. There is no second camera.
+Prowl’s joints live under `Prowl.Runtime/Components/Physics/Constraints`. `HingeJoint` is a door hinge: a ball socket plus an angle limit, and an optional motor. An empty **Connected Body** anchors the pin to the world (`World.NullBody`), not to a second rigidbody.
 
-- `Assets/Scripts/PlayerLook.cs` — search `TUTORIAL pt14`
-- `Assets/Prefabs/Player.prefab` — **Third Person** on, orbit distance `4.5`
+- `Assets/Scripts/PhysicsGate.cs` — search `TUTORIAL pt15`
+- `Assets/Scenes/Game.scene` — empty **Gate** at `(6, 0, 8)`
 
-## The orbit
+`Start` and `Update` are `public override`. The door is built on the first Play so the tutorial can show every field in code. The post is a mesh only. It has no collider and no body.
 
-1. Open the **Player** prefab. **Player Look** already has the Part 6 fields. **Third Person** is on. **Orbit Distance** `4.5`, **Min** `1.2`, **Max** `8`, **Pivot Height** `1.45`.
-2. **Pivot Height** is metres above the feet. The camera child stays the view. Its local position `(0, 1.6, 0)` is the first-person eye, stored in `Start`.
-3. Yaw is still the player’s Y rotation. Pitch is still the camera’s local X, about `-80` to `80`, and mouse-up still looks up.
-4. With **Third Person** on, the camera is placed at `pivot - Forward * Orbit Distance` after that pitch is applied. `Transform.Forward` is the look direction, so the body stays in frame.
-5. `Scene.Physics.Raycast` runs from the pivot to that point. `PhysicsWorld.Raycast` normalizes the direction. A hit pulls the camera to `hit.Distance - 0.25`, and never closer than **Min Orbit Distance**.
-6. `Input.MouseWheelDelta` changes the distance while the cursor is locked. The delta is clamped to `±2` before it is applied.
-7. **V** (`KeyCode.V`) flips **Third Person**. First person writes the stored eye local position back.
+## The hinge
 
-`VehicleRide` disables `PlayerLook` while you are in the car, so this orbit does not fight the chase mount. Climbing out calls `MatchYawToTransform` and the orbit starts from the facing you had.
+1. **Gate** is already in `Game.scene`. If you build it yourself: empty GameObject named `Gate`, **Add Component → Physics Gate**, move it to `(6, 0, 8)`.
+2. **Open Speed** `2.2`, **Use Distance** `3`, **Min Angle** `-4`, **Max Angle** `95`.
+3. The door is a dynamic `Rigidbody3D` with a `BoxCollider` the same size as `Mesh.CreateCube`. Mass `12`.
+4. `HingeJoint` is added after the body. **Anchor** is the local `-Z` edge. **Axis** is local Y. **Has Motor** is on. **Motor Max Force** is `80`.
+5. **E** (`KeyCode.E`) within **Use Distance** of the gate flips `MotorTargetVelocity` between `Open Speed` and `-Open Speed`. Within 3 degrees of the limit the speed goes back to `0`, so the motor does not grind on the limit.
+6. The script ignores **E** while `Player` is disabled, which is while you are in the car.
+
+Other joints in the same folder, not used here: `PrismaticJoint` (slider), `UniversalJoint`, `BallSocketConstraint`, `FixedAngleConstraint`, `DistanceLimitConstraint`.
 
 ## Save and CHECK
 
-- Save the prefab if you changed a field.
+- Save the scene if you moved **Gate**.
 - Play from **Title Screen**, then **Play Game**.
-- **CHECK:** You see the body. WASD still moves along the facing. Mouse left/right turns the body. Mouse up/down orbits.
-- **CHECK:** The wheel moves in and out, and it stops at `1.2` and `8`.
-- **CHECK:** Walk against a courtyard wall. The camera stays in front of the wall.
-- **CHECK:** **V** is the Part 6 view. **V** again is the orbit.
-- **CHECK:** **F** near the car uses the chase camera. **F** again drops you back into the orbit.
+- **CHECK:** The door and the grey post appear at the gate. The door does not fall over.
+- **CHECK:** Farther than 3 metres, **E** does nothing.
+- **CHECK:** Within 3 metres, **E** swings it open and it stops. **E** swings it shut.
+- **CHECK:** The post stays put.
 - Stop Play.
