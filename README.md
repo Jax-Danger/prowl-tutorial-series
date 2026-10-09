@@ -1,8 +1,8 @@
-# OnGui readout
+# GameObject UI
 
-**Video:** coming. Part 17 does not have a public URL yet.
+**Video:** coming. Part 18 does not have a public URL yet.
 
-**Play CHECK:** Play from **Title Screen** and **Play Game**. The top-left line shows speed, `orbit` or `eye`, and the **V** / **E** hints. Walk and the speed number moves. **V** flips the view word. **F** into the car hides the line. **F** again shows it.
+**Play CHECK:** Play from **Title Screen** and **Play Game**. A **Toggle** button sits at the bottom of the screen, with `Gate is shut` above it. Press **Escape** so the cursor is free, then click **Toggle**. The door swings and the line says `Gate is open`. Click again and it swings shut. The OnGui speed line from Part 17 is still in the corner.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
@@ -28,9 +28,10 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 14 | `pt14-third-person` | Orbit camera on the player |
 | 15 | `pt15-physics-joints` | A hinged door |
 | 16 | `pt16-async-load` | `Scene.LoadAsync` and a loading line |
-| 17 | `pt17-ongui` | This episode. Immediate-mode HUD |
+| 17 | `pt17-ongui` | Immediate-mode speed line |
+| 18 | `pt18-game-ui` | This episode. Canvas, text, and a button |
 
-`MonoBehaviour.OnGui(Paper)` is the immediate-mode hook. The scene calls it from `Scene.OnGui`. There is no widget left alive between frames. Part 16 already used it for `Loading N%`. This part is the gameplay line. Part 18 is the other UI: GameObjects with `GameCanvas`, `TextComponent`, and `UIButton`.
+Part 17 rebuilds a string every frame in `OnGui`. This part keeps GameObjects: `GameCanvas`, `RectTransform`, `TextComponent`, `UIImage`, `UIButton`, and one `EventSystem`. The canvas still draws if you delete the event system. It just stops taking clicks.
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -39,31 +40,36 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt17-ongui
+git checkout pt18-game-ui
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-- `Assets/Scripts/PlayHud.cs` — search `TUTORIAL pt17`
-- `Assets/Prefabs/Player.prefab` — **Play Hud** on the player
+- `Assets/Scripts/GameMenu.cs` — search `TUTORIAL pt18`
+- `Assets/Scenes/Game.scene` — empty **Game UI**
+- `Assets/Scripts/PhysicsGate.cs` — `ToggleDoor()` is what the button calls. **E** still requires you to stand close.
 
-`OnGui` is `public override`. The argument is `Prowl.PaperUI.Paper`. Text takes a `Prowl.Scribe.FontFile` from `FontAsset.LoadDefault().FontFile`.
+`Start` builds the hierarchy and then `Scene.Add`s the canvas, which registers the children too.
 
-## The line
+## The canvas
 
-1. **Play Hud** is already on the **Player** prefab. If you add it yourself: **Add Component → Play Hud**. No fields.
-2. The method reads `Player.PlanarSpeed` and `PlayerLook.ThirdPerson` and builds one string.
-3. `paper.Box("hud").Margin(16).Height(28).Text(...).FontSize(18).TextColor(...)` is the whole widget. The id `hud` is how you find it in the call.
-4. `VehicleRide` does not disable this component. The script returns while `Player` is disabled, so the line is absent in the car.
+1. **Game UI** is already in the scene. If you build it yourself: empty GameObject, **Add Component → Game Menu**. No fields.
+2. The canvas object calls `EnsureRectTransform()` and then **Game Canvas**. **Event System** goes on the same object. One enabled event system for the scene.
+3. The hint is a child. Anchors and pivot are bottom-center `(0.5, 0)`. **Size Delta** is `(360, 32)`. **Anchored Position** is `(0, 76)`. `TextComponent.Text` starts as `Gate is shut`. Alignment is `TextAlignment.CenterMiddle`. An empty font uses `FontAsset.LoadDefault()`.
+4. The button is a sibling. **Size Delta** `(220, 44)`, **Anchored Position** `(0, 24)`. `UIImage.Sprite` is `Sprite.LoadDefault(DefaultSprite.UIPanel)`. `UIButton.TargetGraphic` is that image. `OnClick` is a C# event.
+5. A caption child stretches to the button (`Anchor Min` zero, `Anchor Max` one, `Size Delta` zero) and says `Toggle`.
+6. The click calls `PhysicsGate.ToggleDoor()`. That is the same motor flip as **E**, without the 3 metre check. The label reads `PhysicsGate.IsOpen`.
 
-Do not cache the `Paper` or the box. Build them again next frame.
+`PlayerLook` locks the cursor on Play. **Escape** unlocks it. A locked cursor keeps the pointer at the center, so the button at the bottom does not see the click. Click the Game view to lock the cursor again.
 
 ## Save and CHECK
 
 - Play from **Title Screen**, then **Play Game**.
-- **CHECK:** The white line is at the top left. Standing still shows speed `0.0`.
-- **CHECK:** Walk. The number climbs. **V** changes `orbit` and `eye`.
-- **CHECK:** **F** into the car. The line is gone. **F** again. It is back.
+- **CHECK:** **Toggle** and `Gate is shut` are on screen. The Part 17 speed line is still there.
+- Press **Escape**. Click **Toggle**.
+- **CHECK:** The door swings open. The line says `Gate is open`.
+- Click again. **CHECK:** The door swings shut and the line follows.
+- **CHECK:** **E** beside the gate still works.
 - Stop Play.
