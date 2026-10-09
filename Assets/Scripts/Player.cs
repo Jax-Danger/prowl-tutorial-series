@@ -1,3 +1,5 @@
+using System;
+
 using Prowl.Runtime;
 using Prowl.Vector;
 
@@ -7,6 +9,10 @@ public class Player : MonoBehaviour
     public float MoveSpeed = 6f;
     public float JumpSpeed = 8f;
     public float Gravity = -20f;
+
+    // TUTORIAL pt8-01  Horizontal speed in metres per second, after MoveSpeed is applied.
+    // PlayerAnimator reads this. Jumping does not count.
+    public float PlanarSpeed { get; private set; }
 
     private CharacterController _controller = null!;
     private Float3 _velocity;
@@ -23,6 +29,7 @@ public class Player : MonoBehaviour
         Float3 planar = Transform.Right * wasd.X + Transform.Forward * wasd.Y;
         _velocity.X = planar.X * MoveSpeed;
         _velocity.Z = planar.Z * MoveSpeed;
+        PlanarSpeed = MathF.Sqrt(_velocity.X * _velocity.X + _velocity.Z * _velocity.Z);
 
         if (_controller.IsGrounded && _velocity.Y <= 0f)
         {
