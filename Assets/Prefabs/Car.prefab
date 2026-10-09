@@ -56,6 +56,17 @@
         "_enabledInHierarchy": true,
         "HideFlags": 0L,
         "Name": "NewCarDrive"
+      },
+      {
+      "$id": 705,
+      "$type": "Prowl.Runtime.NavMeshModifier, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "ignoreFromBuild": true,
+      "applyToChildren": true,
+      "_identifier": "e13a0002-1111-4e13-8f13-000000000001",
+      "_enabled": true,
+      "_enabledInHierarchy": true,
+      "HideFlags": 0L,
+      "Name": "NewNavMeshModifier"
       }
   ],
   "Children": [
