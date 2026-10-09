@@ -90,6 +90,15 @@ public class Gun : MonoBehaviour
         if (crate.IsValid())
             crate.TakeHit();
 
+        // TUTORIAL pt20-08  Health is our counter. The hostile carries one. One round is one point.
+        Health? health = null;
+        if (hit.Collider.IsValid())
+            health = hit.Collider.GetComponentInParent<Health>();
+        if (health.IsNotValid() && hit.Rigidbody.IsValid())
+            health = hit.Rigidbody.GetComponentInParent<Health>();
+        if (health.IsValid())
+            health.TakeDamage(1);
+
         if (hit.Rigidbody.IsValid())
             hit.Rigidbody.AddForceAtPosition(direction * HitImpulse, hit.Point, ForceMode.Impulse);
 
