@@ -1,14 +1,10 @@
-# Create a Basic Title Screen in the Prowl Game Engine
+# Part 1 — Title screen
 
-**Watch the video:** https://youtu.be/8oDvGU0EzT0
+Engine: Prowl 1.0-preview-4. Branch: `pt1-title-screen`. Video: https://youtu.be/8oDvGU0EzT0
 
-**Play CHECK:** Click **Play Game** and the title hides; click **Quit Game** and the editor stays open.
+This branch is the script only. Create the project in the editor.
 
-This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, copy the script into the project you make in the video, and follow the episode.
-
-Engine: **Prowl 1.0-preview-4** — https://github.com/ProwlEngine/Prowl
-
-## Clone this branch
+## Clone
 
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
@@ -16,53 +12,42 @@ cd prowl-tutorial-series
 git checkout pt1-title-screen
 ```
 
-## What you open
+## File
 
-This episode’s companion is the script under `Scripts/`, for the project you create in the editor. This branch is not a full Prowl project: there is no `Assets/` folder and no `.prowl` file. The written steps are in this README. There is no docs folder.
+- `Scripts/TitleScreen.cs`
 
-Create a new project in the editor and name it **My Prowl Game**. Put `Scripts/TitleScreen.cs` in that project’s Scripts folder, or type it while you watch.
+## Steps
 
-## Build the menu
+1. Open the Prowl 1.0-preview-4 editor.
+2. Project launcher: **New**. Name: `My Prowl Game`. Open it.
+3. Menu **GameObject → UI → Canvas**.
+4. Hierarchy: rename the new object to `Title Screen`.
+5. **Project** panel: drag Hierarchy **Title Screen** into the assets area.
+6. Hierarchy: click **Title Screen**.
+7. Menu **GameObject → UI → Text**.
+8. Inspector → **Text** → **Text**: `My Cool Game`. **Size**: `60`.
+9. Menu **GameObject → UI → Button**.
+10. Inspector → child **Text** → **Text**: `Play Game`. **Size**: `35`. **Color**: R `0`, G `0`, B `0`.
+11. Hierarchy: click that button. Ctrl+D.
+12. Rename the copy `Quit Button`.
+13. Inspector → child **Text** → **Text**: `Quit Game`.
+14. Menu **GameObject → UI → Event System**.
+15. Menu **GameObject → Empty Object**. Rename `Menu Controller`.
+16. Inspector: **Add Component → Title Screen**.
+17. Inspector → **Title Screen** → **Menu Root**: drag Hierarchy **Title Screen**.
+18. Hierarchy: click the Play button.
+19. Inspector → **Button** → **On Click ()**: click **+**.
+20. Object slot: drag Hierarchy **Menu Controller**.
+21. Function: **TitleScreen → OnPlayClicked**.
+22. Hierarchy: click **Quit Button**.
+23. Inspector → **Button** → **On Click ()**: click **+**.
+24. Object slot: drag **Menu Controller**. Function: **TitleScreen → OnQuitClicked**.
+25. Ctrl+S.
 
-1. Install Prowl 1.0-preview-4, or build it from the engine repo, and open the editor.
-2. Create the project.
-3. In the viewport, right mouse looks around. Right mouse plus WASD flies. E and Q move up and down. F focuses the selection. Alt plus left mouse orbits.
-4. **GameObject → UI → Canvas**. Name it **Title Screen**. Drag it into the project panel so it becomes a prefab.
-5. Add a child **Text**: `My Cool Game`, font size about **60**.
-6. Add a child **Button**: label `Play Game`, black text, font size about **35**.
-7. Duplicate it. Name the copy **Quit Button** and set the label to `Quit Game`.
-8. Add a **UI Event System**.
-9. Create an empty **Menu Controller**. Add **TitleScreen**. Drag the **Title Screen** canvas into `menuRoot`.
-10. **Play Game** OnClick → **Menu Controller** → `OnPlayClicked`. **Quit Game** OnClick → **Menu Controller** → `OnQuitClicked`.
+## Play
 
-```csharp
-using Prowl.Runtime;
-
-public class TitleScreen : MonoBehaviour
-{
-    public GameObject menuRoot;
-
-    public void OnPlayClicked()
-    {
-        Debug.Log("Play button clicked");
-
-        if (menuRoot != null)
-            menuRoot.Enabled = false;
-    }
-
-    public void OnQuitClicked()
-    {
-        Debug.Log("Quit button clicked");
-
-        if (Application.IsEditor)
-        {
-            Debug.Log("Quit ignored in the editor");
-            return;
-        }
-
-        Game.Quit();
-    }
-}
-```
-
-Enter Play mode and use the Play CHECK at the top. Quit logs `Quit ignored in the editor` and calls `Game.Quit()` only outside the editor.
+1. Toolbar: **Play**.
+2. **Game** view: click **Play Game**. The canvas hides.
+3. Toolbar: **Stop**. **Play** again.
+4. Click **Quit Game**. Console: `Quit ignored in the editor`.
+5. Toolbar: **Stop**.
