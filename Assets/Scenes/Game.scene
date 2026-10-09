@@ -1071,6 +1071,42 @@
         }
       },
       {
+        "$id": 900,
+        "Name": "Courtyard",
+        "Identifier": "c0ffee10-1111-4b10-8c10-000000000010",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 901,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+        },
+        "Components": [
+          {
+            "$id": 902,
+            "$type": "MapColliders, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "_identifier": "c0ffee10-2222-4b10-8c10-000000000011",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewMapColliders"
+          }
+        ],
+        "Children": [],
+        "Prefab": {
+          "$id": 903,
+          "AssetId": "00000000-0000-0000-0000-000000000000",
+          "SourceIdentifier": "c0ffee10-1111-4b10-8c10-000000000010",
+          "Overrides": { "$id": 904, "$values": [] }
+        }
+      },
+      {
         "$id": 19
       },
       {
