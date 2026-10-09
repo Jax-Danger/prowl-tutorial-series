@@ -1,8 +1,8 @@
-# Async scene load
+# OnGui readout
 
-**Video:** coming. Part 16 does not have a public URL yet.
+**Video:** coming. Part 17 does not have a public URL yet.
 
-**Play CHECK:** Play from **Title Screen** and press **Play Game**. The loading scene stays up for at least 1.5 seconds and draws `Loading N%`. The game scene appears after the preload reports `1` and that minimum time has passed. The title screen is gone.
+**Play CHECK:** Play from **Title Screen** and **Play Game**. The top-left line shows speed, `orbit` or `eye`, and the **V** / **E** hints. Walk and the speed number moves. **V** flips the view word. **F** into the car hides the line. **F** again shows it.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
@@ -27,9 +27,10 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 13 | `pt13-navmesh-wander` | Baked navmesh, wander, and chase |
 | 14 | `pt14-third-person` | Orbit camera on the player |
 | 15 | `pt15-physics-joints` | A hinged door |
-| 16 | `pt16-async-load` | This episode. `Scene.LoadAsync` |
+| 16 | `pt16-async-load` | `Scene.LoadAsync` and a loading line |
+| 17 | `pt17-ongui` | This episode. Immediate-mode HUD |
 
-Part 3 is not async. `LoadingScreen` counted `minDisplaySeconds` and then called `Scene.Load(SceneAsset)`. `Scene.Load` runs `AssetDatabase.Preload` and `Wait()` on the main thread, then queues the swap for the end of the frame. The bar in the old episode was a timer, not load progress.
+`MonoBehaviour.OnGui(Paper)` is the immediate-mode hook. The scene calls it from `Scene.OnGui`. There is no widget left alive between frames. Part 16 already used it for `Loading N%`. This part is the gameplay line. Part 18 is the other UI: GameObjects with `GameCanvas`, `TextComponent`, and `UIButton`.
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -38,33 +39,31 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt16-async-load
+git checkout pt17-ongui
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-`Scene.LoadAsync(SceneAsset)` is `Prowl.Runtime/Resources/Scene.cs`. It returns a `SceneLoad`. The current scene keeps running. The engine calls `Scene.ProcessPendingLoad` once a frame and swaps when `IsReady` is true: the preload group is done and `WaitForActivation` is off. `Allow()` clears the wait. `Progress` is `0..1` by asset size. `IsDone` becomes true only after `Activate`, so a loading screen that waits on `IsDone` never calls `Allow`.
+- `Assets/Scripts/PlayHud.cs` — search `TUTORIAL pt17`
+- `Assets/Prefabs/Player.prefab` — **Play Hud** on the player
 
-- `Assets/Scripts/LoadingScreen.cs` — search `TUTORIAL pt16`
-- The title button still writes `SceneLoadRequest.Destination`. That part did not change.
+`OnGui` is `public override`. The argument is `Prowl.PaperUI.Paper`. Text takes a `Prowl.Scribe.FontFile` from `FontAsset.LoadDefault().FontFile`.
 
-`Update` and `OnGui` are `public override`. `OnGui` receives a `Prowl.PaperUI.Paper`.
+## The line
 
-## The load
+1. **Play Hud** is already on the **Player** prefab. If you add it yourself: **Add Component → Play Hud**. No fields.
+2. The method reads `Player.PlanarSpeed` and `PlayerLook.ThirdPerson` and builds one string.
+3. `paper.Box("hud").Margin(16).Height(28).Text(...).FontSize(18).TextColor(...)` is the whole widget. The id `hud` is how you find it in the call.
+4. `VehicleRide` does not disable this component. The script returns while `Player` is disabled, so the line is absent in the car.
 
-1. Open `Assets/Scripts/LoadingScreen.cs`. The destination is still `SceneLoadRequest.Destination.Load()`, the `SceneAsset` Part 7 switched to.
-2. `Scene.LoadAsync(next)` starts the preload. `WaitForActivation = true` keeps this scene on screen after the assets are ready.
-3. When `elapsed` reaches **Min Display Seconds** (`1.5`) and `Progress` is at least `1`, call `Allow()`. The swap happens at the end of that frame.
-4. `OnGui` draws `Loading N%` with `paper.Box(...).Text(...)`. The font is `FontAsset.LoadDefault().FontFile`.
-
-A second `LoadAsync` cancels the one in flight. Do not also call `Scene.Load` for the same click.
+Do not cache the `Paper` or the box. Build them again next frame.
 
 ## Save and CHECK
 
-- Play from **Title Screen**.
-- Press **Play Game**.
-- **CHECK:** The loading scene stays at least 1.5 seconds. The percent text updates. Then `Game` is current.
-- **CHECK:** The Console does not say the destination is missing.
+- Play from **Title Screen**, then **Play Game**.
+- **CHECK:** The white line is at the top left. Standing still shows speed `0.0`.
+- **CHECK:** Walk. The number climbs. **V** changes `orbit` and `eye`.
+- **CHECK:** **F** into the car. The line is gone. **F** again. It is back.
 - Stop Play.
