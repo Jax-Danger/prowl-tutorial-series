@@ -89,6 +89,17 @@ public class PhysicsGate : MonoBehaviour
         if (Float3.Distance(player.Transform.Position, Transform.Position) > UseDistance)
             return;
 
+        ToggleDoor();
+    }
+
+    // TUTORIAL pt18-04  GameMenu's button calls this. E still goes through the distance check above.
+    public bool IsOpen => _open;
+
+    public void ToggleDoor()
+    {
+        if (_hinge.IsNotValid())
+            return;
+
         _open = !_open;
         _hinge.MotorTargetVelocity = _open ? OpenSpeed : -OpenSpeed;
     }
