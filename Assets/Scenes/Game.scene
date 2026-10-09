@@ -1461,6 +1461,43 @@
         }
       },
       {
+        "$id": 995,
+        "Name": "Crate",
+        "Identifier": "e19a0002-1111-4e19-8f19-000000000002",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 996,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 3F, "Y": 0F, "Z": 4F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+        },
+        "Components": [
+          {
+            "$id": 997,
+            "$type": "PracticeCrate, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Hits": 3,
+            "_identifier": "e19a0003-1111-4e19-8f19-000000000003",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewPracticeCrate"
+          }
+        ],
+        "Children": [],
+        "Prefab": {
+          "$id": 998,
+          "AssetId": "00000000-0000-0000-0000-000000000000",
+          "SourceIdentifier": "e19a0002-1111-4e19-8f19-000000000002",
+          "Overrides": { "$id": 999, "$values": [] }
+        }
+      },
+      {
         "$id": 19
       },
       {
