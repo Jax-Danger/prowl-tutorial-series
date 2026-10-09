@@ -15,3 +15,7 @@ Directory.Build.props
 bin/
 obj/
 .DS_Store
+
+# Mixamo characters and clips. Adobe's license does not allow redistributing them.
+# Download your own into Assets/Mixamo/. PlayerAnimator null-checks and still runs without them.
+Assets/Mixamo/

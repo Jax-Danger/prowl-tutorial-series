@@ -1,18 +1,14 @@
-# Update Prowl
+# Animation
 
-**Video:** coming. Part 7 does not have a public URL yet.
+**Video:** coming. Part 8 does not have a public URL yet.
 
-**Play CHECK:** After the engine update and the script fix, Play Game still loads, WASD moves along the facing, Space jumps, and the mouse look from Part 6 still works. The sun still lights the floor from above.
+**Play CHECK:** With no Mixamo files, the cube from Part 6 still moves and jumps, and the Console has no exception from `PlayerAnimator`. After you import a skinned character and assign Idle and Walk, standing plays idle and moving plays walk. Stopping returns to idle. The body does not slide out from under the camera.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
 ## Where this fits
 
-Each branch stacks on the one before it. Parts 1–6 were written against the tag **v1.0-preview-4**. Part 7 moves the course to **Prowl 1.0-preview.5**, and every later part stays on that pin.
-
-The latest GitHub release is still `v1.0-preview-4` (30 Aug 2026). There is no `v1.0-preview-5` tag. The engine's own version constant on `main` is already `1.0-preview.5` (`Project.CurrentVersion` in `Prowl.Editor/Projects/Project.cs`). Part 8 needs `Animator` and `AnimationClip`, which landed on `main` after preview-4 (commit `4b1b336e`, 28 Sep 2026). That is why the pin is a `main` commit and not the latest tag.
-
-**Engine pin for the rest of the course:** `1.0-preview.5` at `baa86a4417f63c3a6dd98c513963c6ab22693601` on `main` (9 Oct 2026).
+Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Part 7 moved the course to **Prowl 1.0-preview.5** at `baa86a4417f63c3a6dd98c513963c6ab22693601` on `main`. Stay on that pin. `Animator` and `AnimationClip` are not in the preview-4 tag.
 
 | Part | Branch | What you add |
 | --- | --- | --- |
@@ -22,14 +18,14 @@ The latest GitHub release is still `v1.0-preview-4` (30 Aug 2026). There is no `
 | 4 | tag `pt4-player-movement` (also `main`) | WASD, jump, gravity |
 | 5 | tag `pt5-rotating-cube` | Rotating cube |
 | 6 | `pt6-player-with-cam` | Mouse look, camera on the player |
-| 7 | `pt7-update-prowl` | This episode. Engine pin above |
-| 8 | `pt8-animation` | Skinned idle / walk |
+| 7 | `pt7-update-prowl` | Engine pin above |
+| 8 | `pt8-animation` | This episode. Skinned idle / walk |
 | 9 | `pt9-vehicle` | WheelCollider car, enter and exit |
 | 10 | `pt10-blender-map` | Blender level and a mesh collider |
 | 11 | `pt11-lighting` | Sun, point, spot, sky, post, day/night |
 | 12 | `pt12-terrain` | Heightmap terrain |
 
-Prerequisite: a project that already plays Part 6 (title, loading, game, player with a camera child).
+Prerequisite: Part 7 plays (title, loading, game, mouse look).
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -38,80 +34,74 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt7-update-prowl
+git checkout pt8-animation
 ```
 
-## Update the engine
+## Open it
 
-Prowl lives in its own clone, next to this repo. The game project only holds `Assets/`. These steps check out the pin and build it. `External/jitterphysics2` is a submodule. Runtime does not compile without it.
+This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-```bash
-# First time:
-git clone https://github.com/ProwlEngine/Prowl.git ~/src/Prowl
+- `Assets/Scripts/Player.cs` — now exposes `PlanarSpeed`
+- `Assets/Scripts/PlayerAnimator.cs` — this episode. Search `TUTORIAL pt8`
+- `Assets/Prefabs/Player.prefab` and `Assets/Scenes/Game.scene` — **PlayerAnimator** is already on **Player**. Idle and Walk start empty
+- `Assets/Mixamo/` — you create this. It is gitignored. Do not commit the FBX files
 
-cd ~/src/Prowl
-git fetch origin
-git checkout baa86a4417f63c3a6dd98c513963c6ab22693601
-git submodule update --init --recursive
-dotnet build Prowl.Runtime/Prowl.Runtime.csproj -c Release
-dotnet build Prowl.Editor/Prowl.Editor.csproj -c Release
-```
+Any skinned FBX or glTF with clips works. Mixamo is the example because the download dialog is the same for everyone. Prowl imports `.fbx`, `.gltf`, `.glb`, and `.obj` (`EditorModelImporter`).
 
-Open `~/src/Prowl/Prowl.slnx` in Rider and run the **Prowl.Editor** project. That is the editor. Linux paths are case-sensitive.
+Paths are case-sensitive: `Assets/Scripts/PlayerAnimator.cs`.
 
-If `~/src/Prowl` was already on `v1.0-preview-4`, the same `git checkout` and `git submodule update` move it. Rebuild both projects. Do not keep using the preview-4 editor binary with these scripts.
+`Update` is `public override`. A plain `public void Update()` does not run.
 
-## Open the game and let it migrate
+## Download a character
 
-1. Launch the editor you just built.
-2. On the project launcher, open the game project you used for Part 6. Its `.prowl` file still says preview-4 (or "old" if it has no version).
-3. A dialog titled **Migrate Project** appears. The body names the saved version and `1.0-preview.5`, and says a backup goes in the project's **Backups** folder. Confirm it.
-4. The editor then opens the project. Do not keep working in the preview-4 editor after this. That editor cannot open the migrated project.
+On [Mixamo](https://www.mixamo.com), pick a character (Y Bot is fine) and download it:
 
-What that migration rewrites, from `Prowl.Editor/Migration/Releases/Release_1_0_Preview5.cs`:
+- Format: **FBX Binary (.fbx)**
+- Skin: **With Skin**
+- Pose: **T-Pose**
+- Frames per Second: **30**
 
-- Asset references change from `{ "AssetID": "<guid>" }` to `{ "$asset": "<guid>" }`.
-- Every **Directional Light** turns 180° around its local up axis. On preview-4 a directional light shone along **-Forward**. On preview-5 it shines along **Forward**, same as a spot light. The turn keeps the sunlight coming from the same world direction.
-- This project has no custom shaders and no joints, so the other two migration steps do nothing here.
+Then download two animations, one idle and one walk:
 
-Do this migration **before** you copy this branch's `Assets` over your project. This branch is already in the preview-5 shape, including the turned sun. If you copy it first and then migrate, the sun turns a second time. If that happens, select **Directional Light** and rotate it back by 180° around Y.
+- Format: **FBX Binary (.fbx)**
+- Skin: **Without Skin** (the clip uses the character’s skeleton instead of shipping a second mesh)
+- Frames per Second: **30**
+- Keyframe Reduction: **none**
 
-## Copy the scripts
+Those labels are Mixamo’s. Prowl does not read them. They match what the importer expects: a skinned mesh, clips on that skeleton, sampled at 30 fps (`ModelImporterSettings.AnimationSampleRate` defaults to 30).
 
-This episode's companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
+Put the three files in `Assets/Mixamo/` inside your game project. That folder is in `.gitignore` on this branch. Adobe’s license does not allow this repo to ship the files.
 
-Copy this branch's `Assets/Scripts/` over your project's `Assets/Scripts/`, and use this branch's scenes and prefabs if you have been following the repo files rather than your own copies.
+## Import
 
-- `Assets/Scripts/TitleScreen.cs` — scene slots are `AssetRef<SceneAsset>`. Search `TUTORIAL pt7`
-- `Assets/Scripts/LoadingScreen.cs` — loads that `SceneAsset`
-- `Assets/Scripts/SceneLoadRequest.cs` — holds the destination
-- `Assets/Scripts/Player.cs` — `Move` still moves the capsule. It now returns `CollisionFlags`
-- `Assets/Prefabs/TitleScreen.prefab` — **Game Scene** and **Loading Scene** stored as `$assetRef`
+1. Open `Assets/Scenes/Game.scene`.
+2. If the editor has not imported the FBX files yet, click one in the Project panel and wait until the Console is quiet.
+3. Select the **With Skin** character. The Inspector is the model importer, with tabs **Model**, **Animation**, and **Materials**.
+4. On **Model**, leave **Unit Scale** at `1`. Mixamo’s FBX is often in centimetres, so the mesh comes in about 100 times too tall. If the preview is huge, set **Unit Scale** to `0.01` and wait for the reimport.
+5. On **Animation**, set **Rig Type** to **Humanoid**. Leave **Import Animations** on, **Loop Animations** on, and **Sample Rate (fps)** at `30`. Humanoid maps the bones onto a body, which is what lets a Without Skin clip play on this character (`ModelRigType.Humanoid` in `Prowl.Runtime/AssetImporting/ModelImporter.cs`).
+6. If the Inspector says the auto mapper could not recognise a humanoid, click **Open Avatar Editor** and assign the missing bones (hips, spine, head). Until that maps, the model plays as a generic rig and the separate clips will not retarget.
+7. Repeat step 5 on the idle FBX and the walk FBX. They have no mesh. Their clip is a sub-asset.
+8. In the Project panel, expand each FBX. The character’s main asset is a prefab. Under the animation files you will see an **AnimationClip**.
 
-Paths are case-sensitive: `Assets/Scripts/TitleScreen.cs`.
+The importer builds that prefab with a `SkinnedMeshRenderer` and an `Animator` on the root, and it fills `Animator.Clips` and `Animator.Avatar` (`ClayBackedImporter`). Leave **Graph** empty. This episode plays clips directly. An `AnimationGraph` is a separate asset for blend trees and state machines. You do not need one here.
 
-Wait until the Console is clear of script errors. `Update` on `LoadingScreen` and `Player` stays `public override`. A plain `public void Update()` does not run.
+## Put it on the player
 
-## What broke in our scripts
+The parent **Player** stays the empty object from Part 6: **CharacterController**, **Player**, **PlayerLook**, and now **PlayerAnimator**. The camera stays a child. The visible body becomes the imported character.
 
-These are the changes that stop Part 6 from compiling, and the ones that change how the saved project reads. Source files below are in the Prowl checkout.
+1. Drag the character prefab from the Project panel onto **Player** in the Hierarchy so it is a child. Rename that child **Character**.
+2. Set **Character** local position to `0, 0, 0`, local rotation to `0, 0, 0`, local scale to `1, 1, 1`. If the feet sink into the floor or float, nudge local Y until the soles sit on the floor. Do not scale the **Player** parent. That would scale the camera and the controller.
+3. Select **Character**. Confirm **Animator** is on it. **Avatar** is set. **Apply Root Motion** is off. `PlayerAnimator` also forces it off at Play, because `Player` already moves the capsule with `CharacterController.Move`. Root motion would move the transform a second time.
+4. Select the old **Mesh** child (the cube). Uncheck the enable box at the top of the Inspector so the cube stops drawing. Leave the object in the hierarchy. If you have no FBX yet, leave **Mesh** enabled.
+5. Select **Player**. **PlayerAnimator** is already on this branch. If you are building the component yourself: **Add Component → PlayerAnimator**.
+6. Expand the idle FBX and drag its clip into **Idle**. Drag the walk clip into **Walk**. Leave **Walk Speed** at `0.2` and **Fade Seconds** at `0.2`.
+7. If the character moonwalks (the mesh faces the wrong way while WASD is correct), set **Character** local rotation Y to `180`. The importer keeps a model facing +Z as it was authored. `Player` moves along `Transform.Forward` of the parent, not of the mesh.
+8. With **Player** selected, click **Apply** on the prefab header so `Assets/Prefabs/Player.prefab` stores **PlayerAnimator** and the **Character** child. Save the **Game** scene.
 
-**`AssetRef<Scene>` does not compile.** `AssetRef<T>` is now constrained to `Asset` (`Prowl.Runtime/AssetRef.cs`). A live `Scene` is an `EngineObject`, not an `Asset`. The file you drag is a `SceneAsset` (`Prowl.Runtime/Resources/Scene.cs`). `TitleScreen`, `LoadingScreen`, and `SceneLoadRequest` use `AssetRef<SceneAsset>`.
-
-**`Res` and `EnsureLoaded()` are gone.** The new struct has `Load()` (blocks, returns the asset or null) and `IsEmpty`. A guid the database does not know becomes a missing asset (`Asset.IsMissing`), so the scripts check that before `Scene.Load`.
-
-**Call `Scene.Load` with the asset.** `Scene.Load(Scene scene)` still exists. `Scene.Load(SceneAsset asset)` is the one that reads the `.scene` file and queues the swap for the end of the frame. Both screens call that overload.
-
-**Re-assign the two scene slots if they come up empty.** `AssetRef` serializes as `{ "$assetRef": "<guid>" }`. The project migration rewrites every old `{ "AssetID" }` stub to `{ "$asset" }`, which is the hard reference used by meshes and materials, and `AssetRef` does not read that key. On **TitleScreen** in `Assets/Prefabs/TitleScreen.prefab` (and the copy in the Title scene), drag `Assets/Scenes/Game.scene` into **Game Scene** and `Assets/Scenes/LoadingScreen.scene` into **Loading Scene**. This branch's prefab is already `$assetRef` with those two guids. If you use this branch's prefab, the slots are filled. If migration rewrote your own prefab, drag them again.
-
-**`CharacterController.Move` returns `CollisionFlags`.** `Prowl.Runtime/Components/Physics/CharacterController.cs`. The flags are `None`, `Sides`, `Above`, and `Below`. `Player` ignores the return, which still compiles. `IsGrounded` is unchanged.
-
-**Light shadow fields were renamed.** `Light.ShadowBias` is now `DepthBias`, and `ShadowNormalBias` is now `NormalBias` (`Prowl.Runtime/Components/Lights/Light.cs`). The unit is shadow-map texels, and the default is `1`. The migration does not rename the old fields, so a light you saved in preview-4 keeps `ShadowBias` in the file and the new field falls back to `1`. Select **Directional Light** and set **Depth Bias** and **Normal Bias** if the shadows look wrong. **Cast Shadows** is still the checkbox. This branch's scenes already store `DepthBias` and `NormalBias` at `1`.
-
-**These did not break.** `Input.GetWASD`, `Input.MouseDelta`, `Input.LockCursor`, `Input.UnlockCursor`, `Input.CursorLocked`, `KeyCode`, `Time.DeltaTime`, `Transform.LocalEulerAngles`, `Transform.Forward`, `Transform.Right`, `Application.IsEditor`, and `Game.Quit` are the same calls as Part 6.
+`Player.PlanarSpeed` is the horizontal speed after `MoveSpeed`, in metres per second. `PlayerAnimator` plays **Idle** at or below **Walk Speed**, and **Walk** above it, with `Animator.CrossFade`. If a slot is empty it uses the other clip. If both are empty it does nothing.
 
 ## Play
 
 Open `Assets/Scenes/TitleScreen.scene`, enter Play mode, and click the Game view so it has focus. Click **Play Game**, wait through loading, and use the Play CHECK at the top.
 
-If Play Game logs "Loading scene not found", the **Loading Scene** slot is empty. Drag the scene assets as in the section above and try again.
+Without the FBX, you still see the cube and it still moves. With the clips assigned, standing loops idle and WASD blends to walk. Space still jumps. The camera stays on the parent, so the view does not bob with the hips unless you parent the camera to a head bone yourself. This episode does not do that.

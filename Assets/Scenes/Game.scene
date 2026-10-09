@@ -217,6 +217,18 @@
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
             "Name": "NewPlayerLook"
+          },
+          {
+            "$id": 41,
+            "$type": "PlayerAnimator, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "WalkSpeed": 0.2F,
+            "FadeSeconds": 0.2F,
+            "_identifier": "c5aab3b6-655a-4419-8ccf-0da0d582a348",
+            "_prefabTemplateIdentity": "b576e714-67c9-4e03-97a4-8219354d5542",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewPlayerAnimator"
           }
         ],
         "Children": [
