@@ -1385,6 +1385,47 @@
         }
       },
       {
+        "$id": 980,
+        "Name": "Ball",
+        "Identifier": "eball001-1111-4e00-8f00-000000000001",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 981,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 4F, "Y": 1.2F, "Z": 2F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+        },
+        "Components": [
+          {
+            "$id": 982,
+            "$type": "BallController, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Torque": 18F,
+            "JumpImpulse": 5F,
+            "Radius": 0.45F,
+            "EnterDistance": 4F,
+            "CameraDistance": 5.5F,
+            "_identifier": "eball002-1111-4e00-8f00-000000000002",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewBallController"
+          }
+        ],
+        "Children": [],
+        "Prefab": {
+          "$id": 983,
+          "AssetId": "00000000-0000-0000-0000-000000000000",
+          "SourceIdentifier": "eball001-1111-4e00-8f00-000000000001",
+          "Overrides": { "$id": 984, "$values": [] }
+        }
+      },
+      {
         "$id": 19
       },
       {
