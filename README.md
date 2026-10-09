@@ -1,8 +1,8 @@
-# Hinge gate
+# Async scene load
 
-**Video:** coming. Part 15 does not have a public URL yet.
+**Video:** coming. Part 16 does not have a public URL yet.
 
-**Play CHECK:** Play from **Title Screen** and **Play Game**. A wooden door stands at `(6, 0, 8)` on a vertical hinge. Walk within 3 metres and press **E**. It swings open and stops. **E** again swings it shut. The post does not move.
+**Play CHECK:** Play from **Title Screen** and press **Play Game**. The loading scene stays up for at least 1.5 seconds and draws `Loading N%`. The game scene appears after the preload reports `1` and that minimum time has passed. The title screen is gone.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
@@ -14,7 +14,7 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | --- | --- | --- |
 | 1 | tag `pt1-title-screen` | Title screen |
 | 2 | tag `pt2-change-scenes` | Change scenes |
-| 3 | tag `pt3-loading-screen` | Loading screen (timer, then `Scene.Load`) |
+| 3 | tag `pt3-loading-screen` | Loading screen. A timer, then blocking `Scene.Load` |
 | 4 | tag `pt4-player-movement` (also `main`) | WASD, jump, gravity |
 | 5 | tag `pt5-rotating-cube` | Rotating cube |
 | 6 | `pt6-player-with-cam` | Mouse look, camera on the player |
@@ -26,7 +26,10 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 12 | `pt12-terrain` | Heightmap terrain |
 | 13 | `pt13-navmesh-wander` | Baked navmesh, wander, and chase |
 | 14 | `pt14-third-person` | Orbit camera on the player |
-| 15 | `pt15-physics-joints` | This episode. A hinged door |
+| 15 | `pt15-physics-joints` | A hinged door |
+| 16 | `pt16-async-load` | This episode. `Scene.LoadAsync` |
+
+Part 3 is not async. `LoadingScreen` counted `minDisplaySeconds` and then called `Scene.Load(SceneAsset)`. `Scene.Load` runs `AssetDatabase.Preload` and `Wait()` on the main thread, then queues the swap for the end of the frame. The bar in the old episode was a timer, not load progress.
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -35,37 +38,33 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt15-physics-joints
+git checkout pt16-async-load
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-Prowl’s joints live under `Prowl.Runtime/Components/Physics/Constraints`. `HingeJoint` is a door hinge: a ball socket plus an angle limit, and an optional motor. An empty **Connected Body** anchors the pin to the world (`World.NullBody`), not to a second rigidbody.
+`Scene.LoadAsync(SceneAsset)` is `Prowl.Runtime/Resources/Scene.cs`. It returns a `SceneLoad`. The current scene keeps running. The engine calls `Scene.ProcessPendingLoad` once a frame and swaps when `IsReady` is true: the preload group is done and `WaitForActivation` is off. `Allow()` clears the wait. `Progress` is `0..1` by asset size. `IsDone` becomes true only after `Activate`, so a loading screen that waits on `IsDone` never calls `Allow`.
 
-- `Assets/Scripts/PhysicsGate.cs` — search `TUTORIAL pt15`
-- `Assets/Scenes/Game.scene` — empty **Gate** at `(6, 0, 8)`
+- `Assets/Scripts/LoadingScreen.cs` — search `TUTORIAL pt16`
+- The title button still writes `SceneLoadRequest.Destination`. That part did not change.
 
-`Start` and `Update` are `public override`. The door is built on the first Play so the tutorial can show every field in code. The post is a mesh only. It has no collider and no body.
+`Update` and `OnGui` are `public override`. `OnGui` receives a `Prowl.PaperUI.Paper`.
 
-## The hinge
+## The load
 
-1. **Gate** is already in `Game.scene`. If you build it yourself: empty GameObject named `Gate`, **Add Component → Physics Gate**, move it to `(6, 0, 8)`.
-2. **Open Speed** `2.2`, **Use Distance** `3`, **Min Angle** `-4`, **Max Angle** `95`.
-3. The door is a dynamic `Rigidbody3D` with a `BoxCollider` the same size as `Mesh.CreateCube`. Mass `12`.
-4. `HingeJoint` is added after the body. **Anchor** is the local `-Z` edge. **Axis** is local Y. **Has Motor** is on. **Motor Max Force** is `80`.
-5. **E** (`KeyCode.E`) within **Use Distance** of the gate flips `MotorTargetVelocity` between `Open Speed` and `-Open Speed`. Within 3 degrees of the limit the speed goes back to `0`, so the motor does not grind on the limit.
-6. The script ignores **E** while `Player` is disabled, which is while you are in the car.
+1. Open `Assets/Scripts/LoadingScreen.cs`. The destination is still `SceneLoadRequest.Destination.Load()`, the `SceneAsset` Part 7 switched to.
+2. `Scene.LoadAsync(next)` starts the preload. `WaitForActivation = true` keeps this scene on screen after the assets are ready.
+3. When `elapsed` reaches **Min Display Seconds** (`1.5`) and `Progress` is at least `1`, call `Allow()`. The swap happens at the end of that frame.
+4. `OnGui` draws `Loading N%` with `paper.Box(...).Text(...)`. The font is `FontAsset.LoadDefault().FontFile`.
 
-Other joints in the same folder, not used here: `PrismaticJoint` (slider), `UniversalJoint`, `BallSocketConstraint`, `FixedAngleConstraint`, `DistanceLimitConstraint`.
+A second `LoadAsync` cancels the one in flight. Do not also call `Scene.Load` for the same click.
 
 ## Save and CHECK
 
-- Save the scene if you moved **Gate**.
-- Play from **Title Screen**, then **Play Game**.
-- **CHECK:** The door and the grey post appear at the gate. The door does not fall over.
-- **CHECK:** Farther than 3 metres, **E** does nothing.
-- **CHECK:** Within 3 metres, **E** swings it open and it stops. **E** swings it shut.
-- **CHECK:** The post stays put.
+- Play from **Title Screen**.
+- Press **Play Game**.
+- **CHECK:** The loading scene stays at least 1.5 seconds. The percent text updates. Then `Game` is current.
+- **CHECK:** The Console does not say the destination is missing.
 - Stop Play.
