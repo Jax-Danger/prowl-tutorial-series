@@ -124,6 +124,20 @@
       "_enabledInHierarchy": true,
       "HideFlags": 0L,
       "Name": "NewPlayHud"
+    },
+    {
+      "$id": 45,
+      "$type": "Gun, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "MagazineSize": 12,
+      "FireCooldown": 0.12F,
+      "ReloadSeconds": 1F,
+      "Range": 50F,
+      "HitImpulse": 6F,
+      "_identifier": "e19a0001-1111-4e19-8f19-000000000001",
+      "_enabled": true,
+      "_enabledInHierarchy": true,
+      "HideFlags": 0L,
+      "Name": "NewGun"
     }
   ],
   "Children": [
