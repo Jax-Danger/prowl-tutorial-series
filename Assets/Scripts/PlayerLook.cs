@@ -13,6 +13,17 @@ public class PlayerLook : MonoBehaviour
     // TUTORIAL pt6-02  Inspector on the Player prefab. 0.15 is Prowl's first-person template (degrees per mouse pixel).
     public float Sensitivity = 0.15f;
 
+    // TUTORIAL pt14-01  V toggles this. True starts behind the body. False is the Part 6 eye point.
+    public bool ThirdPerson = true;
+
+    // TUTORIAL pt14-02  Metres from the pivot to the camera. The wheel clamps this between the two limits.
+    public float OrbitDistance = 4.5f;
+    public float MinOrbitDistance = 1.2f;
+    public float MaxOrbitDistance = 8f;
+
+    // Height of the orbit pivot above the player's feet. The eye local position is stored in Start.
+    public float PivotHeight = 1.45f;
+
     // TUTORIAL pt6-03  Drag the Camera child here. Start finds a Camera on a child when this is empty.
     public Camera? ViewCamera;
 
@@ -22,6 +33,7 @@ public class PlayerLook : MonoBehaviour
 
     float _yaw;
     float _pitch;
+    Float3 _eyeLocal;
 
     // TUTORIAL pt6-04  Start runs once when Play begins. Lifecycle methods run only when declared override.
     public override void Start()
@@ -32,7 +44,11 @@ public class PlayerLook : MonoBehaviour
         MatchYawToTransform();
 
         if (ViewCamera.IsValid() && ViewCamera.GameObject != GameObject)
+        {
             _pitch = ViewCamera.Transform.LocalEulerAngles.X;
+            // TUTORIAL pt14-03  The prefab eye is (0, 1.6, 0). First person puts the camera back here.
+            _eyeLocal = ViewCamera.Transform.LocalPosition;
+        }
 
         // TUTORIAL pt6-05  LockCursor hides the cursor and pins it (CursorLockMode.Locked).
         // SAY: "Escape shows the cursor again. Click in the Game view to lock it."
@@ -55,6 +71,10 @@ public class PlayerLook : MonoBehaviour
         else if (!Input.CursorLocked && Input.GetMouseButtonDown(0))
             Input.LockCursor();
 
+        // TUTORIAL pt14-04  KeyCode.V. VehicleRide disables this component in the car, so the chase cam is left alone.
+        if (Input.GetKeyDown(KeyCode.V))
+            ThirdPerson = !ThirdPerson;
+
         if (!Input.CursorLocked)
             return;
 
@@ -66,13 +86,60 @@ public class PlayerLook : MonoBehaviour
         _yaw += delta.X * Sensitivity;
         _pitch = Math.Clamp(_pitch + delta.Y * Sensitivity, MinPitch, MaxPitch);
 
+        // TUTORIAL pt14-05  Input.MouseWheelDelta. Clamped so one notch cannot throw the camera across the map.
+        if (ThirdPerson)
+        {
+            float wheel = Input.MouseWheelDelta;
+            if (wheel > 2f) wheel = 2f;
+            if (wheel < -2f) wheel = -2f;
+            OrbitDistance = Math.Clamp(OrbitDistance - wheel * 0.75f, MinOrbitDistance, MaxOrbitDistance);
+        }
+
         // TUTORIAL pt6-09  Yaw the whole player. Local pitch and roll stay 0 so the body stays upright.
         // SAY: "The mesh is a child, so it turns with us. Player movement reads this transform's Forward and Right."
         Transform.LocalEulerAngles = new Float3(0f, _yaw, 0f);
 
         // TUTORIAL pt6-10  Pitch lives on the camera child only, clamped to about -80..80 degrees.
-        if (ViewCamera.IsValid() && ViewCamera.GameObject != GameObject)
+        if (ViewCamera.IsNotValid() || ViewCamera.GameObject == GameObject)
+            return;
+
+        if (!ThirdPerson)
+        {
+            ViewCamera.Transform.LocalPosition = _eyeLocal;
             ViewCamera.Transform.LocalEulerAngles = new Float3(_pitch, 0f, 0f);
+            return;
+        }
+
+        // TUTORIAL pt14-06  Set the pitch first, then read Forward. The camera sits behind that look
+        // direction, so mouse-up (positive pitch, same as Part 6) raises the view and drops the camera.
+        ViewCamera.Transform.LocalEulerAngles = new Float3(_pitch, 0f, 0f);
+        Float3 forward = ViewCamera.Transform.Forward;
+        Float3 pivot = Transform.Position + new Float3(0f, PivotHeight, 0f);
+        Float3 desired = pivot + forward * (-OrbitDistance);
+        desired = PullIn(pivot, desired);
+        ViewCamera.Transform.Position = desired;
+    }
+
+    // TUTORIAL pt14-07  PhysicsWorld.Raycast from the pivot to the desired point. BeginRayQuery normalizes
+    // the direction. A hit closer than the desired distance parks the camera in front of the wall.
+    Float3 PullIn(Float3 pivot, Float3 desired)
+    {
+        if (GameObject.Scene.IsNotValid() || GameObject.Scene.Physics == null)
+            return desired;
+
+        float len = Float3.Distance(pivot, desired);
+        if (len <= 0.05f)
+            return desired;
+
+        if (!GameObject.Scene.Physics.Raycast(pivot, desired - pivot, len, out RaycastHit hit))
+            return desired;
+
+        float keep = hit.Distance - 0.25f;
+        if (keep < MinOrbitDistance)
+            keep = MinOrbitDistance;
+        if (keep > len)
+            keep = len;
+        return pivot + (desired - pivot) * (keep / len);
     }
 }
 
