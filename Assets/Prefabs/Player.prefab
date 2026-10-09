@@ -231,6 +231,15 @@
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
           "Name": "NewCamera"
+        },
+        {
+          "$id": 42,
+          "$type": "CameraGrade, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_identifier": "d11a0002-3333-4a10-8c10-000000000003",
+          "_enabled": true,
+          "_enabledInHierarchy": true,
+          "HideFlags": 0L,
+          "Name": "NewCameraGrade"
         }
       ],
       "Children": [

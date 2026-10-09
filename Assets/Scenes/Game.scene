@@ -59,6 +59,17 @@
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
             "Name": "NewDirectionalLight"
+          },
+          {
+            "$id": 910,
+            "$type": "DayNightCycle, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "DayLengthSeconds": 90F,
+            "Pitch": 50F,
+            "_identifier": "d11a0001-1111-4a10-8c10-000000000001",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewDayNightCycle"
           }
         ],
         "Children": [
@@ -374,6 +385,16 @@
                 "_enabledInHierarchy": true,
                 "HideFlags": 0L,
                 "Name": "NewCamera"
+              },
+              {
+                "$id": 911,
+                "$type": "CameraGrade, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_identifier": "d11a0002-2222-4a10-8c10-000000000002",
+                "_prefabTemplateIdentity": "d11a0002-3333-4a10-8c10-000000000003",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewCameraGrade"
               }
             ],
             "Children": [
@@ -1104,6 +1125,100 @@
           "AssetId": "00000000-0000-0000-0000-000000000000",
           "SourceIdentifier": "c0ffee10-1111-4b10-8c10-000000000010",
           "Overrides": { "$id": 904, "$values": [] }
+        }
+      },
+      {
+        "$id": 920,
+        "Name": "Lamp",
+        "Identifier": "d11a0010-1111-4a10-8c10-000000000010",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 921,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 8F, "Y": 2.5F, "Z": 8F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+        },
+        "Components": [
+          {
+            "$id": 922,
+            "$type": "Prowl.Runtime.PointLight, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "ShadowResolution": 512L,
+            "Range": 8F,
+            "Color": { "R": 1F, "G": 0.72F, "B": 0.4F, "A": 1F },
+            "Intensity": 2F,
+            "ShadowStrength": 1F,
+            "DepthBias": 1F,
+            "NormalBias": 1F,
+            "CastShadows": true,
+            "ShadowQuality": 1L,
+            "BakeMode": 0L,
+            "_identifier": "d11a0011-1111-4a10-8c10-000000000011",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewPointLight"
+          }
+        ],
+        "Children": [],
+        "Prefab": {
+          "$id": 923,
+          "AssetId": "00000000-0000-0000-0000-000000000000",
+          "SourceIdentifier": "d11a0010-1111-4a10-8c10-000000000010",
+          "Overrides": { "$id": 924, "$values": [] }
+        }
+      },
+      {
+        "$id": 930,
+        "Name": "Gate Spot",
+        "Identifier": "d11a0020-1111-4a10-8c10-000000000020",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 931,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 0F, "Y": 4F, "Z": 16F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0.9848077F, "Z": -0.17364818F, "W": 0F }
+        },
+        "Components": [
+          {
+            "$id": 932,
+            "$type": "Prowl.Runtime.SpotLight, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "ShadowResolution": 1024L,
+            "Range": 18F,
+            "SpotAngle": 40F,
+            "InnerSpotAngle": 25F,
+            "Color": { "R": 0.75F, "G": 0.85F, "B": 1F, "A": 1F },
+            "Intensity": 3F,
+            "ShadowStrength": 1F,
+            "DepthBias": 1F,
+            "NormalBias": 1F,
+            "CastShadows": true,
+            "ShadowQuality": 1L,
+            "BakeMode": 0L,
+            "_identifier": "d11a0021-1111-4a10-8c10-000000000021",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewSpotLight"
+          }
+        ],
+        "Children": [],
+        "Prefab": {
+          "$id": 933,
+          "AssetId": "00000000-0000-0000-0000-000000000000",
+          "SourceIdentifier": "d11a0020-1111-4a10-8c10-000000000020",
+          "Overrides": { "$id": 934, "$values": [] }
         }
       },
       {

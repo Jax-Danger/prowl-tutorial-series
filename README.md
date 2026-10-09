@@ -1,8 +1,8 @@
-# Blender map
+# Lighting
 
-**Video:** coming. Part 10 does not have a public URL yet.
+**Video:** coming. Part 11 does not have a public URL yet.
 
-**Play CHECK:** `Assets/Maps/Courtyard.gltf` is already in the project. Drag it onto the **Courtyard** object (the one with **Map Colliders**), disable **Floor**, then Play from **Title Screen**. You stand on the slab. Walking and driving stop at the walls. The gates on the north and south sides let the car out. With nothing parented under **Courtyard**, **Map Colliders** does nothing and the old plane still holds you.
+**Play CHECK:** Play from **Title Screen**, then **Play Game**. The sun turns. Shadows move with it. The view is brighter in the day and dim and blue when the sun points up. The lamp at `(8, 2.5, 8)` and the spot at the gate stay on. Bright spots bloom. The Console has no exception from `DayNightCycle` or `CameraGrade`.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
@@ -21,11 +21,11 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 7 | `pt7-update-prowl` | Engine pin above |
 | 8 | `pt8-animation` | Skinned idle / walk |
 | 9 | `pt9-vehicle` | WheelCollider car, enter and exit |
-| 10 | `pt10-blender-map` | This episode. A level mesh and a mesh collider |
-| 11 | `pt11-lighting` | Sun, point, spot, sky, post, day/night |
+| 10 | `pt10-blender-map` | Courtyard mesh and a mesh collider |
+| 11 | `pt11-lighting` | This episode. Sun, point, spot, sky, post, day/night |
 | 12 | `pt12-terrain` | Heightmap terrain |
 
-Prerequisite: Part 9 plays (walk, **F** to drive, **F** to get out).
+Prerequisite: Part 10 plays, or at least the plane from Part 9 if you have not parented the courtyard yet.
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -34,58 +34,58 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt10-blender-map
+git checkout pt11-lighting
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-- `Assets/Maps/Courtyard.gltf` and `Courtyard.bin` — a 40 m courtyard made for this episode. Gates face **+Z** and **-Z**. A block sits inside
-- `Assets/Scripts/MapColliders.cs` — search `TUTORIAL pt10`
-- `Assets/Scenes/Game.scene` — empty **Courtyard** with **Map Colliders**. **Floor** is still enabled until you turn it off
+A directional light shines along **+Forward** (local **+Z**). That changed in the Part 7 migration. `DepthBias` and `NormalBias` are the shadow offsets. The old names were `ShadowBias` and `ShadowNormalBias`.
 
-Prowl imports `.gltf`, `.glb`, `.fbx`, and `.obj` (`EditorModelImporter`). The importer’s game preset converts the file into left-handed, Y-up, **+Z** forward (`PostProcessFlags.ConvertCoordinateSystem` in Clay). glTF is already Y-up and right-handed, which is the format that conversion expects. glTF UVs are flipped on import. FBX and OBJ UVs are not.
+Checkout already has the sun script, a point light, a spot, and **Camera Grade** on the player camera. Follow the clicks so the video matches.
 
-`Update` is not used here. `Start` is `public override`.
+- `Assets/Scripts/DayNightCycle.cs` — search `TUTORIAL pt11`
+- `Assets/Scripts/CameraGrade.cs` — bloom, then AgX tonemap
+- `Assets/Scenes/Game.scene` — **Day Night Cycle** on **Directional Light**, **Lamp**, **Gate Spot**
+- `Assets/Prefabs/Player.prefab` — **Camera Grade** on the **Camera** child
 
-## Export from Blender
+`Update` and `OnEnable` are `public override`.
 
-Skip this if you are using the committed courtyard. Come back when you want your own level.
+## Sun
 
-1. Model in metres. A wall of 3 is 3 metres.
-2. Select the level. **Ctrl+A → Apply → All Transforms**. Scale must be 1 before export, or the collider and the mesh disagree.
-3. **File → Export → glTF 2.0 (.gltf/.glb)**.
-4. Format: **glTF Separate** (`.gltf` + `.bin`) or **glTF Binary** (`.glb`). Both import.
-5. Include the mesh. Turn off cameras and lights in the exporter if it offers that. Prowl’s importer can also drop them.
-6. **Apply Modifiers** on.
-7. The glTF exporter writes **+Y up**. You do not flip the axis yourself. Blender’s Z-up is converted by the exporter.
-8. Save into `Assets/Maps/`.
+1. Open `Assets/Scenes/Game.scene`.
+2. Select **Directional Light**. **Cast Shadows** is on. **Shadow Quality** is **Soft**. **Depth Bias** `1`, **Normal Bias** `1`.
+3. **Add Component → Day Night Cycle**. **Day Length Seconds** `90`. **Pitch** `50`.
+4. The script sets local Euler to `(Pitch, yaw, 0)`. Yaw comes from `Time.TimeSinceStartup`. Intensity uses how far **Forward** points down. When the light points up, intensity falls to `0.05` and the color goes blue.
 
-FBX works too: **File → Export → FBX**, **Apply Transform** on, scale 1. Prefer glTF for this episode so the axis story matches the file in the repo.
+## Point and spot
 
-## Import
+5. **GameObject → Light → Point Light**. Name it `Lamp`. Position `8, 2.5, 8` (over the courtyard block). **Range** `8`. Color a warm orange. **Intensity** `2`. **Cast Shadows** on.
+6. **GameObject → Light → Spot Light**. The menu aims it down. Name it `Gate Spot`. Position `0, 4, 16`. Rotation `20, 180, 0` so **+Z** points back into the court and slightly down. **Range** `18`. **Spot Angle** `40`. **Inner Spot Angle** `25`. **Intensity** `3`. **Cast Shadows** on.
 
-1. Open the project. Wait until `Courtyard.gltf` finishes importing.
-2. Select it. On the **Model** tab set **Unit Scale** to `1`. Turn **Import Cameras** off and **Import Lights** off.
-3. Open `Assets/Scenes/Game.scene`.
-4. Drag the imported model onto **Courtyard** in the Hierarchy. Local position `0, 0, 0`. Local scale `1, 1, 1`.
-5. **Courtyard** already has **Map Colliders**. If you built the object yourself: **GameObject → Empty Object**, name it `Courtyard`, **Add Component → Map Colliders**, then parent the model under it.
-6. Select **Floor** and disable it (the checkbox at the top of the Inspector). The slab’s top is `y = 0`, the same height as the old plane. Leaving both on z-fights.
-7. Save the scene.
+## Sky and ambient
 
-## What the script does
+These are scene settings, not components. `Scene.Skybox` and `Scene.Ambient` in `Prowl.Runtime/Resources/Scene.cs`.
 
-`MapColliders.Start` walks child `MeshRenderer`s. If that object has no `MeshCollider`, it adds one and assigns `MeshRenderer.Mesh`. **Convex** stays off. A convex hull would seal the gates. A concave mesh on a moving rigidbody logs a warning and approximates inertia. This level has no rigidbody, so the triangles stay triangles.
+7. **Window → General → Environment**.
+8. **Skybox** tab. **Mode** **Procedural**. The hint on that mode is “Sun direction set automatically from Directional Light.” Switch to **Gradient** if you want a fixed top and bottom color. **Solid Color** and **Material** are the other modes.
+9. **Ambient** tab. **Mode** **Hemisphere** (sky color and ground color) or **Uniform**. **Strength** around `1`.
+10. **Fog** is the third tab. Leave it off unless you want it. Save the scene.
 
-A missing mesh is skipped. An empty **Courtyard** does not throw.
+## Camera post
+
+11. Select the player’s **Camera** child. **Add Component → Camera Grade**.
+12. **Apply All** on the Player prefab instance.
+13. The script sets `Camera.HDR` on and, if they are missing, appends `BloomEffect` then `TonemapperEffect`. Bloom’s defaults are intensity `1.5`, threshold `0.8`, iterations `6`. The tonemapper defaults to **AgX**, contrast `1.1`, saturation `1.1`. Tonemapper is last because `TransformsToLDR` is true.
+14. The same list is `Camera.Effects` in the Inspector if you want to add FXAA, SMAA, TAA, GTAO, motion blur, or the other effects under `Prowl.Runtime/Rendering/Image Effects` by hand. This episode only adds bloom and the tonemapper.
 
 ## Save and CHECK
 
 - Play from **Title Screen**, then **Play Game**.
-- **CHECK:** You stand on the courtyard, not on a falling void.
-- **CHECK:** Walk into a wall. The capsule stops.
-- **CHECK:** **F**, drive into a wall. The car stops. Drive out a gate. Both ends of the court have a gap, so a mirrored import still has an exit.
-- **CHECK:** The block near `(8, 0, 8)` stops the car.
-- **CHECK:** Clear the model from **Courtyard**, turn **Floor** back on, Play. You are on the plane again and the Console stays clear.
+- **CHECK:** The sun moves. Your shadow moves with it.
+- **CHECK:** After a while the scene dims. Wait out the `90` seconds or lower **Day Length Seconds** to `20` for the take.
+- **CHECK:** The lamp lights the block. The spot lights the gate. Both cast shadows.
+- **CHECK:** A bright area blooms. The picture is not a flat unmapped HDR blowout.
+- **CHECK:** Disable **Day Night Cycle**. The sun stays where you left it and the Console stays clear.
 - Stop Play.
