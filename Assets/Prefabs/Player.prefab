@@ -67,6 +67,11 @@
       "$id": 13,
       "$type": "PlayerLook, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
       "Sensitivity": 0.15F,
+      "ThirdPerson": true,
+      "OrbitDistance": 4.5F,
+      "MinOrbitDistance": 1.2F,
+      "MaxOrbitDistance": 8F,
+      "PivotHeight": 1.45F,
       "ViewCamera": {
         "$extern": {
           "$t": "g",
