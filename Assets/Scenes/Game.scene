@@ -1498,6 +1498,56 @@
         }
       },
       {
+        "$id": 1001,
+        "Name": "Hostile",
+        "Identifier": "e20a0010-1111-4e20-8f20-000000000010",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 1002,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 0F, "Y": 0F, "Z": 14F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+        },
+        "Components": [
+          {
+            "$id": 1003,
+            "$type": "Health, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "MaxHitPoints": 8,
+            "DisableObjectOnDeath": true,
+            "_identifier": "e20a0011-1111-4e20-8f20-000000000011",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewHealth"
+          },
+          {
+            "$id": 1004,
+            "$type": "HostileShooter, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "Range": 16F,
+            "Cooldown": 1.1F,
+            "Damage": 1,
+            "_identifier": "e20a0012-1111-4e20-8f20-000000000012",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewHostileShooter"
+          }
+        ],
+        "Children": [],
+        "Prefab": {
+          "$id": 1005,
+          "AssetId": "00000000-0000-0000-0000-000000000000",
+          "SourceIdentifier": "e20a0010-1111-4e20-8f20-000000000010",
+          "Overrides": { "$id": 1006, "$values": [] }
+        }
+      },
+      {
         "$id": 19
       },
       {

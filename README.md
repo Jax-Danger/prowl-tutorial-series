@@ -1,8 +1,8 @@
-# Raycast gun
+# FPS combat
 
-**Video:** coming. Part 19 does not have a public URL yet.
+**Video:** coming. Part 20 does not have a public URL yet.
 
-**Play CHECK:** Play from **Title Screen** and **Play Game**. The corner under the speed line shows `12/12`. Hold the left mouse button. The count falls and the Console logs hits. Shoot the red crate at `(3, 0, 4)`. It shoves, the Console counts down, and on the third hit the crate disables. **R** fills the magazine after one second. The door takes a shove too. **Escape** and the button still clicks without firing.
+**Play CHECK:** Play from **Title Screen** and **Play Game**. A white plus is in the middle of the view. Under the ammo line, `HP 5/5`. A dark red figure stands at `(0, 0, 14)`. Walk toward it. The Console says `Hostile: hit` and the HP line counts down about once a second. Step behind a courtyard wall and the Console says `Hostile: blocked`. Shoot the figure. Each hit logs its remaining points. At 0 it disappears. Stand in the open until your HP hits 0. The line says `Down`, the plus goes away, and WASD no longer moves you. The camera still looks.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
@@ -30,9 +30,13 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 16 | `pt16-async-load` | `Scene.LoadAsync` and a loading line |
 | 17 | `pt17-ongui` | Immediate-mode speed line |
 | 18 | `pt18-game-ui` | Canvas, text, and a button |
-| 19 | `pt19-raycast-gun` | This episode. Hitscan gun, ammo, reload |
+| 19 | `pt19-raycast-gun` | Hitscan gun, ammo, reload |
+| 20 | `pt20-fps-combat` | This episode. Health, a hostile, a crosshair |
+| side | `side-ball-controller` | Off Part 13. A rolling ball. Not on this line |
 
-This is the gun episode and the FPS slice of the course: a camera ray, a magazine, a reload, and a target that takes hits. It stays on the player from Part 14, so **V** still switches the muzzle between the orbit camera and the eye point.
+Prowl has no health component, no crosshair, and no hitscan weapon. Part 19 is the gun: `PhysicsWorld.Raycast` and a magazine. This part is the fight around that gun. `Health` and `CombatHud` are scripts in this repo. The hostile uses the same raycast.
+
+The ball stays a side episode on `side-ball-controller`. It is not in this branch.
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -41,37 +45,38 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt19-raycast-gun
+git checkout pt20-fps-combat
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-- `Assets/Scripts/Gun.cs` — search `TUTORIAL pt19`
-- `Assets/Scripts/PracticeCrate.cs` — the box that counts hits
-- `Assets/Prefabs/Player.prefab` — **Gun**
-- `Assets/Scenes/Game.scene` — empty **Crate** at `(3, 0, 4)`
+- `Assets/Scripts/Health.cs` — search `TUTORIAL pt20`
+- `Assets/Scripts/HostileShooter.cs` — the figure that shoots back
+- `Assets/Scripts/CombatHud.cs` — plus and HP line
+- `Assets/Scripts/Gun.cs` — a hit calls `Health.TakeDamage(1)`
+- `Assets/Prefabs/Player.prefab` — **Health** (5) and **Combat Hud**
+- `Assets/Scenes/Game.scene` — **Hostile** at `(0, 0, 14)`
 
-`PhysicsWorld.Raycast(origin, direction, maxDistance, out hit)` is the cast. `RaycastHit` carries `Point`, `Distance`, `Normal`, `Rigidbody`, `Collider`, and `Transform`. `AddForceAtPosition` with `ForceMode.Impulse` is the shove.
+`OnGui` is `public override`. The plus is a `Paper` box stretched over the view with `TextAlignment.MiddleCenter`. `IsNotInteractable` keeps it from taking the Part 18 click.
 
-## The gun
+## The fight
 
-1. **Gun** is on the **Player** prefab. **Magazine Size** `12`, **Fire Cooldown** `0.12`, **Reload Seconds** `1`, **Range** `50`, **Hit Impulse** `6`.
-2. The ray starts at the camera child’s position and runs along `Transform.Forward` for **Range** metres. Third person and first person both use that camera, so the muzzle follows **V**.
-3. Hold the left mouse button while the cursor is locked. Each shot subtracts one round and waits **Fire Cooldown**. At `0` the gun waits for **R**.
-4. **R** (`KeyCode.R`) starts the reload only when the magazine is not full. `OnGui` says `Reloading` until the timer ends, then the count is full again.
-5. A hit with a `Rigidbody3D` gets an impulse along the ray at `hit.Point`. The door from Part 15 is one of those bodies.
-6. `PracticeCrate` on the parent of the box handles `TakeHit`. Three hits disable the object. The collider is on the child, so the gun uses `GetComponentInParent`.
-7. The ammo line is a second `OnGui`, placed at `(16, 48)` so it sits under the Part 17 speed line. It hides while `Player` is disabled in the car.
-8. The cursor has to be locked. **Escape** unlocks it for the Part 18 button, and the gun does not fire on that click.
+1. **Health** on the player: **Max Hit Points** `5`, **Disable Object On Death** off. At 0 it disables `Player` and `Gun`. The camera and `PlayerLook` stay, so you can still look.
+2. **Combat Hud** on the same object. No fields. While you are alive it draws `+` and `HP n/5` under the ammo line. In the car (`Player` disabled, not dead) both hide. At 0 the plus is gone and the line says `Down`.
+3. **Hostile** is at `(0, 0, 14)`, in front of the spawn at the origin. **Health** **Max Hit Points** `8`, **Disable Object On Death** on. **Hostile Shooter** **Range** `16`, **Cooldown** `1.1`, **Damage** `1`.
+4. `Start` builds a 1.8 m static box. There is no `Rigidbody3D`, so a round does not shove it. The collider is what your gun hits.
+5. Each cooldown the hostile aims at your chest. `PhysicsWorld.Raycast` runs from a point in front of its body to that aim point. The character controller is not a collider, so a connecting shot usually hits the ground or nothing near you. A hit more than `0.6` m short of the aim point is treated as a wall. Otherwise `Health.TakeDamage` runs.
+6. It does not fire while `Player` is disabled, which is the car and also your downed state.
+7. Your gun already shoves rigidbodies and ticks the crate. It now also calls `TakeDamage(1)` on a `Health` in the hit's parents. Eight hits and the hostile disables.
 
 ## Save and CHECK
 
 - Play from **Title Screen**, then **Play Game**.
-- **CHECK:** `12/12` is under the speed line.
-- Hold fire at the red crate. **CHECK:** it moves, the Console counts `2`, `1`, `down`, and the crate disappears. The ammo count drops.
-- **CHECK:** Empty the magazine. Fire does nothing. **R** shows `Reloading`, then `12/12`.
-- Shoot the door. **CHECK:** it shoves, and the Console names the hit.
-- **Escape**, click **Toggle**. **CHECK:** the door still toggles and the gun does not spend a round on that click.
+- **CHECK:** The plus is centered. `HP 5/5` is under the ammo line. The figure is down the Z axis.
+- Walk into range in the open. **CHECK:** about once a second the Console says `Hostile: hit` and HP falls.
+- Put a courtyard wall between you. **CHECK:** `Hostile: blocked`, and HP holds.
+- Shoot the figure. **CHECK:** the Console counts its points down. At 0 the figure is gone.
+- Let it finish you in the open. **CHECK:** `Down`, no plus, WASD does nothing, the mouse still looks.
 - Stop Play.
