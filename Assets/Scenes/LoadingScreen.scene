@@ -7,7 +7,6 @@
       {
         "$id": 3,
         "Name": "Main Camera",
-        "AssetPath": "",
         "Identifier": "72c539b6-d5eb-4421-8b30-ca3a103bd56e",
         "Static": 0B,
         "Enabled": 1B,
@@ -62,9 +61,7 @@
             "FarClipPlane": 100F,
             "Depth": -1,
             "Pipeline": NULL,
-            "Target": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
+            "Target": null,
             "HDR": true,
             "RenderScale": 1F,
             "ShadowFocus": NULL,
@@ -72,8 +69,6 @@
             "_enabled": true,
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
-            "AssetPath": "",
-            "AssetID": "00000000-0000-0000-0000-000000000000",
             "Name": "NewCamera"
           }
         ],
@@ -84,7 +79,6 @@
       {
         "$id": 7,
         "Name": "Canvas",
-        "AssetPath": "",
         "Identifier": "c79e2cda-71f3-4269-8caa-de9aa34e14de",
         "Static": 0B,
         "Enabled": 1B,
@@ -140,8 +134,6 @@
             "_enabled": true,
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
-            "AssetPath": "",
-            "AssetID": "00000000-0000-0000-0000-000000000000",
             "Name": "NewRectTransform"
           },
           {
@@ -161,8 +153,6 @@
             "_enabled": true,
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
-            "AssetPath": "",
-            "AssetID": "00000000-0000-0000-0000-000000000000",
             "Name": "NewGameCanvas"
           }
         ],
@@ -170,7 +160,6 @@
           {
             "$id": 11,
             "Name": "Panel",
-            "AssetPath": "",
             "Identifier": "2b1aecde-922d-45a8-ab91-008f2167bb12",
             "Static": 0B,
             "Enabled": 1B,
@@ -226,16 +215,12 @@
                 "_enabled": true,
                 "_enabledInHierarchy": true,
                 "HideFlags": 0L,
-                "AssetPath": "",
-                "AssetID": "00000000-0000-0000-0000-000000000000",
                 "Name": "NewRectTransform"
               },
               {
                 "$id": 14,
                 "$type": "Prowl.Runtime.UI.UIImage, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "_sprite": {
-                  "AssetID": "bff73be2-cd62-785e-928f-0efd1487829c"
-                },
+                "_sprite": { "$asset": "bff73be2-cd62-785e-928f-0efd1487829c" },
                 "_preserveAspect": false,
                 "_type": 1L,
                 "_pixelsPerUnitMultiplier": 1F,
@@ -244,9 +229,7 @@
                 "_fillAmount": 1F,
                 "_fillClockwise": false,
                 "_raycastTarget": true,
-                "_material": {
-                  "AssetID": "00000000-0000-0000-0000-000000000000"
-                },
+                "_material": null,
                 "_color": {
                   "R": 1F,
                   "G": 1F,
@@ -257,8 +240,6 @@
                 "_enabled": true,
                 "_enabledInHierarchy": true,
                 "HideFlags": 0L,
-                "AssetPath": "",
-                "AssetID": "00000000-0000-0000-0000-000000000000",
                 "Name": "NewUIImage"
               }
             ],
@@ -266,7 +247,6 @@
               {
                 "$id": 15,
                 "Name": "Loading Text",
-                "AssetPath": "",
                 "Identifier": "0945621d-290e-4c2f-a320-8a60904126df",
                 "Static": 0B,
                 "Enabled": 1B,
@@ -322,25 +302,19 @@
                     "_enabled": true,
                     "_enabledInHierarchy": true,
                     "HideFlags": 0L,
-                    "AssetPath": "",
-                    "AssetID": "00000000-0000-0000-0000-000000000000",
                     "Name": "NewRectTransform"
                   },
                   {
                     "$id": 18,
                     "$type": "Prowl.Runtime.TextComponent, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                    "_font": {
-                      "AssetID": "00000000-0000-0000-0000-000000000000"
-                    },
+                    "_font": null,
                     "_text": "Loading...",
                     "_alignment": 48L,
                     "_size": 60,
                     "_quality": 32L,
                     "_richText": false,
                     "_raycastTarget": true,
-                    "_material": {
-                      "AssetID": "00000000-0000-0000-0000-000000000000"
-                    },
+                    "_material": null,
                     "_color": {
                       "R": 1F,
                       "G": 1F,
@@ -351,8 +325,6 @@
                     "_enabled": true,
                     "_enabledInHierarchy": true,
                     "HideFlags": 0L,
-                    "AssetPath": "",
-                    "AssetID": "00000000-0000-0000-0000-000000000000",
                     "Name": "NewTextComponent"
                   }
                 ],
@@ -373,7 +345,6 @@
       {
         "$id": 19,
         "Name": "Event System",
-        "AssetPath": "",
         "Identifier": "e2d5b708-fe6c-4bdc-8723-2cf3aff05339",
         "Static": 0B,
         "Enabled": 1B,
@@ -413,8 +384,6 @@
             "_enabled": true,
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
-            "AssetPath": "",
-            "AssetID": "00000000-0000-0000-0000-000000000000",
             "Name": "NewEventSystem"
           }
         ],
@@ -425,7 +394,6 @@
       {
         "$id": 22,
         "Name": "LoadingScreen",
-        "AssetPath": "",
         "Identifier": "2654e3d9-4ae5-4c35-bd70-efc19086bc00",
         "Static": 0B,
         "Enabled": 1B,
@@ -462,8 +430,6 @@
             "_enabled": true,
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
-            "AssetPath": "",
-            "AssetID": "00000000-0000-0000-0000-000000000000",
             "Name": "NewLoadingScreen"
           }
         ],
@@ -565,9 +531,7 @@
       "A": 1F
     },
     "GradientExponent": 1F,
-    "CustomMaterial": {
-      "AssetID": "00000000-0000-0000-0000-000000000000"
-    }
+    "CustomMaterial": null
   },
   "BakedLighting": {
     "$id": 28,
@@ -618,7 +582,5 @@
     "BakeSkyLighting": false,
     "IgnoreAlbedo": false
   },
-  "AssetPath": "",
-  "AssetID": "00000000-0000-0000-0000-000000000000",
   "Name": "LoadingScreen"
 }

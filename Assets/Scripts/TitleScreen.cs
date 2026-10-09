@@ -1,15 +1,17 @@
-// Part 1–3 TitleScreen (unchanged in Part 4).
+// Part 1–3 TitleScreen. Part 7 retargets the scene slots onto SceneAsset.
 // Videos: https://youtu.be/8oDvGU0EzT0  https://youtu.be/0omgv-6yawI  https://youtu.be/2zhuH4vjZ6M
-// Part 4 work lives in Assets/Scripts/PlayerMovement.cs — search TUTORIAL pt4.
 
 using Prowl.Runtime;
 using Prowl.Runtime.Resources;
 
 public class TitleScreen : MonoBehaviour
 {
-    public GameObject menuRoot;
-    public AssetRef<Scene> gameScene;
-    public AssetRef<Scene> loadingScene;
+    public GameObject menuRoot = null!;
+
+    // TUTORIAL pt7-02  These were AssetRef<Scene>. Scene is no longer an Asset, so the field
+    // would not compile. Drag the same .scene files; the slot type is now SceneAsset.
+    public AssetRef<SceneAsset> gameScene;
+    public AssetRef<SceneAsset> loadingScene;
 
     public void OnPlayClicked()
     {
@@ -17,9 +19,10 @@ public class TitleScreen : MonoBehaviour
 
         SceneLoadRequest.Destination = gameScene;
 
-        loadingScene.EnsureLoaded();
-        Scene? loading = loadingScene.Res;
-        if (loading == null)
+        // TUTORIAL pt7-03  Res and EnsureLoaded are gone. Load() blocks and returns the asset,
+        // or null when the slot is empty. IsMissing is a guid the database does not have.
+        SceneAsset? loading = loadingScene.IsEmpty ? null : loadingScene.Load();
+        if (loading.IsNotValid() || loading.IsMissing)
         {
             Debug.LogError("Loading scene not found");
             return;
