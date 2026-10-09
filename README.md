@@ -1,14 +1,14 @@
-# Lighting
+# Terrain
 
-**Video:** coming. Part 11 does not have a public URL yet.
+**Video:** coming. Part 12 does not have a public URL yet.
 
-**Play CHECK:** Play from **Title Screen**, then **Play Game**. The sun turns. Shadows move with it. The view is brighter in the day and dim and blue when the sun points up. The lamp at `(8, 2.5, 8)` and the spot at the gate stay on. Bright spots bloom. The Console has no exception from `DayNightCycle` or `CameraGrade`.
+**Play CHECK:** After the editor steps, Play from **Title Screen**, then **Play Game**. Walk off the courtyard onto the terrain. The ground rises under you. The car rolls on it. Paint a hill, Play again, and that paint is still there. With no **Terrain** in the scene, nothing in this episode throws.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
 ## Where this fits
 
-Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Part 7 moved the course to **Prowl 1.0-preview.5** at `baa86a4417f63c3a6dd98c513963c6ab22693601` on `main`. Stay on that pin.
+Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Part 7 moved the course to **Prowl 1.0-preview.5** at `baa86a4417f63c3a6dd98c513963c6ab22693601` on `main`. Stay on that pin for the rest of the course.
 
 | Part | Branch | What you add |
 | --- | --- | --- |
@@ -22,10 +22,10 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 8 | `pt8-animation` | Skinned idle / walk |
 | 9 | `pt9-vehicle` | WheelCollider car, enter and exit |
 | 10 | `pt10-blender-map` | Courtyard mesh and a mesh collider |
-| 11 | `pt11-lighting` | This episode. Sun, point, spot, sky, post, day/night |
-| 12 | `pt12-terrain` | Heightmap terrain |
+| 11 | `pt11-lighting` | Sun, point, spot, sky, post, day/night |
+| 12 | `pt12-terrain` | This episode. Heightmap terrain |
 
-Prerequisite: Part 10 plays, or at least the plane from Part 9 if you have not parented the courtyard yet.
+Prerequisite: Part 11 plays (sun turns, you can walk).
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -34,58 +34,49 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt11-lighting
+git checkout pt12-terrain
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-A directional light shines along **+Forward** (local **+Z**). That changed in the Part 7 migration. `DepthBias` and `NormalBias` are the shadow offsets. The old names were `ShadowBias` and `ShadowNormalBias`.
+Prowl has a terrain system. It is not a stand-in mesh. `TerrainComponent` (`Prowl.Runtime/Components/Terrain/TerrainComponent.cs`, menu **Terrain / Terrain**) reads a `TerrainData` asset (`.terraindata`). `TerrainCollider` (`Prowl.Runtime/Components/Physics/TerrainCollider.cs`) samples that same heightmap. The corner of the terrain is its local origin. Size extends along **+X** and **+Z**.
 
-Checkout already has the sun script, a point light, a spot, and **Camera Grade** on the player camera. Follow the clicks so the video matches.
+This branch does not commit a `.terraindata` file. The editor creates that asset when you add the object. `TerrainSeed` does nothing until that asset exists, and it does nothing if any sample is already above zero.
 
-- `Assets/Scripts/DayNightCycle.cs` — search `TUTORIAL pt11`
-- `Assets/Scripts/CameraGrade.cs` — bloom, then AgX tonemap
-- `Assets/Scenes/Game.scene` — **Day Night Cycle** on **Directional Light**, **Lamp**, **Gate Spot**
-- `Assets/Prefabs/Player.prefab` — **Camera Grade** on the **Camera** child
+- `Assets/Scripts/TerrainSeed.cs` — search `TUTORIAL pt12`
 
-`Update` and `OnEnable` are `public override`.
+`Start` is `public override`.
 
-## Sun
+## Create the terrain
 
 1. Open `Assets/Scenes/Game.scene`.
-2. Select **Directional Light**. **Cast Shadows** is on. **Shadow Quality** is **Soft**. **Depth Bias** `1`, **Normal Bias** `1`.
-3. **Add Component → Day Night Cycle**. **Day Length Seconds** `90`. **Pitch** `50`.
-4. The script sets local Euler to `(Pitch, yaw, 0)`. Yaw comes from `Time.TimeSinceStartup`. Intensity uses how far **Forward** points down. When the light points up, intensity falls to `0.05` and the color goes blue.
+2. **GameObject → 3D Object → Terrain**.
+3. That creates a **Terrain** component, assigns the built-in terrain material, adds a **Terrain Collider**, and writes `New Terrain Data.terraindata` under Assets.
+4. The new object sits on the origin, which is the courtyard. Move it to `24, 0, -20`. Local `(0, 0, 0)` is a corner, not the centre. From there a size of 64 covers `x = 24..88` and `z = -20..44`, beside the 40 m court.
+5. Select the **Terrain Data** asset (or the **Settings** tab on the Terrain inspector).
+6. **Dimensions → Terrain Size** `64`. **Terrain Height** `24`.
+7. **Resolutions → Heightmap** `65`. The dialog is **Reset Heightmap?** and it says changing the resolution resets all height data. Confirm it. Do this before you paint.
+8. **Add Component → Terrain Seed**.
 
-## Point and spot
+## Paint
 
-5. **GameObject → Light → Point Light**. Name it `Lamp`. Position `8, 2.5, 8` (over the courtyard block). **Range** `8`. Color a warm orange. **Intensity** `2`. **Cast Shadows** on.
-6. **GameObject → Light → Spot Light**. The menu aims it down. Name it `Gate Spot`. Position `0, 4, 16`. Rotation `20, 180, 0` so **+Z** points back into the court and slightly down. **Range** `18`. **Spot Angle** `40`. **Inner Spot Angle** `25`. **Intensity** `3`. **Cast Shadows** on.
+9. Select the Terrain. The inspector rail is **Sculpt**, **Paint**, **Holes**, **Details**, **Trees**, **Settings**. Sculpt is the Height tab.
+10. The scene-view tools are **Raise**, **Lower**, **Flatten**, **Smooth**. Raise is the arrow up.
+11. Left-drag on the terrain in the scene view. The brush raises the heightmap. **Brush Size** starts at `5`.
+12. Save the scene and the terrain data asset.
 
-## Sky and ambient
+## What the script does
 
-These are scene settings, not components. `Scene.Skybox` and `Scene.Ambient` in `Prowl.Runtime/Resources/Scene.cs`.
-
-7. **Window → General → Environment**.
-8. **Skybox** tab. **Mode** **Procedural**. The hint on that mode is “Sun direction set automatically from Directional Light.” Switch to **Gradient** if you want a fixed top and bottom color. **Solid Color** and **Material** are the other modes.
-9. **Ambient** tab. **Mode** **Hemisphere** (sky color and ground color) or **Uniform**. **Strength** around `1`.
-10. **Fog** is the third tab. Leave it off unless you want it. Save the scene.
-
-## Camera post
-
-11. Select the player’s **Camera** child. **Add Component → Camera Grade**.
-12. **Apply All** on the Player prefab instance.
-13. The script sets `Camera.HDR` on and, if they are missing, appends `BloomEffect` then `TonemapperEffect`. Bloom’s defaults are intensity `1.5`, threshold `0.8`, iterations `6`. The tonemapper defaults to **AgX**, contrast `1.1`, saturation `1.1`. Tonemapper is last because `TransformsToLDR` is true.
-14. The same list is `Camera.Effects` in the Inspector if you want to add FXAA, SMAA, TAA, GTAO, motion blur, or the other effects under `Prowl.Runtime/Rendering/Image Effects` by hand. This episode only adds bloom and the tonemapper.
+`TerrainSeed.Start` returns if `Data` is missing. It returns if any `GetHeight` sample is above `0.001`. Otherwise it writes a low wave and one hill with `SetHeight` (values are `0..1`, multiplied by **Terrain Height** in the world) and calls `SetHeightmapDirty`. A later Play after you have painted does not stamp over your work. Resizing the heightmap allocates a new zeroed map, so the next Play seeds again.
 
 ## Save and CHECK
 
 - Play from **Title Screen**, then **Play Game**.
-- **CHECK:** The sun moves. Your shadow moves with it.
-- **CHECK:** After a while the scene dims. Wait out the `90` seconds or lower **Day Length Seconds** to `20` for the take.
-- **CHECK:** The lamp lights the block. The spot lights the gate. Both cast shadows.
-- **CHECK:** A bright area blooms. The picture is not a flat unmapped HDR blowout.
-- **CHECK:** Disable **Day Night Cycle**. The sun stays where you left it and the Console stays clear.
+- **CHECK:** The terrain beside the court is not a flat sheet. A hill sits toward the middle of it.
+- **CHECK:** Walk onto it. The capsule follows the slope. You do not fall through.
+- **CHECK:** **F**, drive onto it. The wheels stay on the surface.
+- **CHECK:** Stop Play. Raise a ridge with the brush. Play again. The ridge is still there, and you did not get a second copy of the scripted hill on top of it.
+- **CHECK:** Delete the Terrain object. Play. The courtyard (or the plane) is unchanged and the Console stays clear.
 - Stop Play.
