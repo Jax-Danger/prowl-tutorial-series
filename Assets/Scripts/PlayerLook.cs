@@ -51,7 +51,7 @@ public class PlayerLook : MonoBehaviour
         if (!Input.CursorLocked)
             return;
 
-        // TUTORIAL pt6-08  Input.MouseDelta is the pixel delta this frame (Prowl.Runtime.Input, preview-4).
+        // TUTORIAL pt6-08  Input.MouseDelta is the pixel delta this frame (Prowl.Runtime.Input).
         // X yaws the parent. Y pitches the camera.
         // Pitch uses the same sign as the editor camera (EditorCamera: pitch += MouseDelta.Y,
         // then LocalEulerAngles.X = pitch). Moving the mouse up looks up.

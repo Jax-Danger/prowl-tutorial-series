@@ -2,7 +2,6 @@
   "$id": 1,
   "$type": "Prowl.Runtime.GameObject, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
   "Name": "TitleScreen",
-  "AssetPath": "",
   "Identifier": "c7728c81-c4a5-49d9-884b-469a5f956cdc",
   "Static": 0B,
   "Enabled": 1B,
@@ -58,8 +57,6 @@
       "_enabled": true,
       "_enabledInHierarchy": true,
       "HideFlags": 0L,
-      "AssetPath": "",
-      "AssetID": "00000000-0000-0000-0000-000000000000",
       "Name": "NewRectTransform"
     },
     {
@@ -79,8 +76,6 @@
       "_enabled": true,
       "_enabledInHierarchy": true,
       "HideFlags": 0L,
-      "AssetPath": "",
-      "AssetID": "00000000-0000-0000-0000-000000000000",
       "Name": "NewGameCanvas"
     }
   ],
@@ -88,7 +83,6 @@
     {
       "$id": 5,
       "Name": "MenuController",
-      "AssetPath": "",
       "Identifier": "94070105-aab2-4ed9-bb2e-089679021133",
       "Static": 0B,
       "Enabled": 1B,
@@ -126,18 +120,12 @@
               "$v": "c7728c81-c4a5-49d9-884b-469a5f956cdc"
             }
           },
-          "gameScene": {
-            "AssetID": "5c53e737-11a2-43c6-8602-3637f5e4a141"
-          },
-          "loadingScene": {
-            "AssetID": "bd71b18a-c5c4-4f1a-9111-d80f2fb238b8"
-          },
+          "gameScene": { "$assetRef": "5c53e737-11a2-43c6-8602-3637f5e4a141" },
+          "loadingScene": { "$assetRef": "bd71b18a-c5c4-4f1a-9111-d80f2fb238b8" },
           "_identifier": "abc95da3-8851-4bb9-b137-c13299ae6f40",
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewTitleScreen"
         },
         {
@@ -167,8 +155,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewRectTransform"
         }
       ],
@@ -190,7 +176,6 @@
     {
       "$id": 11,
       "Name": "Event System",
-      "AssetPath": "",
       "Identifier": "16c1d96e-9fd9-47b1-abbd-002bb929b311",
       "Static": 0B,
       "Enabled": 1B,
@@ -230,8 +215,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewEventSystem"
         },
         {
@@ -261,8 +244,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewRectTransform"
         }
       ],
@@ -284,7 +265,6 @@
     {
       "$id": 17,
       "Name": "Title",
-      "AssetPath": "",
       "Identifier": "2200ccb7-1a1e-43a6-a20f-eb75d44e7410",
       "Static": 0B,
       "Enabled": 1B,
@@ -340,24 +320,18 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewRectTransform"
         },
         {
           "$id": 20,
           "$type": "Prowl.Runtime.TextComponent, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "_font": {
-            "AssetID": "00000000-0000-0000-0000-000000000000"
-          },
+          "_font": null,
           "_text": "My Cool Game",
           "_alignment": 48L,
           "_size": 60,
           "_quality": 32L,
           "_raycastTarget": true,
-          "_material": {
-            "AssetID": "00000000-0000-0000-0000-000000000000"
-          },
+          "_material": null,
           "_color": {
             "R": 1F,
             "G": 1F,
@@ -368,8 +342,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewTextComponent"
         }
       ],
@@ -391,7 +363,6 @@
     {
       "$id": 23,
       "Name": "Play Button",
-      "AssetPath": "",
       "Identifier": "c2438f0a-76bf-4174-a337-d3c42fa34d95",
       "Static": 0B,
       "Enabled": 1B,
@@ -447,16 +418,12 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewRectTransform"
         },
         {
           "$id": 26,
           "$type": "Prowl.Runtime.UI.UIImage, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "_sprite": {
-            "AssetID": "bff73be2-cd62-785e-928f-0efd1487829c"
-          },
+          "_sprite": { "$asset": "bff73be2-cd62-785e-928f-0efd1487829c" },
           "_preserveAspect": false,
           "_type": 1L,
           "_pixelsPerUnitMultiplier": 1F,
@@ -465,9 +432,7 @@
           "_fillAmount": 1F,
           "_fillClockwise": false,
           "_raycastTarget": true,
-          "_material": {
-            "AssetID": "00000000-0000-0000-0000-000000000000"
-          },
+          "_material": null,
           "_color": {
             "R": 1F,
             "G": 1F,
@@ -478,8 +443,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewUIImage"
         },
         {
@@ -543,18 +506,10 @@
           "_colorMultiplier": 1F,
           "_transition": 1L,
           "_spriteState": {
-            "HighlightedSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
-            "PressedSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
-            "SelectedSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
-            "DisabledSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            }
+            "HighlightedSprite": null,
+            "PressedSprite": null,
+            "SelectedSprite": null,
+            "DisabledSprite": null
           },
           "_navigation": {
             "Mode": 3L,
@@ -568,8 +523,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewUIButton"
         }
       ],
@@ -577,7 +530,6 @@
         {
           "$id": 31,
           "Name": "Play",
-          "AssetPath": "",
           "Identifier": "2432b78e-adea-46ef-a201-cc042b17bc1f",
           "Static": 0B,
           "Enabled": 1B,
@@ -633,24 +585,18 @@
               "_enabled": true,
               "_enabledInHierarchy": true,
               "HideFlags": 0L,
-              "AssetPath": "",
-              "AssetID": "00000000-0000-0000-0000-000000000000",
               "Name": "NewRectTransform"
             },
             {
               "$id": 34,
               "$type": "Prowl.Runtime.TextComponent, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-              "_font": {
-                "AssetID": "00000000-0000-0000-0000-000000000000"
-              },
+              "_font": null,
               "_text": "Play Game",
               "_alignment": 48L,
               "_size": 35,
               "_quality": 32L,
               "_raycastTarget": true,
-              "_material": {
-                "AssetID": "00000000-0000-0000-0000-000000000000"
-              },
+              "_material": null,
               "_color": {
                 "R": 0F,
                 "G": 0F,
@@ -661,8 +607,6 @@
               "_enabled": true,
               "_enabledInHierarchy": true,
               "HideFlags": 0L,
-              "AssetPath": "",
-              "AssetID": "00000000-0000-0000-0000-000000000000",
               "Name": "NewTextComponent"
             }
           ],
@@ -697,7 +641,6 @@
     {
       "$id": 39,
       "Name": "Quit Button",
-      "AssetPath": "",
       "Identifier": "c2ccbe1b-bbe9-4f42-9f76-66d0ce442292",
       "Static": 0B,
       "Enabled": 1B,
@@ -753,16 +696,12 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewRectTransform"
         },
         {
           "$id": 42,
           "$type": "Prowl.Runtime.UI.UIImage, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-          "_sprite": {
-            "AssetID": "bff73be2-cd62-785e-928f-0efd1487829c"
-          },
+          "_sprite": { "$asset": "bff73be2-cd62-785e-928f-0efd1487829c" },
           "_preserveAspect": false,
           "_type": 1L,
           "_pixelsPerUnitMultiplier": 1F,
@@ -771,9 +710,7 @@
           "_fillAmount": 1F,
           "_fillClockwise": false,
           "_raycastTarget": true,
-          "_material": {
-            "AssetID": "00000000-0000-0000-0000-000000000000"
-          },
+          "_material": null,
           "_color": {
             "R": 1F,
             "G": 1F,
@@ -784,8 +721,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewUIImage"
         },
         {
@@ -849,18 +784,10 @@
           "_colorMultiplier": 1F,
           "_transition": 1L,
           "_spriteState": {
-            "HighlightedSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
-            "PressedSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
-            "SelectedSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            },
-            "DisabledSprite": {
-              "AssetID": "00000000-0000-0000-0000-000000000000"
-            }
+            "HighlightedSprite": null,
+            "PressedSprite": null,
+            "SelectedSprite": null,
+            "DisabledSprite": null
           },
           "_navigation": {
             "Mode": 3L,
@@ -874,8 +801,6 @@
           "_enabled": true,
           "_enabledInHierarchy": true,
           "HideFlags": 0L,
-          "AssetPath": "",
-          "AssetID": "00000000-0000-0000-0000-000000000000",
           "Name": "NewUIButton"
         }
       ],
@@ -883,7 +808,6 @@
         {
           "$id": 47,
           "Name": "Quit",
-          "AssetPath": "",
           "Identifier": "06a6d6fe-1955-4dc7-a514-ae65f42ab35e",
           "Static": 0B,
           "Enabled": 1B,
@@ -939,24 +863,18 @@
               "_enabled": true,
               "_enabledInHierarchy": true,
               "HideFlags": 0L,
-              "AssetPath": "",
-              "AssetID": "00000000-0000-0000-0000-000000000000",
               "Name": "NewRectTransform"
             },
             {
               "$id": 50,
               "$type": "Prowl.Runtime.TextComponent, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-              "_font": {
-                "AssetID": "00000000-0000-0000-0000-000000000000"
-              },
+              "_font": null,
               "_text": "Quit Game",
               "_alignment": 48L,
               "_size": 35,
               "_quality": 32L,
               "_raycastTarget": true,
-              "_material": {
-                "AssetID": "00000000-0000-0000-0000-000000000000"
-              },
+              "_material": null,
               "_color": {
                 "R": 0F,
                 "G": 0F,
@@ -967,8 +885,6 @@
               "_enabled": true,
               "_enabledInHierarchy": true,
               "HideFlags": 0L,
-              "AssetPath": "",
-              "AssetID": "00000000-0000-0000-0000-000000000000",
               "Name": "NewTextComponent"
             }
           ],

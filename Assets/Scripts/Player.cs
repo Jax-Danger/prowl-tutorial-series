@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
             _velocity.Y += Gravity * Time.DeltaTime;
         }
 
+        // TUTORIAL pt7-05  CharacterController.Move now returns CollisionFlags. The call is the same.
+        // Below means the capsule ended on the ground. Sides means a wall stopped the step.
         _controller.Move(_velocity * Time.DeltaTime);
     }
 }

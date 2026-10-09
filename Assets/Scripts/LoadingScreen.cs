@@ -18,9 +18,10 @@ public class LoadingScreen : MonoBehaviour
         if (elapsed < minDisplaySeconds)
             return;
 
-        SceneLoadRequest.Destination.EnsureLoaded();
-        Scene? next = SceneLoadRequest.Destination.Res;
-        if (next == null)
+        // TUTORIAL pt7-04  Same load path as the title screen. Scene.Load(SceneAsset) queues
+        // the swap for the end of the frame.
+        SceneAsset? next = SceneLoadRequest.Destination.IsEmpty ? null : SceneLoadRequest.Destination.Load();
+        if (next.IsNotValid() || next.IsMissing)
         {
             Debug.LogError("Loading screen has no destination set.");
             done = true;
