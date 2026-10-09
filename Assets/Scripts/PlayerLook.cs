@@ -29,7 +29,7 @@ public class PlayerLook : MonoBehaviour
         if (ViewCamera.IsNotValid())
             ViewCamera = GetComponentInChildren<Camera>(false);
 
-        _yaw = Transform.LocalEulerAngles.Y;
+        MatchYawToTransform();
 
         if (ViewCamera.IsValid() && ViewCamera.GameObject != GameObject)
             _pitch = ViewCamera.Transform.LocalEulerAngles.X;
@@ -37,6 +37,13 @@ public class PlayerLook : MonoBehaviour
         // TUTORIAL pt6-05  LockCursor hides the cursor and pins it (CursorLockMode.Locked).
         // SAY: "Escape shows the cursor again. Click in the Game view to lock it."
         Input.LockCursor();
+    }
+
+    // TUTORIAL pt9-01  VehicleRide calls this after you climb out, so the next mouse move
+    // keeps the facing you had in the car. _yaw is private; this is the public way to resync it.
+    public void MatchYawToTransform()
+    {
+        _yaw = Transform.LocalEulerAngles.Y;
     }
 
     // TUTORIAL pt6-06  Update runs every rendered frame while Play mode is on.
