@@ -229,6 +229,17 @@
             "_enabledInHierarchy": true,
             "HideFlags": 0L,
             "Name": "NewPlayerAnimator"
+          },
+          {
+            "$id": 42,
+            "$type": "VehicleRide, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "EnterDistance": 4F,
+            "_identifier": "f18b0c55-2d47-4e91-a6c3-9b4e71d0aa12",
+            "_prefabTemplateIdentity": "e7c2a1d4-8f60-4b2a-9c11-5d0e6a3b18f4",
+            "_enabled": true,
+            "_enabledInHierarchy": true,
+            "HideFlags": 0L,
+            "Name": "NewVehicleRide"
           }
         ],
         "Children": [
@@ -391,6 +402,672 @@
 
             ]
           }
+        }
+      },
+      {
+        "$id": 100,
+        "Name": "Car",
+        "Identifier": "4f0c8a17-2e55-4b6d-9c31-a8d6e0b14f70",
+        "Static": 0B,
+        "Enabled": 1B,
+        "EnabledInHierarchy": 1B,
+        "TagIndex": 0,
+        "LayerIndex": 0,
+        "HideFlags": 0,
+        "Transform": {
+          "$id": 101,
+          "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+          "_localPosition": { "X": 3F, "Y": 1.5F, "Z": 0F },
+          "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+          "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+        },
+        "Components": [
+            {
+              "$id": 150,
+              "$type": "Prowl.Runtime.Rigidbody3D, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "motionType": 0L,
+              "useGravity": true,
+              "mass": 1200F,
+              "interpolation": 1L,
+              "overrideCenterOfMass": true,
+              "centerOfMassOverride": { "X": 0F, "Y": 0.35F, "Z": 0F },
+              "_identifier": "aa100001-0000-4000-8000-000000000001",
+              "_prefabTemplateIdentity": "11aa0001-0000-4000-8000-000000000001",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "Name": "NewRigidbody3D"
+            },
+            {
+              "$id": 151,
+              "$type": "Prowl.Runtime.BoxCollider, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "size": { "X": 1.7F, "Y": 0.5F, "Z": 3.2F },
+              "center": { "X": 0F, "Y": 0.55F, "Z": 0F },
+              "rotation": { "X": 0F, "Y": 0F, "Z": 0F },
+              "_identifier": "aa100002-0000-4000-8000-000000000002",
+              "_prefabTemplateIdentity": "11aa0002-0000-4000-8000-000000000002",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "Name": "NewBoxCollider"
+            },
+            {
+              "$id": 152,
+              "$type": "CarDrive, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "Torque": 1500F,
+              "BrakeTorque": 3000F,
+              "MaxSteerDegrees": 28F,
+              "Controlled": false,
+              "_identifier": "aa100003-0000-4000-8000-000000000003",
+              "_prefabTemplateIdentity": "11aa0003-0000-4000-8000-000000000003",
+              "_enabled": true,
+              "_enabledInHierarchy": true,
+              "HideFlags": 0L,
+              "Name": "NewCarDrive"
+            }
+        ],
+        "Children": [
+          {
+            "$id": 170,
+            "Name": "Body",
+            "Identifier": "a13d7e90-5c42-4f18-b6aa-09e2c7d58311",
+            "Static": 0B,
+            "Enabled": 1B,
+            "EnabledInHierarchy": 1B,
+            "TagIndex": 0,
+            "LayerIndex": 0,
+            "HideFlags": 0,
+            "Transform": {
+              "$id": 171,
+              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_localPosition": { "X": 0F, "Y": 0.7F, "Z": 0F },
+              "_localScale": { "X": 1.7F, "Y": 0.45F, "Z": 3.2F },
+              "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+            },
+            "Components": [
+              {
+                "$id": 160,
+                "$type": "Prowl.Runtime.MeshRenderer, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "Mesh": { "$asset": "97e8b0a9-e054-0d51-9663-eb372d776c90" },
+                "Materials": { "$id": 161, "$values": [ { "$asset": "d7009b28-9353-6559-8847-62e877cec576" } ] },
+                "_identifier": "aa100004-0000-4000-8000-000000000004",
+              "_prefabTemplateIdentity": "11aa0004-0000-4000-8000-000000000004",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewMeshRenderer"
+              }
+            ],
+            "Children": [],
+            "Prefab": {
+              "$id": 172,
+              "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+              "SourceIdentifier": "a13d7e90-5c42-4f18-b6aa-09e2c7d58311",
+              "Overrides": { "$id": 173, "$values": [] }
+            }
+          },
+          {
+            "$id": 300,
+            "Name": "FL",
+            "Identifier": "b20e61aa-7d33-4c09-8e14-f5a9c0d67220",
+            "Static": 0B,
+            "Enabled": 1B,
+            "EnabledInHierarchy": 1B,
+            "TagIndex": 0,
+            "LayerIndex": 0,
+            "HideFlags": 0,
+            "Transform": {
+              "$id": 301,
+              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_localPosition": { "X": -0.85F, "Y": 0.55F, "Z": 1.15F },
+              "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+              "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+            },
+            "Components": [
+              {
+                "$id": 302,
+                "$type": "Prowl.Runtime.WheelCollider, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "radius": 0.35F,
+                "width": 0.25F,
+                "camber": 0F,
+                "forwardRayCount": 5,
+                "sideRayCount": 3,
+                "depenetrate": true,
+                "suspensionDistance": 0.3F,
+                "suspensionFrequency": 2F,
+                "suspensionDampingRatio": 0.5F,
+                "sprungMass": 0F,
+                "preload": 0F,
+                "forwardFriction": 1.6F,
+                "sidewaysFriction": 1.8F,
+                "forwardCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.6F, "AsymptoteValue": 0.75F },
+                "sidewaysCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.5F, "AsymptoteValue": 0.75F },
+                "wheelMass": 15F,
+                "dragTorque": 30F,
+                "spinDamping": 0.25F,
+                "maxAngularVelocity": 600F,
+                "SteerAngle": 0F,
+                "MotorTorque": 0F,
+                "BrakeTorque": 0F,
+                "_identifier": "aa100011-0000-4000-8000-000000000011",
+              "_prefabTemplateIdentity": "11aa0011-0000-4000-8000-000000000011",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewWheelCollider"
+              }
+            ],
+            "Children": [
+            {
+              "$id": 330,
+              "Name": "Hub",
+              "Identifier": "c31f72bb-8e44-4d10-9f25-06b0d1e78331",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 331,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+              },
+              "Components": [],
+              "Children": [
+            {
+              "$id": 320,
+              "Name": "Mesh",
+              "Identifier": "d42083cc-9f55-4e21-a036-17c1e2f89442",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 321,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 0.125F, "Y": 0.7F, "Z": 0.7F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0.70710678F, "W": 0.70710678F }
+              },
+              "Components": [
+              {
+                "$id": 310,
+                "$type": "Prowl.Runtime.MeshRenderer, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "Mesh": { "$asset": "52ede889-21f7-9a53-83cc-e787a84b2974" },
+                "Materials": { "$id": 311, "$values": [ { "$asset": "d7009b28-9353-6559-8847-62e877cec576" } ] },
+                "_identifier": "aa100012-0000-4000-8000-000000000012",
+              "_prefabTemplateIdentity": "11aa0012-0000-4000-8000-000000000012",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewMeshRenderer"
+              }
+              ],
+              "Children": [],
+              "Prefab": {
+                "$id": 322,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "d42083cc-9f55-4e21-a036-17c1e2f89442",
+                "Overrides": { "$id": 323, "$values": [] }
+              }
+            }
+              ],
+              "Prefab": {
+                "$id": 332,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "c31f72bb-8e44-4d10-9f25-06b0d1e78331",
+                "Overrides": { "$id": 333, "$values": [] }
+              }
+            }
+            ],
+            "Prefab": {
+              "$id": 303,
+              "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+              "SourceIdentifier": "b20e61aa-7d33-4c09-8e14-f5a9c0d67220",
+              "Overrides": { "$id": 304, "$values": [] }
+            }
+          },
+          {
+            "$id": 400,
+            "Name": "FR",
+            "Identifier": "e53194dd-0a66-4f32-b147-28d2f309a553",
+            "Static": 0B,
+            "Enabled": 1B,
+            "EnabledInHierarchy": 1B,
+            "TagIndex": 0,
+            "LayerIndex": 0,
+            "HideFlags": 0,
+            "Transform": {
+              "$id": 401,
+              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_localPosition": { "X": 0.85F, "Y": 0.55F, "Z": 1.15F },
+              "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+              "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+            },
+            "Components": [
+              {
+                "$id": 402,
+                "$type": "Prowl.Runtime.WheelCollider, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "radius": 0.35F,
+                "width": 0.25F,
+                "camber": 0F,
+                "forwardRayCount": 5,
+                "sideRayCount": 3,
+                "depenetrate": true,
+                "suspensionDistance": 0.3F,
+                "suspensionFrequency": 2F,
+                "suspensionDampingRatio": 0.5F,
+                "sprungMass": 0F,
+                "preload": 0F,
+                "forwardFriction": 1.6F,
+                "sidewaysFriction": 1.8F,
+                "forwardCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.6F, "AsymptoteValue": 0.75F },
+                "sidewaysCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.5F, "AsymptoteValue": 0.75F },
+                "wheelMass": 15F,
+                "dragTorque": 30F,
+                "spinDamping": 0.25F,
+                "maxAngularVelocity": 600F,
+                "SteerAngle": 0F,
+                "MotorTorque": 0F,
+                "BrakeTorque": 0F,
+                "_identifier": "aa100021-0000-4000-8000-000000000021",
+              "_prefabTemplateIdentity": "11aa0021-0000-4000-8000-000000000021",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewWheelCollider"
+              }
+            ],
+            "Children": [
+            {
+              "$id": 430,
+              "Name": "Hub",
+              "Identifier": "f642a5ee-1b77-4043-c258-39e3041ab664",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 431,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+              },
+              "Components": [],
+              "Children": [
+            {
+              "$id": 420,
+              "Name": "Mesh",
+              "Identifier": "0753b6ff-2c88-4154-d369-4af4152bc775",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 421,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 0.125F, "Y": 0.7F, "Z": 0.7F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0.70710678F, "W": 0.70710678F }
+              },
+              "Components": [
+              {
+                "$id": 410,
+                "$type": "Prowl.Runtime.MeshRenderer, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "Mesh": { "$asset": "52ede889-21f7-9a53-83cc-e787a84b2974" },
+                "Materials": { "$id": 411, "$values": [ { "$asset": "d7009b28-9353-6559-8847-62e877cec576" } ] },
+                "_identifier": "aa100022-0000-4000-8000-000000000022",
+              "_prefabTemplateIdentity": "11aa0022-0000-4000-8000-000000000022",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewMeshRenderer"
+              }
+              ],
+              "Children": [],
+              "Prefab": {
+                "$id": 422,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "0753b6ff-2c88-4154-d369-4af4152bc775",
+                "Overrides": { "$id": 423, "$values": [] }
+              }
+            }
+              ],
+              "Prefab": {
+                "$id": 432,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "f642a5ee-1b77-4043-c258-39e3041ab664",
+                "Overrides": { "$id": 433, "$values": [] }
+              }
+            }
+            ],
+            "Prefab": {
+              "$id": 403,
+              "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+              "SourceIdentifier": "e53194dd-0a66-4f32-b147-28d2f309a553",
+              "Overrides": { "$id": 404, "$values": [] }
+            }
+          },
+          {
+            "$id": 500,
+            "Name": "RL",
+            "Identifier": "1864c700-3d99-4265-e47a-5b05263cd886",
+            "Static": 0B,
+            "Enabled": 1B,
+            "EnabledInHierarchy": 1B,
+            "TagIndex": 0,
+            "LayerIndex": 0,
+            "HideFlags": 0,
+            "Transform": {
+              "$id": 501,
+              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_localPosition": { "X": -0.85F, "Y": 0.55F, "Z": -1.15F },
+              "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+              "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+            },
+            "Components": [
+              {
+                "$id": 502,
+                "$type": "Prowl.Runtime.WheelCollider, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "radius": 0.35F,
+                "width": 0.25F,
+                "camber": 0F,
+                "forwardRayCount": 5,
+                "sideRayCount": 3,
+                "depenetrate": true,
+                "suspensionDistance": 0.3F,
+                "suspensionFrequency": 2F,
+                "suspensionDampingRatio": 0.5F,
+                "sprungMass": 0F,
+                "preload": 0F,
+                "forwardFriction": 1.6F,
+                "sidewaysFriction": 1.8F,
+                "forwardCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.6F, "AsymptoteValue": 0.75F },
+                "sidewaysCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.5F, "AsymptoteValue": 0.75F },
+                "wheelMass": 15F,
+                "dragTorque": 30F,
+                "spinDamping": 0.25F,
+                "maxAngularVelocity": 600F,
+                "SteerAngle": 0F,
+                "MotorTorque": 0F,
+                "BrakeTorque": 0F,
+                "_identifier": "aa100031-0000-4000-8000-000000000031",
+              "_prefabTemplateIdentity": "11aa0031-0000-4000-8000-000000000031",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewWheelCollider"
+              }
+            ],
+            "Children": [
+            {
+              "$id": 530,
+              "Name": "Hub",
+              "Identifier": "2975d811-4eaa-4376-f58b-6c16374de997",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 531,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+              },
+              "Components": [],
+              "Children": [
+            {
+              "$id": 520,
+              "Name": "Mesh",
+              "Identifier": "3a86e922-5fbb-4487-069c-7d27485efa08",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 521,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 0.125F, "Y": 0.7F, "Z": 0.7F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0.70710678F, "W": 0.70710678F }
+              },
+              "Components": [
+              {
+                "$id": 510,
+                "$type": "Prowl.Runtime.MeshRenderer, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "Mesh": { "$asset": "52ede889-21f7-9a53-83cc-e787a84b2974" },
+                "Materials": { "$id": 511, "$values": [ { "$asset": "d7009b28-9353-6559-8847-62e877cec576" } ] },
+                "_identifier": "aa100032-0000-4000-8000-000000000032",
+              "_prefabTemplateIdentity": "11aa0032-0000-4000-8000-000000000032",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewMeshRenderer"
+              }
+              ],
+              "Children": [],
+              "Prefab": {
+                "$id": 522,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "3a86e922-5fbb-4487-069c-7d27485efa08",
+                "Overrides": { "$id": 523, "$values": [] }
+              }
+            }
+              ],
+              "Prefab": {
+                "$id": 532,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "2975d811-4eaa-4376-f58b-6c16374de997",
+                "Overrides": { "$id": 533, "$values": [] }
+              }
+            }
+            ],
+            "Prefab": {
+              "$id": 503,
+              "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+              "SourceIdentifier": "1864c700-3d99-4265-e47a-5b05263cd886",
+              "Overrides": { "$id": 504, "$values": [] }
+            }
+          },
+          {
+            "$id": 600,
+            "Name": "RR",
+            "Identifier": "4b970a33-60cc-4598-17ad-8e38596f0b19",
+            "Static": 0B,
+            "Enabled": 1B,
+            "EnabledInHierarchy": 1B,
+            "TagIndex": 0,
+            "LayerIndex": 0,
+            "HideFlags": 0,
+            "Transform": {
+              "$id": 601,
+              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_localPosition": { "X": 0.85F, "Y": 0.55F, "Z": -1.15F },
+              "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+              "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+            },
+            "Components": [
+              {
+                "$id": 602,
+                "$type": "Prowl.Runtime.WheelCollider, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "radius": 0.35F,
+                "width": 0.25F,
+                "camber": 0F,
+                "forwardRayCount": 5,
+                "sideRayCount": 3,
+                "depenetrate": true,
+                "suspensionDistance": 0.3F,
+                "suspensionFrequency": 2F,
+                "suspensionDampingRatio": 0.5F,
+                "sprungMass": 0F,
+                "preload": 0F,
+                "forwardFriction": 1.6F,
+                "sidewaysFriction": 1.8F,
+                "forwardCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.6F, "AsymptoteValue": 0.75F },
+                "sidewaysCurve": { "ExtremumSlip": 0.15F, "ExtremumValue": 1F, "AsymptoteSlip": 0.5F, "AsymptoteValue": 0.75F },
+                "wheelMass": 15F,
+                "dragTorque": 30F,
+                "spinDamping": 0.25F,
+                "maxAngularVelocity": 600F,
+                "SteerAngle": 0F,
+                "MotorTorque": 0F,
+                "BrakeTorque": 0F,
+                "_identifier": "aa100041-0000-4000-8000-000000000041",
+              "_prefabTemplateIdentity": "11aa0041-0000-4000-8000-000000000041",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewWheelCollider"
+              }
+            ],
+            "Children": [
+            {
+              "$id": 630,
+              "Name": "Hub",
+              "Identifier": "5ca81b44-71dd-46a9-28be-9f496a701c2a",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 631,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+              },
+              "Components": [],
+              "Children": [
+            {
+              "$id": 620,
+              "Name": "Mesh",
+              "Identifier": "6db92c55-82ee-47ba-39cf-a05a7b812d3b",
+              "Static": 0B,
+              "Enabled": 1B,
+              "EnabledInHierarchy": 1B,
+              "TagIndex": 0,
+              "LayerIndex": 0,
+              "HideFlags": 0,
+              "Transform": {
+                "$id": 621,
+                "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "_localPosition": { "X": 0F, "Y": 0F, "Z": 0F },
+                "_localScale": { "X": 0.125F, "Y": 0.7F, "Z": 0.7F },
+                "_localRotation": { "X": 0F, "Y": 0F, "Z": 0.70710678F, "W": 0.70710678F }
+              },
+              "Components": [
+              {
+                "$id": 610,
+                "$type": "Prowl.Runtime.MeshRenderer, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                "Mesh": { "$asset": "52ede889-21f7-9a53-83cc-e787a84b2974" },
+                "Materials": { "$id": 611, "$values": [ { "$asset": "d7009b28-9353-6559-8847-62e877cec576" } ] },
+                "_identifier": "aa100042-0000-4000-8000-000000000042",
+              "_prefabTemplateIdentity": "11aa0042-0000-4000-8000-000000000042",
+                "_enabled": true,
+                "_enabledInHierarchy": true,
+                "HideFlags": 0L,
+                "Name": "NewMeshRenderer"
+              }
+              ],
+              "Children": [],
+              "Prefab": {
+                "$id": 622,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "6db92c55-82ee-47ba-39cf-a05a7b812d3b",
+                "Overrides": { "$id": 623, "$values": [] }
+              }
+            }
+              ],
+              "Prefab": {
+                "$id": 632,
+                "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+                "SourceIdentifier": "5ca81b44-71dd-46a9-28be-9f496a701c2a",
+                "Overrides": { "$id": 633, "$values": [] }
+              }
+            }
+            ],
+            "Prefab": {
+              "$id": 603,
+              "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+              "SourceIdentifier": "4b970a33-60cc-4598-17ad-8e38596f0b19",
+              "Overrides": { "$id": 604, "$values": [] }
+            }
+          },
+          {
+            "$id": 700,
+            "Name": "Seat",
+            "Identifier": "7eca3d66-93ff-48cb-4ad0-b16b8c923e4c",
+            "Static": 0B,
+            "Enabled": 1B,
+            "EnabledInHierarchy": 1B,
+            "TagIndex": 0,
+            "LayerIndex": 0,
+            "HideFlags": 0,
+            "Transform": {
+              "$id": 701,
+              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_localPosition": { "X": 0F, "Y": 0.9F, "Z": 0.2F },
+              "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+              "_localRotation": { "X": 0F, "Y": 0F, "Z": 0F, "W": 1F }
+            },
+            "Components": [],
+            "Children": [],
+            "Prefab": {
+              "$id": 702,
+              "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+              "SourceIdentifier": "7eca3d66-93ff-48cb-4ad0-b16b8c923e4c",
+              "Overrides": { "$id": 703, "$values": [] }
+            }
+          },
+          {
+            "$id": 800,
+            "Name": "Chase",
+            "Identifier": "8fdb4e77-a400-49dc-5be1-c27c9da34f5d",
+            "Static": 0B,
+            "Enabled": 1B,
+            "EnabledInHierarchy": 1B,
+            "TagIndex": 0,
+            "LayerIndex": 0,
+            "HideFlags": 0,
+            "Transform": {
+              "$id": 801,
+              "$type": "Prowl.Vector.Transform, Prowl.Runtime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+              "_localPosition": { "X": 0F, "Y": 2.4F, "Z": -6F },
+              "_localScale": { "X": 1F, "Y": 1F, "Z": 1F },
+              "_localRotation": { "X": 0.10452846F, "Y": 0F, "Z": 0F, "W": 0.9945219F }
+            },
+            "Components": [],
+            "Children": [],
+            "Prefab": {
+              "$id": 802,
+              "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+              "SourceIdentifier": "8fdb4e77-a400-49dc-5be1-c27c9da34f5d",
+              "Overrides": { "$id": 803, "$values": [] }
+            }
+          }
+        ],
+        "Prefab": {
+          "$id": 102,
+          "AssetId": "b7e4c1a2-6d90-4f38-8a55-2c19d0e64f73",
+          "SourceIdentifier": "4f0c8a17-2e55-4b6d-9c31-a8d6e0b14f70",
+          "Overrides": { "$id": 103, "$values": [] }
         }
       },
       {

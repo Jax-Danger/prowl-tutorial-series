@@ -1,14 +1,14 @@
-# Animation
+# Vehicle
 
-**Video:** coming. Part 8 does not have a public URL yet.
+**Video:** coming. Part 9 does not have a public URL yet.
 
-**Play CHECK:** With no Mixamo files, the cube from Part 6 still moves and jumps, and the Console has no exception from `PlayerAnimator`. After you import a skinned character and assign Idle and Walk, standing plays idle and moving plays walk. Stopping returns to idle. The body does not slide out from under the camera.
+**Play CHECK:** Open **Title Screen**, press Play, then **Play Game**. The car drops onto its wheels on the grey plane. Walk up to it and press **F**. WASD drives, **Space** brakes, the camera sits behind the car. **F** again puts you on the right of the car and mouse look works. The Console has no exception from `CarDrive` or `VehicleRide`.
 
 This repo is the companion for [Jax's Development Den](https://www.youtube.com/@JaxsDevelopmentDen) Prowl tutorials. You clone this branch, open it, and follow the steps below.
 
 ## Where this fits
 
-Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Part 7 moved the course to **Prowl 1.0-preview.5** at `baa86a4417f63c3a6dd98c513963c6ab22693601` on `main`. Stay on that pin. `Animator` and `AnimationClip` are not in the preview-4 tag.
+Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Part 7 moved the course to **Prowl 1.0-preview.5** at `baa86a4417f63c3a6dd98c513963c6ab22693601` on `main`. Stay on that pin.
 
 | Part | Branch | What you add |
 | --- | --- | --- |
@@ -19,13 +19,13 @@ Each branch stacks on the one before it. Parts 1–6 used **v1.0-preview-4**. Pa
 | 5 | tag `pt5-rotating-cube` | Rotating cube |
 | 6 | `pt6-player-with-cam` | Mouse look, camera on the player |
 | 7 | `pt7-update-prowl` | Engine pin above |
-| 8 | `pt8-animation` | This episode. Skinned idle / walk |
-| 9 | `pt9-vehicle` | WheelCollider car, enter and exit |
+| 8 | `pt8-animation` | Skinned idle / walk |
+| 9 | `pt9-vehicle` | This episode. WheelCollider car, enter and exit |
 | 10 | `pt10-blender-map` | Blender level and a mesh collider |
 | 11 | `pt11-lighting` | Sun, point, spot, sky, post, day/night |
 | 12 | `pt12-terrain` | Heightmap terrain |
 
-Prerequisite: Part 7 plays (title, loading, game, mouse look).
+Prerequisite: Part 8 plays (cube or character, mouse look, idle/walk if you imported clips).
 
 Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.be/0omgv-6yawI), [Part 3](https://youtu.be/2zhuH4vjZ6M).
 
@@ -34,74 +34,83 @@ Earlier videos: [Part 1](https://youtu.be/8oDvGU0EzT0), [Part 2](https://youtu.b
 ```bash
 git clone https://github.com/Jax-Danger/prowl-tutorial-series.git
 cd prowl-tutorial-series
-git checkout pt8-animation
+git checkout pt9-vehicle
 ```
 
 ## Open it
 
 This episode’s companion is `Assets/` under the project you already created. This branch does not include `My Prowl Game.prowl` or `Boot/`. There is no docs folder.
 
-- `Assets/Scripts/Player.cs` — now exposes `PlanarSpeed`
-- `Assets/Scripts/PlayerAnimator.cs` — this episode. Search `TUTORIAL pt8`
-- `Assets/Prefabs/Player.prefab` and `Assets/Scenes/Game.scene` — **PlayerAnimator** is already on **Player**. Idle and Walk start empty
-- `Assets/Mixamo/` — you create this. It is gitignored. Do not commit the FBX files
+Prowl has a wheel collider. It is `WheelCollider` in `Prowl.Runtime/Components/Physics/WheelCollider.cs`, menu **Physics / Wheel Collider**. A wheel is a ray hanging from a mount. `MotorTorque`, `BrakeTorque`, and `SteerAngle` (radians) are what a script sets each frame. The sample `Samples/Runtime/VehicleShowcase/CarController.cs` is a full axle controller. This episode is the short version of that API: four wheels, one rigidbody, enter and exit.
 
-Any skinned FBX or glTF with clips works. Mixamo is the example because the download dialog is the same for everyone. Prowl imports `.fbx`, `.gltf`, `.glb`, and `.obj` (`EditorModelImporter`).
+Checkout already contains the car. If you are building it on camera, follow the editor steps anyway so the video matches.
 
-Paths are case-sensitive: `Assets/Scripts/PlayerAnimator.cs`.
+- `Assets/Scripts/CarDrive.cs` — this episode. Search `TUTORIAL pt9`
+- `Assets/Scripts/VehicleRide.cs` — **F** to enter and exit
+- `Assets/Scripts/PlayerLook.cs` — `MatchYawToTransform` so mouse look does not snap after you get out
+- `Assets/Prefabs/Car.prefab` — body, four wheels, **Seat**, **Chase**
+- `Assets/Prefabs/Player.prefab` and `Assets/Scenes/Game.scene` — **VehicleRide** on **Player**, car placed at `(3, 1.5, 0)`
 
 `Update` is `public override`. A plain `public void Update()` does not run.
 
-## Download a character
+The grey floor is the built-in plane, 10 metres across. Stay on it. Part 10 replaces it with a level.
 
-On [Mixamo](https://www.mixamo.com), pick a character (Y Bot is fine) and download it:
-
-- Format: **FBX Binary (.fbx)**
-- Skin: **With Skin**
-- Pose: **T-Pose**
-- Frames per Second: **30**
-
-Then download two animations, one idle and one walk:
-
-- Format: **FBX Binary (.fbx)**
-- Skin: **Without Skin** (the clip uses the character’s skeleton instead of shipping a second mesh)
-- Frames per Second: **30**
-- Keyframe Reduction: **none**
-
-Those labels are Mixamo’s. Prowl does not read them. They match what the importer expects: a skinned mesh, clips on that skeleton, sampled at 30 fps (`ModelImporterSettings.AnimationSampleRate` defaults to 30).
-
-Put the three files in `Assets/Mixamo/` inside your game project. That folder is in `.gitignore` on this branch. Adobe’s license does not allow this repo to ship the files.
-
-## Import
+## Build the car
 
 1. Open `Assets/Scenes/Game.scene`.
-2. If the editor has not imported the FBX files yet, click one in the Project panel and wait until the Console is quiet.
-3. Select the **With Skin** character. The Inspector is the model importer, with tabs **Model**, **Animation**, and **Materials**.
-4. On **Model**, leave **Unit Scale** at `1`. Mixamo’s FBX is often in centimetres, so the mesh comes in about 100 times too tall. If the preview is huge, set **Unit Scale** to `0.01` and wait for the reimport.
-5. On **Animation**, set **Rig Type** to **Humanoid**. Leave **Import Animations** on, **Loop Animations** on, and **Sample Rate (fps)** at `30`. Humanoid maps the bones onto a body, which is what lets a Without Skin clip play on this character (`ModelRigType.Humanoid` in `Prowl.Runtime/AssetImporting/ModelImporter.cs`).
-6. If the Inspector says the auto mapper could not recognise a humanoid, click **Open Avatar Editor** and assign the missing bones (hips, spine, head). Until that maps, the model plays as a generic rig and the separate clips will not retarget.
-7. Repeat step 5 on the idle FBX and the walk FBX. They have no mesh. Their clip is a sub-asset.
-8. In the Project panel, expand each FBX. The character’s main asset is a prefab. Under the animation files you will see an **AnimationClip**.
+2. **GameObject → Empty Object**. Name it `Car`.
+3. Set **Position** to `3, 1.5, 0` so it is not inside the player. It will fall onto the plane when you press Play. That is the suspension settling.
+4. With **Car** selected, **Add Component → Physics → Rigidbody**.
+5. Set **Mass** to `1200`. Leave **Motion Type** on **Dynamic** and **Use Gravity** on. **Interpolation** can stay **Interpolate**.
+6. **Add Component → Physics → Colliders → Box Collider**. **Size** `1.7, 0.5, 3.2`. **Center** `0, 0.55, 0`. The box is the chassis. The wheels are raycasts, not colliders.
+7. **Add Component → Car Drive** (the script in this episode). **Torque** `1500`, **Brake Torque** `3000`, **Max Steer Degrees** `28`, **Controlled** off.
 
-The importer builds that prefab with a `SkinnedMeshRenderer` and an `Animator` on the root, and it fills `Animator.Clips` and `Animator.Avatar` (`ClayBackedImporter`). Leave **Graph** empty. This episode plays clips directly. An `AnimationGraph` is a separate asset for blend trees and state machines. You do not need one here.
+### Body
 
-## Put it on the player
+8. **GameObject → 3D Object → Cube**. Name it `Body`. Drag it onto **Car**.
+9. Local position `0, 0.7, 0`. Local scale `1.7, 0.45, 3.2`.
 
-The parent **Player** stays the empty object from Part 6: **CharacterController**, **Player**, **PlayerLook**, and now **PlayerAnimator**. The camera stays a child. The visible body becomes the imported character.
+### Wheels
 
-1. Drag the character prefab from the Project panel onto **Player** in the Hierarchy so it is a child. Rename that child **Character**.
-2. Set **Character** local position to `0, 0, 0`, local rotation to `0, 0, 0`, local scale to `1, 1, 1`. If the feet sink into the floor or float, nudge local Y until the soles sit on the floor. Do not scale the **Player** parent. That would scale the camera and the controller.
-3. Select **Character**. Confirm **Animator** is on it. **Avatar** is set. **Apply Root Motion** is off. `PlayerAnimator` also forces it off at Play, because `Player` already moves the capsule with `CharacterController.Move`. Root motion would move the transform a second time.
-4. Select the old **Mesh** child (the cube). Uncheck the enable box at the top of the Inspector so the cube stops drawing. Leave the object in the hierarchy. If you have no FBX yet, leave **Mesh** enabled.
-5. Select **Player**. **PlayerAnimator** is already on this branch. If you are building the component yourself: **Add Component → PlayerAnimator**.
-6. Expand the idle FBX and drag its clip into **Idle**. Drag the walk clip into **Walk**. Leave **Walk Speed** at `0.2` and **Fade Seconds** at `0.2`.
-7. If the character moonwalks (the mesh faces the wrong way while WASD is correct), set **Character** local rotation Y to `180`. The importer keeps a model facing +Z as it was authored. `Player` moves along `Transform.Forward` of the parent, not of the mesh.
-8. With **Player** selected, click **Apply** on the prefab header so `Assets/Prefabs/Player.prefab` stores **PlayerAnimator** and the **Character** child. Save the **Game** scene.
+The mount transform is the top of the suspension. The wheel hangs along the mount’s down axis (`-Up`). Do not put the cylinder on the same object as the **Wheel Collider**. `WheelCollider.Update` writes `VisualTransform` every frame: steer about Y, spin about X.
 
-`Player.PlanarSpeed` is the horizontal speed after `MoveSpeed`, in metres per second. `PlayerAnimator` plays **Idle** at or below **Walk Speed**, and **Walk** above it, with `Animator.CrossFade`. If a slot is empty it uses the other clip. If both are empty it does nothing.
+10. **GameObject → Empty Object**. Name it `FL`. Parent it to **Car**. Local position `-0.85, 0.55, 1.15`.
+11. **Add Component → Physics → Wheel Collider**. Leave **Radius** `0.35` and **Suspension Distance** `0.3`.
+12. **GameObject → Empty Child** while `FL` is selected. Name the child `Hub`. Local position `0, 0, 0`.
+13. **GameObject → 3D Object → Cylinder**. Name it `Mesh`. Parent it to **Hub**.
+14. The default cylinder stands on Y and is 2 units tall with radius 0.5. The collider spins the hub around local X, so the mesh’s axle has to be X. Local rotation of **Mesh** `0, 0, 90`. Local scale `0.125, 0.7, 0.7` (width 0.25, radius 0.35).
+15. On `FL`’s **Wheel Collider**, drag **Hub** into **Visual Transform**. `CarDrive.Start` does this if the slot is empty and the child is named `Hub`.
+16. Duplicate `FL` three times. Name them `FR`, `RL`, `RR`. Local positions:
+    - `FR` `0.85, 0.55, 1.15`
+    - `RL` `-0.85, 0.55, -1.15`
+    - `RR` `0.85, 0.55, -1.15`
 
-## Play
+`CarDrive` steers only the objects named `FL` and `FR`. All four get motor torque.
 
-Open `Assets/Scenes/TitleScreen.scene`, enter Play mode, and click the Game view so it has focus. Click **Play Game**, wait through loading, and use the Play CHECK at the top.
+### Seat and chase camera
 
-Without the FBX, you still see the cube and it still moves. With the clips assigned, standing loops idle and WASD blends to walk. Space still jumps. The camera stays on the parent, so the view does not bob with the hips unless you parent the camera to a head bone yourself. This episode does not do that.
+17. **GameObject → Empty Child** on **Car**. Name it `Seat`. Local position `0, 0.9, 0.2`.
+18. Another empty child. Name it `Chase`. Local position `0, 2.4, -6`. Local rotation `12, 0, 0`. Positive X looks slightly down. The camera looks along **+Z**, so Chase sits behind the car and looks forward.
+19. Drag **Car** from the Hierarchy onto `Assets/Prefabs`. The drop label is **Drop to create Prefab**.
+
+## Enter and exit
+
+20. Select the **Player** prefab instance. **Add Component → Vehicle Ride**. **Enter Distance** `4`.
+21. Open `VehicleRide.cs`. The key is `KeyCode.F`. It stays enabled while **Player**, **PlayerLook**, **PlayerAnimator**, and **Character Controller** are turned off.
+22. **Apply All** on the Player instance (or right-click **Player** in the Hierarchy → **Apply Prefab Overrides**). Do the same for **Car** if you changed it after the drop. Save the scene.
+
+## What the scripts do
+
+`CarDrive.Update` reads WASD only while `Controlled` is true. **Space** sets `BrakeTorque`. While `Controlled` is false every wheel gets the full brake, so a parked car does not roll away. `SteerAngle` is `MaxSteerDegrees` converted with `π / 180`. The sample car in VehicleShowcase does the same conversion.
+
+`VehicleRide` asks `Scene.Current.FindObjectsOfType<CarDrive>()` for the nearest car inside 4 metres. On enter it parents the player to **Seat**, parents the **Camera** to **Chase** with local position and rotation zero, and hides the player’s other children so the cube is not left standing in the cabin. On exit it unparents the player, `CharacterController.Teleport`s them to the car’s right, puts the camera back, and calls `PlayerLook.MatchYawToTransform`.
+
+## Save and CHECK
+
+- Play from **Title Screen**, then **Play Game**.
+- **CHECK:** The car falls a short way and rests on four wheels. It does not creep across the plane.
+- **CHECK:** Walk to it. **F** moves the view behind the car. WASD on foot does nothing while you are driving.
+- **CHECK:** **W** drives forward, **S** reverses, **A** and **D** steer, **Space** brakes.
+- **CHECK:** **F** drops you to the right of the car. Mouse look does not snap to your old facing. WASD walks again. **Space** jumps again.
+- **CHECK:** With no car in the scene, **F** does nothing and the Console stays clear.
+- Stop Play. Stay on the 10 metre plane. Driving off it falls forever until Part 10.

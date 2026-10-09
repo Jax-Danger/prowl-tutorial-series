@@ -89,6 +89,16 @@
       "_enabledInHierarchy": true,
       "HideFlags": 0L,
       "Name": "NewPlayerAnimator"
+    },
+    {
+      "$id": 41,
+      "$type": "VehicleRide, My Prowl Game.Game, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+      "EnterDistance": 4F,
+      "_identifier": "e7c2a1d4-8f60-4b2a-9c11-5d0e6a3b18f4",
+      "_enabled": true,
+      "_enabledInHierarchy": true,
+      "HideFlags": 0L,
+      "Name": "NewVehicleRide"
     }
   ],
   "Children": [
