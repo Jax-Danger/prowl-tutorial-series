@@ -129,7 +129,7 @@ Header, right: FPS chip, version chip (`v1.0-preview-4` on this pin), project na
 
 ### Panels
 
-1. **Hierarchy** — already open, top right. Menu **Window → General → Hierarchy**. `Prowl.Editor/GUI/Panels/HierarchyPanel.cs`. Click a row to select it. Toolbar **Create** opens the same menu as **GameObject**. Right-click a row for **Rename**, **Duplicate**, **Delete**.
+1. **Hierarchy** — already open, top right. Menu **Window → General → Hierarchy**. `Prowl.Editor/GUI/Panels/HierarchyPanel.cs`. Click a row to select it. The **+** on the scene header (tooltip **Create**) opens the **GameObject** menu. Right-click a row for **Rename**, **Duplicate**, **Delete**.
 2. **Inspector** — already open, bottom right. **Window → General → Inspector**. `Prowl.Editor/GUI/Panels/InspectorPanel.cs`. Shows the selection. **Add Component** is the button at the bottom.
 3. **Scene** — already open, large view on the left. **Window → General → Scene**. `Prowl.Editor/GUI/Panels/SceneViewPanel.cs`. Click the **Scene** tab if **Game** is in front.
 4. **Game** — tab next to **Scene** in that same dock. **Window → General → Game**. `Prowl.Editor/GUI/Panels/GameViewPanel.cs`. Gear on the panel header: **Resolution** (`Free`, `16:9`, `16:10`, `4:3`, `5:4`, `21:9`, `1:1`, `1920x1080`, `1280x720`, `960x540`, `640x480`, `800x600`) and **Show Stats**.
